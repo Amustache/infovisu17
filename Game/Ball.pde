@@ -16,18 +16,15 @@ void drawSphere() {
 
 void updateBall() {
 
+  gravity = new PVector(sin(rZ)*GRAVITY, 0, sin(rX)*GRAVITY);
   location = new PVector(width/2, height/2, 0);
-  velocity = new PVector(1, 1);
+  velocity = new PVector(1, 1, 1);
+  friction = ((velocity.get().mult(-1)).normalize()).mult(frictionMagnitude);
 
-  gravity.x = sin(rZ) * GRAVITY;
-  gravity.z = sin(rX) * GRAVITY;
 
   velocity.add(gravity);
   location.add(velocity);
-  friction = velocity.get();
-  friction.mult(-1);
-  friction.normalize();
-  friction.mult(frictionMagnitude);
+
 }
 
 void checkEdges() {
