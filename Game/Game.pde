@@ -1,15 +1,11 @@
 /* Global constants */ //<>//
 final float MIN_SPEED_MULTIPLIER = 0.1, MAX_SPEED_MULTIPLIER = 20.0; // Speed constraints.
 final float MIN_ANGLE = -PI/3, MAX_ANGLE = PI/3; // Angle constraints.
-
-// Box parameters.
-final int boxWidth = 1000;
-final int boxHeight = 1000;
-final int boxThickness = 40;
+final float GRAVITY = 9.81;
 
 // Scene parameters.
-final float origineY = height + boxThickness /2 ;
-final float origineX = width/2;
+final float centerY = height/2 ;
+final float centerX = width/2;
 
 /* Global variables */
 float speedMultiplier = 1; // Basically, speed.
@@ -37,31 +33,17 @@ void setup() {
 void draw() {
   lightSet();
   background(230);
-  fill(255);
-  stroke(150, 150, 0);
   camera(width/2, height/2, depth, width/2, height/2, 0, 0, 1, 0);
-  translate(width/2, height/2);
-  rotateBox();
-  box(boxWidth, boxThickness, boxHeight);
+  drawPlate();
+  drawSphere();
 }
+
 
 /* Settings for light */
 void lightSet() {
-  //directionalLight(150, 150, 150, 0, -1, 0);
-  //ambientLight(100, 50, 0);
-  //ambient(1);
-
   directionalLight(50, 50, 50, 0, 0, -1);
   ambientLight(153, 102, 0);
   ambient(51, 26, 0);
-}
-
-/* Control inclinaison with mouse */
-void rotateBox() {
-  // float rX = map(-(mouseY - origineY), 0, height, 0, PI/3);  
-  // float rZ = map(-(mouseX - origineX), 0, height, 0, PI/3);
-  rotateX(rX);
-  rotateZ(rZ);
 }
 
 /* Keyboard settings */
@@ -96,7 +78,7 @@ void mouseDragged() {
   if(rX < MIN_ANGLE)
     rX = MIN_ANGLE;
     
-  rZ = (absrZ + map(absMouseX - mouseX, 0, width, 0, 2 * PI)) * speedMultiplier;
+  rZ = -(absrZ + map(absMouseX - mouseX, 0, width, 0, 2 * PI)) * speedMultiplier;
   // Angle constraints.
   if(rZ > MAX_ANGLE)
     rZ = MAX_ANGLE;
