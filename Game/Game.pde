@@ -33,7 +33,7 @@ void setup() {
 void draw() {
   lightSet();
   background(230);
-  camera(width/2, height/2, depth, width/2, height/2, 0, 0, 1, 0);
+  camera(centerX, centerY, depth, centerX, centerY, 0, 0, 1, 0);
   drawPlate();
   drawSphere();
 }

@@ -3,12 +3,13 @@ final float normalForce = 1;
 final float mu = 0.01;
 final float frictionMagnitude = normalForce * mu;
 
-PVector velocity;
-PVector location;
-PVector gravity;
-PVector friction;
+PVector velocity = new PVector(0,0,0);
+PVector location = new PVector(0,0,0);
+PVector gravity = new PVector(1,0,0);
+PVector friction = new PVector(0,0,0);
 
 void drawSphere() {
+  updateBall();
   checkEdges();
   translate(location.x, location.y -(boxThickness/2 + radius), 0);
   sphere(radius);
