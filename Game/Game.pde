@@ -3,6 +3,14 @@ final float MIN_SPEED_MULTIPLIER = 0.1, MAX_SPEED_MULTIPLIER = 20.0; // Speed co
 final float MIN_ANGLE = -PI/3, MAX_ANGLE = PI/3; // Angle constraints.
 final float GRAVITY = 9.81;
 
+/*final float normalForce = 1;
+ final float mu = 0.01;
+ final float frictionMagnitude = normalForce * mu;*/
+
+final int boxWidth = 1000;
+final int boxHeight = 1000;
+final int boxThickness = 40;
+
 // Scene parameters.
 final float centerY = height/2 ;
 final float centerX = width/2;
@@ -24,6 +32,8 @@ void settings() {
   size(1000, 1000, P3D);
 }
 
+Plate p = new Plate(boxWidth, boxHeight, boxThickness);  
+
 /* Setup, called on first frame */
 void setup() {
   // NULL
@@ -34,7 +44,9 @@ void draw() {
   lightSet();
   background(230);
   camera(centerX, centerY, depth, centerX, centerY, 0, 0, 1, 0);
-  drawPlate();
+  p.update();
+  p.display();
+  //drawPlate();
   drawSphere();
 }
 
@@ -48,15 +60,15 @@ void lightSet() {
 
 /* Keyboard settings */
 void keyPressed() {
-  if(key == CODED) {
+  if (key == CODED) {
     switch(keyCode) {
       // Zoom with UP DOWN
-      case UP:
-        depth -= 50 * speedMultiplier;
-        break;
-      case DOWN:
-        depth += 50 * speedMultiplier;
-        break;
+    case UP:
+      depth -= 50 * speedMultiplier;
+      break;
+    case DOWN:
+      depth += 50 * speedMultiplier;
+      break;
     }
   }
 }
@@ -73,16 +85,16 @@ void mousePressed() {
 void mouseDragged() {
   rX = (absrX + map(absMouseY - mouseY, 0, height, 0, 2 * PI)) * speedMultiplier;
   // Angle constraints.
-  if(rX > MAX_ANGLE)
+  if (rX > MAX_ANGLE)
     rX = MAX_ANGLE;
-  if(rX < MIN_ANGLE)
+  if (rX < MIN_ANGLE)
     rX = MIN_ANGLE;
-    
+
   rZ = -(absrZ + map(absMouseX - mouseX, 0, width, 0, 2 * PI)) * speedMultiplier;
   // Angle constraints.
-  if(rZ > MAX_ANGLE)
+  if (rZ > MAX_ANGLE)
     rZ = MAX_ANGLE;
-  if(rZ < MIN_ANGLE)
+  if (rZ < MIN_ANGLE)
     rZ = MIN_ANGLE;
 }
 
