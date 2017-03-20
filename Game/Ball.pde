@@ -21,9 +21,7 @@ class Ball {
   }
 
   void update() {
-    gravity = new PVector(sin(rZ)*GRAVITY, 0, sin(rX)*GRAVITY);
-    location = new PVector(centerX, centerY-boxThickness, 0);
-    velocity = new PVector(1, 1, 1);
+    gravity = new PVector(sin(rZ)*GRAVITY, 0, sin(rX)*GRAVITY); 
     friction = ((velocity.get().mult(-1)).normalize()).mult(frictionMagnitude);
     velocity.add(gravity);
     location.add(velocity);

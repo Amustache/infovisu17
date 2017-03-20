@@ -1,4 +1,4 @@
-/* Global constants *///<>// //<>//
+/* Global constants *///<>// //<>// //<>//
 final float MIN_SPEED_MULTIPLIER = 0.1, MAX_SPEED_MULTIPLIER = 20.0; // Speed constraints.
 final float MIN_ANGLE = -PI/3, MAX_ANGLE = PI/3; // Angle constraints.
 final float GRAVITY = 9.81;
@@ -6,6 +6,8 @@ final float GRAVITY = 9.81;
 final float normalForce = 1;
 final float mu = 0.01;
 final float frictionMagnitude = normalForce * mu;
+
+final int RADIUS = 50;
 
 final int boxWidth = 1000;
 final int boxHeight = 1000;
@@ -33,6 +35,7 @@ void settings() {
 }
 
 Plate p = new Plate(boxWidth, boxHeight, boxThickness);  
+Ball b = new Ball(RADIUS, new PVector(centerX, centerY-boxThickness, 0), new PVector(1, 1, 1));
 
 /* Setup, called on first frame */
 void setup() {
@@ -46,8 +49,8 @@ void draw() {
   camera(centerX, centerY, depth, centerX, centerY, 0, 0, 1, 0);
   p.update();
   p.display();
-  //drawPlate();
-  drawSphere();
+  b.update();
+  b.draw();
 }
 
 
