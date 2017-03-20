@@ -90,7 +90,7 @@ void mouseDragged() {
   if (rX < MIN_ANGLE)
     rX = MIN_ANGLE;
 
-  rZ = -(absrZ + map(absMouseX - mouseX, 0, width, 0, 2 * PI)) * speedMultiplier;
+  rZ = (absrZ + map(absMouseX - mouseX, 0, width, 0, 2 * PI)) * speedMultiplier;
   // Angle constraints.
   if (rZ > MAX_ANGLE)
     rZ = MAX_ANGLE;

@@ -5,7 +5,7 @@ final float frictionMagnitude = normalForce * mu;
 
 PVector velocity = new PVector(0,0,0);
 PVector location = new PVector(0,0,0);
-PVector gravity = new PVector(1,0,0);
+PVector gravity = new PVector(0,0,0);
 PVector friction = new PVector(0,0,0);
 
 void drawSphere() {
