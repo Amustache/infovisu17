@@ -13,16 +13,16 @@ class Ball {
     this.velocity = startingVelocity;
   }
   
-  void drawBall() {
-    updateBall();
+  void draw() {
+    update();
     checkEdges();
     translate(location.x, location.y -(boxThickness/2 + radius), 0);
     sphere(radius);
   }
 
-  void updateBall() {
+  void update() {
     gravity = new PVector(sin(rZ)*GRAVITY, 0, sin(rX)*GRAVITY);
-    location = new PVector(width/2, height/2, 0);
+    location = new PVector(centerX, centerY-boxThickness, 0);
     velocity = new PVector(1, 1, 1);
     friction = ((velocity.get().mult(-1)).normalize()).mult(frictionMagnitude);
     velocity.add(gravity);
