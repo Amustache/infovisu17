@@ -13,7 +13,7 @@ class Ball {
     this.velocity = startingVelocity;
   }
   
-  void drawSphere() {
+  void drawBall() {
     updateBall();
     checkEdges();
     translate(location.x, location.y -(boxThickness/2 + radius), 0);
