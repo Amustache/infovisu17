@@ -1,11 +1,11 @@
-/* Global constants */ //<>//
+/* Global constants *///<>// //<>//
 final float MIN_SPEED_MULTIPLIER = 0.1, MAX_SPEED_MULTIPLIER = 20.0; // Speed constraints.
 final float MIN_ANGLE = -PI/3, MAX_ANGLE = PI/3; // Angle constraints.
 final float GRAVITY = 9.81;
 
-/*final float normalForce = 1;
- final float mu = 0.01;
- final float frictionMagnitude = normalForce * mu;*/
+final float normalForce = 1;
+final float mu = 0.01;
+final float frictionMagnitude = normalForce * mu;
 
 final int boxWidth = 1000;
 final int boxHeight = 1000;
