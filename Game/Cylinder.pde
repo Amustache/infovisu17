@@ -8,6 +8,11 @@ class Cylinder {
   PShape openCylinder = new PShape();
   PShape cylinder2D = new PShape();
   PVector location = new PVector();
+  
+  Cylinder(PVector location){
+  this.location = location;
+  }
+  
   void settings() {
     size(400, 400, P3D);
   }

@@ -4,7 +4,7 @@ class Ball {
   PVector location;
   PVector velocity;
 
-  PVector gravity = new PVector(1, 0, 0);
+  PVector gravity = new PVector(0, 1, 0);
   PVector friction = new PVector(0, 0, 0);
 
   Ball(int radius, PVector startingVelocity, PVector startingLocation) {
@@ -21,8 +21,8 @@ class Ball {
     sphere(radius);
     popMatrix();
   }
-  
-  void display2D(){
+
+  void display2D() {
     ellipse(location.x, location.z, radius, radius);
   }
 
@@ -56,11 +56,15 @@ class Ball {
       location.z = -boxWidth/2 + RADIUS;
     }
   }
-  
+
   void checkCylinderCollision(ArrayList<Cylinder> cylinders) {
     //  V2 = V1 − 2(V1 · n)n
-    for(Cylinder c : cylinders) {
-      if(this.location.sub(c.location) <= new PVector(1,1,1)) {
+    for (Cylinder c : cylinders) {
+      if (sqrt(pow((this.location.x - c.location.x), 2)) < radius + c.cylinderBaseSize) {
+        PVector norm = new PVector().normalize();
+        this.velocity = (this.velocity.sub((this.velocity.dot(norm))).mult(2));
+      }
+      if (sqrt(pow((this.location.z - c.location.z), 2)) < radius + c.cylinderBaseSize) {
         PVector norm = new PVector().normalize();
         this.velocity = this.velocity.sub((this.velocity.dot(norm)).mult(2));
       }
