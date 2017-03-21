@@ -11,14 +11,14 @@ void mousePressed() {
 
 /* Map the relative position of the mouse to the relative position of the box */
 void mouseDragged() {
-  rX = (absrX + map(absMouseY - mouseY, 0, height, 0, 2 * PI)) * speedMultiplier;
+  //rX = (absrX + map(absMouseY - mouseY, 0, height, 0, 2 * PI)) * speedMultiplier;
   // Angle constraints.
   if (rX > MAX_ANGLE)
     rX = MAX_ANGLE;
   if (rX < MIN_ANGLE)
     rX = MIN_ANGLE;
 
-  rZ = (absrZ + map(absMouseX - mouseX, 0, width, 0, 2 * PI)) * speedMultiplier;
+  rZ = (absrZ + map(mouseX - absMouseX, 0, width, 0, 2 * PI)) * speedMultiplier;
   // Angle constraints.
   if (rZ > MAX_ANGLE)
     rZ = MAX_ANGLE;

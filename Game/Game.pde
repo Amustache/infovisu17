@@ -42,7 +42,6 @@ Ball b = new Ball(RADIUS, new PVector(centerX, centerY-boxThickness, 0), new PVe
 /* Setup, called on first frame */
 void setup() {
 
-  
 }
 
 /* Update, called on each frame */
@@ -50,7 +49,7 @@ void draw() {
   lightSet();
   background(230);
   camera(centerX, centerY, depth, centerX, centerY, 0, 0, 1, 0);
-  p.update();
+  p.update(); //<>//
   p.display();
   b.update();
   b.checkEdges();
