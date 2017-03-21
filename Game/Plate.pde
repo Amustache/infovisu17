@@ -1,9 +1,10 @@
 class Plate {
-    // Box parameters.
+
+  // Box parameters.
   final int bWidth;// = 1000;
   final int bHeight;// = 1000;
   final int bThickness;// = 40;
-  
+
   Plate(int bWidth_, int bHeight_, int bThickness_) {
     bWidth = bWidth_;
     bHeight = bHeight_;
@@ -14,7 +15,7 @@ class Plate {
     translate(centerX, centerY);
     rotateBox();
   }
-  
+
   void display() {
     box(boxWidth, boxThickness, boxHeight);
     fill(255);

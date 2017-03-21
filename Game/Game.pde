@@ -3,6 +3,7 @@ final float MIN_SPEED_MULTIPLIER = 0.1, MAX_SPEED_MULTIPLIER = 20.0; // Speed co
 final float MIN_ANGLE = -PI/3, MAX_ANGLE = PI/3; // Angle constraints.
 final float GRAVITY = 9.81;
 
+final float elasticity = 0.7;
 final float normalForce = 1;
 final float mu = 0.01;
 final float frictionMagnitude = normalForce * mu;
@@ -20,6 +21,9 @@ final float centerX = width/2;
 /* Global variables */
 float speedMultiplier = 1; // Basically, speed.
 float depth = 2000; // Basically, depth.
+
+float score;
+float lastScore;
 
 int absMouseX, absMouseY; // Absolute position of the mouse.
 
@@ -39,7 +43,9 @@ Ball b = new Ball(RADIUS, new PVector(centerX, centerY-boxThickness, 0), new PVe
 
 /* Setup, called on first frame */
 void setup() {
-  // NULL
+  score = 0.0;
+  lastScore = 0.0;
+  
 }
 
 /* Update, called on each frame */
@@ -50,9 +56,9 @@ void draw() {
   p.update();
   p.display();
   b.update();
+  b.checkEdges();
   b.draw();
 }
-
 
 /* Settings for light */
 void lightSet() {
