@@ -22,7 +22,9 @@ class Ball {
     popMatrix();
   }
   
-  void display2D(){}
+  void display2D(){
+    ellipse(location.x, location.z, radius, radius);
+  }
 
   void update() {
     gravity.x = sin(rZ) * GRAVITY;
