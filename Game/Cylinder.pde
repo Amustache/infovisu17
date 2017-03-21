@@ -71,7 +71,6 @@ class Cylinder {
     pushMatrix();
     fill(255, 245, 104);
     stroke(0);
-    translate(mouseX, mouseY);
     rect(width/2-(boxWidth/2), height/2-(boxHeight/2), boxWidth, boxHeight);
     noStroke();
     popMatrix();

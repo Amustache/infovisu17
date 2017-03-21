@@ -62,11 +62,11 @@ class Ball {
     for (Cylinder c : cylinders) {
       if (sqrt(pow((this.location.x - c.location.x), 2)) < radius + c.cylinderBaseSize) {
         PVector norm = new PVector().normalize();
-        this.velocity = (this.velocity.sub((this.velocity.dot(norm))).mult(2));
+       // this.velocity = (this.velocity.sub((this.velocity.dot(norm))).mult(2));
       }
       if (sqrt(pow((this.location.z - c.location.z), 2)) < radius + c.cylinderBaseSize) {
         PVector norm = new PVector().normalize();
-        this.velocity = this.velocity.sub((this.velocity.dot(norm)).mult(2));
+     //   this.velocity = this.velocity.sub((this.velocity.dot(norm)).mult(2));
       }
     }
   }
