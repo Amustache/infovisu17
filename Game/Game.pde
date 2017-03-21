@@ -1,4 +1,4 @@
-/* Global constants */ //<>//
+/* Global constants *///<>// //<>//
 final float MIN_SPEED_MULTIPLIER = 0.1, MAX_SPEED_MULTIPLIER = 20.0; // Speed constraints.
 final float MIN_ANGLE = -PI/3, MAX_ANGLE = PI/3; // Angle constraints.
 final float GRAVITY = 9.81;
@@ -39,11 +39,11 @@ void settings() {
 }
 
 Plate p = new Plate(boxWidth, boxHeight, boxThickness);  
-Ball b = new Ball(RADIUS, new PVector(centerX, centerY-boxThickness, 0), new PVector(1, 1, 1));
+Ball b = new Ball(RADIUS, new PVector(0, 0, 0), new PVector(1, 1, 1));
 
 /* Setup, called on first frame */
 void setup() {
-   cylinderMode = false;
+  cylinderMode = false;
 }
 
 /* Update, called on each frame */
@@ -55,7 +55,7 @@ void draw() {
     cylinderMode();
     b.display2D();
   } else {
-    p.update(); //<>// //<>//
+    p.update(); //<>// //<>// //<>//
     p.display();
     b.update();
     b.checkEdges();
