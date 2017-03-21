@@ -1,25 +1,24 @@
 /**********Mouse**********/
 
-/* Get the absolute position of the mouse when a button is pressed */
-void mousePressed() {
-  absMouseX = mouseX;
-  absMouseY = mouseY;
-  absrX = rX;
-  absrZ = rZ;
-}
-
-
 /* Map the relative position of the mouse to the relative position of the box */
 void mouseDragged() {
-  //rX = (absrX + map(absMouseY - mouseY, 0, height, 0, 2 * PI)) * speedMultiplier;
-  // Angle constraints.
+
+  // Following X
+  if (pmouseY > mouseY)
+    rX += 0.1 * speedMultiplier;
+  if (pmouseY < mouseY)
+    rX -= 0.1 * speedMultiplier;
+
   if (rX > MAX_ANGLE)
     rX = MAX_ANGLE;
   if (rX < MIN_ANGLE)
     rX = MIN_ANGLE;
 
-  rZ = (absrZ + map(mouseX - absMouseX, 0, width, 0, 2 * PI)) * speedMultiplier;
-  // Angle constraints.
+  // Following Z
+  if (pmouseX < mouseX)
+    rZ += 0.1 * speedMultiplier;
+  if (pmouseX > mouseX)
+    rZ -= 0.1 * speedMultiplier;
   if (rZ > MAX_ANGLE)
     rZ = MAX_ANGLE;
   if (rZ < MIN_ANGLE)

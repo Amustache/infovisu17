@@ -19,11 +19,8 @@ final float centerY = height/2 ;
 final float centerX = width/2;
 
 /* Global variables */
-float speedMultiplier = 1; // Basically, speed.
+float speedMultiplier = 0.1; // Basically, speed.
 float depth = 2000; // Basically, depth.
-
-
-int absMouseX, absMouseY; // Absolute position of the mouse.
 
 // Rotations.
 float rX = 0; // Inclinaison of the box following X.
