@@ -57,9 +57,9 @@ class Ball {
     }
   }
   
-  void checkCylinderCollision(cylinders) {
+  void checkCylinderCollision(ArrayList<Cylinder> cylinders) {
     //  V2 = V1 − 2(V1 · n)n
-    for(Cylinder c in cylinders) {
+    for(Cylinder c : cylinders) {
       if(this.location.sub(c.location) <= new PVector(1,1,1)) {
         PVector norm = new PVector().normalize();
         this.velocity = this.velocity.sub((this.velocity.dot(norm)).mult(2));

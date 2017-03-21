@@ -23,7 +23,7 @@ float speedMultiplier = 0.1; // Basically, speed.
 float depth = 2000; // Basically, depth.
 
 boolean cylinderMode, addingMode;
-ArrayList<Cylinder> cylinders[];
+ArrayList<Cylinder> cylinders = new ArrayList<Cylinder>();
 
 int absMouseX, absMouseY; // Absolute position of the mouse.
 

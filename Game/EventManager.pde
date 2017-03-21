@@ -38,7 +38,7 @@ void mouseWheel(MouseEvent event) {
 }
     public void mouseClicked(){
       if(cylinderMode && addingMode){
-        cylinders.add(new Cylinder(mouseX, mouseY, this));
+        cylinders.add(new Cylinder(mouseX, mouseY));
       }
     }
 

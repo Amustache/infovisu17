@@ -77,13 +77,7 @@ class Cylinder {
         addingMode = true;
       }
     }
-    
-     Iterator<Cylinder> itr = cylinders.iterator();
-    while (itr.hasNext()) {
-      String element = itr.next();
-      System.out.print(element + " ");
-    }
-    for(c <- cylinders.toArray()){
+    for(Cylinder c : cylinders){
       c.display2D();
     
     }
