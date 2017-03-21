@@ -1,3 +1,5 @@
+/**********Mouse**********/
+
 /* Get the absolute position of the mouse when a button is pressed */
 void mousePressed() {
   absMouseX = mouseX;
@@ -33,5 +35,22 @@ void mouseWheel(MouseEvent event) {
   }
   if (speedMultiplier < MIN_SPEED_MULTIPLIER) {
     speedMultiplier = MIN_SPEED_MULTIPLIER;
+  }
+}
+
+/**********Keyboard**********/
+
+/* Keyboard settings */
+void keyPressed() {
+  if (key == CODED) {
+    switch(keyCode) {
+      // Zoom with UP DOWN
+    case UP:
+      depth -= 50 * speedMultiplier;
+      break;
+    case DOWN:
+      depth += 50 * speedMultiplier;
+      break;
+    }
   }
 }

@@ -60,18 +60,3 @@ void lightSet() {
   ambientLight(153, 102, 0);
   ambient(51, 26, 0);
 }
-
-/* Keyboard settings */
-void keyPressed() {
-  if (key == CODED) {
-    switch(keyCode) {
-      // Zoom with UP DOWN
-    case UP:
-      depth -= 50 * speedMultiplier;
-      break;
-    case DOWN:
-      depth += 50 * speedMultiplier;
-      break;
-    }
-  }
-}
