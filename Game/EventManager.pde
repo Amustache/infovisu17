@@ -36,6 +36,11 @@ void mouseWheel(MouseEvent event) {
     speedMultiplier = MIN_SPEED_MULTIPLIER;
   }
 }
+    public void mouseClicked(){
+      if(cylinderMode && addingMode){
+        cylinders.add(new Cylinder(mouseX, mouseY, this));
+      }
+    }
 
 /**********Keyboard**********/
 
@@ -61,10 +66,6 @@ public void keyReleased(){
         cylinderMode = false;
     }
 
-    public void mouseClicked(){
-      if(cylinderMode && addingMode){
-        cylinders.add(new Cylinder(mouseX, mouseY, this));
-      }
-    }
+
 
     
