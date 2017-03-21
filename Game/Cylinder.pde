@@ -33,8 +33,8 @@ class Cylinder {
   }
 }
 
-void cylindreMOde(){
-      camera(width/2.0f, height/2.0f, (height/2.0f) / (float)Math.tan(PI*30.0f / 180.0f), width/2.0f, height/2.0f, 0f, 0f, 1.0f, 0f);
+void cylindrerMode(){
+      camera(width/2, height/2, height, width/2, height/2, 0, 0, 1, 0);
       float sizeSideX = (width - boxWidth) / 2;
       float sizeSideY = (height - boxHeight) / 2;
       lights();
