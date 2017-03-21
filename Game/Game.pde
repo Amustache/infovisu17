@@ -22,8 +22,6 @@ final float centerX = width/2;
 float speedMultiplier = 1; // Basically, speed.
 float depth = 2000; // Basically, depth.
 
-float score;
-float lastScore;
 
 int absMouseX, absMouseY; // Absolute position of the mouse.
 
@@ -43,8 +41,7 @@ Ball b = new Ball(RADIUS, new PVector(centerX, centerY-boxThickness, 0), new PVe
 
 /* Setup, called on first frame */
 void setup() {
-  score = 0.0;
-  lastScore = 0.0;
+
   
 }
 
@@ -57,7 +54,7 @@ void draw() {
   p.display();
   b.update();
   b.checkEdges();
-  b.draw();
+  b.display();
 }
 
 /* Settings for light */

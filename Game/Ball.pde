@@ -13,7 +13,7 @@ class Ball {
     this.velocity = startingVelocity;
   }
 
-  void draw() {
+  void display() {
     pushMatrix();
     translate(location.x, -boxThickness/2-radius, location.z);
     fill(246, 142, 86);
@@ -38,24 +38,16 @@ class Ball {
 
   void checkEdges() {
     if (location.x + RADIUS > boxWidth/2) {
-      lastScore = score;
-      score = score - sqrt(pow(velocity.x, 2) + pow(velocity.z, 2));
       velocity.x = -velocity.x * elasticity;
       location.x = boxWidth/2 - RADIUS;
     } else if (location.x - RADIUS < -boxWidth/2) {
-      lastScore = score;
-      score = score - sqrt(pow(velocity.x, 2) + pow(velocity.z, 2));
       velocity.x = -velocity.x * elasticity;
       location.x = -boxWidth/2 + RADIUS;
     }
     if (location.z + RADIUS > boxWidth/2) {
-      lastScore = score;
-      score = score - sqrt(pow(velocity.x, 2) + pow(velocity.z, 2));
       velocity.z = -velocity.z * elasticity;
       location.z = boxWidth/2 - RADIUS;
     } else if (location.z - RADIUS < -boxWidth/2) {
-      lastScore = score;
-      score = score - sqrt(pow(velocity.x, 2) + pow(velocity.z, 2));
       velocity.z = -velocity.z * elasticity;
       location.z = -boxWidth/2 + RADIUS;
     }
