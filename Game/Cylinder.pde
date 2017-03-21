@@ -1,4 +1,4 @@
-class Cylindre {
+class Cylinder {
 
   float cylinderBaseSize = 50;
   float cylinderHeight = 50;
@@ -31,4 +31,17 @@ class Cylindre {
     translate(mouseX, mouseY, 0);
     shape(openCylinder);
   }
+}
+
+void cylindreMOde(){
+      camera(width/2.0f, height/2.0f, (height/2.0f) / (float)Math.tan(PI*30.0f / 180.0f), width/2.0f, height/2.0f, 0f, 0f, 1.0f, 0f);
+      float sizeSideX = (width - boxWidth) / 2;
+      float sizeSideY = (height - boxHeight) / 2;
+      lights();
+      
+      pushMatrix();
+        fill(255, 245, 104);
+        stroke(0);
+        rect(width/2-(boxWidth/2), height/2-(boxHeight/2), boxWidth, boxHeight);
+        noStroke();
 }

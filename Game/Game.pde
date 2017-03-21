@@ -1,4 +1,4 @@
-/* Global constants *///<>// //<>// //<>//
+/* Global constants *///<>// //<>// //<>// //<>//
 final float MIN_SPEED_MULTIPLIER = 0.1, MAX_SPEED_MULTIPLIER = 20.0; // Speed constraints.
 final float MIN_ANGLE = -PI/3, MAX_ANGLE = PI/3; // Angle constraints.
 final float GRAVITY = 9.81;
@@ -22,6 +22,8 @@ final float centerX = width/2;
 float speedMultiplier = 1; // Basically, speed.
 float depth = 2000; // Basically, depth.
 
+boolean cylinderMode, addingMode;
+Cylinder cylinders[];
 
 int absMouseX, absMouseY; // Absolute position of the mouse.
 
@@ -41,7 +43,7 @@ Ball b = new Ball(RADIUS, new PVector(centerX, centerY-boxThickness, 0), new PVe
 
 /* Setup, called on first frame */
 void setup() {
-
+   cylinderMode = false;
 }
 
 /* Update, called on each frame */
@@ -49,11 +51,16 @@ void draw() {
   lightSet();
   background(230);
   camera(centerX, centerY, depth, centerX, centerY, 0, 0, 1, 0);
-  p.update(); //<>//
-  p.display();
-  b.update();
-  b.checkEdges();
-  b.display();
+  if (cylinderMode) {
+    cylinderMode();
+    b.display2D();
+  } else {
+    p.update(); //<>//
+    p.display();
+    b.update();
+    b.checkEdges();
+    b.display();
+  }
 }
 
 /* Settings for light */

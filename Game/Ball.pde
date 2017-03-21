@@ -21,6 +21,8 @@ class Ball {
     sphere(radius);
     popMatrix();
   }
+  
+  void display2D(){}
 
   void update() {
     gravity.x = sin(rZ) * GRAVITY;

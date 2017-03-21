@@ -11,7 +11,7 @@ void mousePressed() {
 
 /* Map the relative position of the mouse to the relative position of the box */
 void mouseDragged() {
-  //rX = (absrX + map(absMouseY - mouseY, 0, height, 0, 2 * PI)) * speedMultiplier;
+  rX = (absrX + map(absMouseY - mouseY, 0, height, 0, 2 * PI)) * speedMultiplier;
   // Angle constraints.
   if (rX > MAX_ANGLE)
     rX = MAX_ANGLE;
@@ -51,6 +51,21 @@ void keyPressed() {
     case DOWN:
       depth += 50 * speedMultiplier;
       break;
+    case SHIFT:
+      cylinderMode = true;
     }
   }
 }
+
+public void keyReleased(){
+      if(keyCode == SHIFT)
+        cylinderMode = false;
+    }
+
+    public void mouseClicked(){
+      if(cylinderMode && addingMode){
+        cylinders.add(new Cylinder(mouseX, mouseY, this));
+      }
+    }
+
+    
