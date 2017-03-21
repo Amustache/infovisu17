@@ -1,4 +1,4 @@
-/* Global constants *///<>// //<>//
+/* Global constants *///<>// //<>// //<>//
 final float MIN_SPEED_MULTIPLIER = 0.1, MAX_SPEED_MULTIPLIER = 20.0; // Speed constraints.
 final float MIN_ANGLE = -PI/3, MAX_ANGLE = PI/3; // Angle constraints.
 final float GRAVITY = 9.81;
@@ -55,11 +55,12 @@ void draw() {
     cylinderMode();
     b.display2D();
   } else {
-    p.update(); //<>// //<>// //<>//
+    p.update(); //<>// //<>// //<>// //<>//
     p.display();
     b.update();
-    b.checkEdges();
     b.display();
+    b.checkEdges();
+    b.checkCylinderCollision(cylinders);
   }
 }
 

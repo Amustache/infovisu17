@@ -56,4 +56,14 @@ class Ball {
       location.z = -boxWidth/2 + RADIUS;
     }
   }
+  
+  void checkCylinderCollision(cylinders) {
+    //  V2 = V1 − 2(V1 · n)n
+    for(Cylinder c in cylinders) {
+      if(this.location.sub(c.location) <= new PVector(1,1,1)) {
+        PVector norm = new PVector().normalize();
+        this.velocity = this.velocity.sub((this.velocity.dot(norm)).mult(2));
+      }
+    }
+  }
 }
