@@ -1,4 +1,4 @@
-/* Global constants *///<>// //<>// //<>// //<>//
+/* Global constants */ //<>//
 final float MIN_SPEED_MULTIPLIER = 0.1, MAX_SPEED_MULTIPLIER = 20.0; // Speed constraints.
 final float MIN_ANGLE = -PI/3, MAX_ANGLE = PI/3; // Angle constraints.
 final float GRAVITY = 9.81;
@@ -19,7 +19,7 @@ final float centerY = height/2 ;
 final float centerX = width/2;
 
 /* Global variables */
-float speedMultiplier = 1; // Basically, speed.
+float speedMultiplier = 0.1; // Basically, speed.
 float depth = 2000; // Basically, depth.
 
 boolean cylinderMode, addingMode;
@@ -55,7 +55,7 @@ void draw() {
     cylinderMode();
     b.display2D();
   } else {
-    p.update(); //<>//
+    p.update(); //<>// //<>//
     p.display();
     b.update();
     b.checkEdges();
