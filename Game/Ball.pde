@@ -24,7 +24,8 @@ class Ball {
 
   void display2D() {
     fill(0, 0, 0);
-    ellipse(map(location.x, -450, 450, radius, boxWidth - radius), map(location.z, -450, 450, radius, boxHeight - radius), radius * 2, radius * 2);
+    ellipse(map(location.x, -450, 450, centerX - boxWidth / 2 + radius, centerX + boxWidth / 2 - radius), map(location.z, -450, 450, centerY - boxHeight / 2 + radius, centerY + boxHeight / 2 - radius), radius * 2, radius * 2);
+    print(location.x+"\n");
   }
 
   void update() {

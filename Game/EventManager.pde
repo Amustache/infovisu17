@@ -36,11 +36,13 @@ void mouseWheel(MouseEvent event) {
     speedMultiplier = MIN_SPEED_MULTIPLIER;
   }
 }
-    public void mouseClicked(){
-      if(cylinderMode && addingMode){
-        cylinders.add(new Cylinder(new PVector(mouseX, 0, mouseY)));
-      }
-    }
+
+public void mouseClicked() {
+  if (cylinderMode && addingMode) {
+    cylinders.add(new Cylinder(new PVector(mouseX, 0, mouseY)));
+    print("Added");
+  }
+}
 
 /**********Keyboard**********/
 
@@ -61,11 +63,7 @@ void keyPressed() {
   }
 }
 
-public void keyReleased(){
-      if(keyCode == SHIFT)
-        cylinderMode = false;
-    }
-
-
-
-    
+public void keyReleased() {
+  if (keyCode == SHIFT)
+    cylinderMode = false;
+}
