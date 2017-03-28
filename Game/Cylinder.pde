@@ -8,11 +8,11 @@ class Cylinder {
   PShape openCylinder = new PShape();
   PShape cylinder2D = new PShape();
   PVector location = new PVector();
-  
-  Cylinder(PVector location){
-  this.location = location;
+
+  Cylinder(PVector location) {
+    this.location = location;
   }
-  
+
   void settings() {
     size(400, 400, P3D);
   }
@@ -42,7 +42,7 @@ class Cylinder {
   }
 
   void display2D() {
-    
+
     cylinder2D = createShape();
     float angle;
     float[] x = new float[cylinderResolution + 1];
@@ -61,29 +61,29 @@ class Cylinder {
     cylinder2D.endShape();
   }
 }
-  // conditions to may add a cylinder 
-  void cylinderMode() {
+// conditions to may add a cylinder 
+void cylinderMode() {
 
-    camera(width/2, height/2,depth, width/2, height/2, 0, 0, 1, 0);
-    float sizeSideX = (width - boxWidth) / 2;
-    float sizeSideY = (height - boxHeight) / 2;
-    lights();
-    pushMatrix();
-    fill(255, 255, 255);
-    stroke(0);
-    rect(width/2-(boxWidth/2), height/2-(boxHeight/2), boxWidth, boxHeight);
-    noStroke();
-    popMatrix();
+  camera(width/2, height/2, depth, width/2, height/2, 0, 0, 1, 0);
+  float sizeSideX = (width - boxWidth) / 2;
+  float sizeSideY = (height - boxHeight) / 2;
+  lights();
+  pushMatrix();
+  fill(255, 255, 255);
+  stroke(0);
+  rect(width/2-(boxWidth/2), height/2-(boxHeight/2), boxWidth, boxHeight);
+  noStroke();
+  popMatrix();
 
-    addingMode = false;
-    if (!((mouseX<(width-sizeSideX)/2) || (mouseX>(width+sizeSideX)/2) || (mouseY<(height-sizeSideY)/2) || (mouseY>(height+sizeSideY)/2))) {
-      if (!((mouseX>(b.location.x - b.radius) && (mouseX<b.location.x + b.radius))) && (mouseY>(b.location.z - b.radius) && (mouseY<b.location.z + b.radius))) {
-        addingMode = true;
-      }
+  addingMode = false;
+
+  if ((mouseX<(centerX+boxWidth/2)) && (mouseX>(centerX-boxWidth/2)) && (mouseY<(centerY+boxHeight/2)) && (mouseY>centerY-boxHeight/2)) {
+
+    if (!((mouseX>(b.location.x - b.radius)) && (mouseX < (b.location.x + b.radius)) && (mouseY>(b.location.z - b.radius)) && (mouseY<(b.location.z + b.radius)))) {
+    addingMode = true;
     }
-    for(Cylinder c : cylinders){
-      c.display2D();
-    
-    }
-  
+  }
+  for (Cylinder c : cylinders) {
+    c.display2D();
+  }
 }

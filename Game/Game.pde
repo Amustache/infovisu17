@@ -1,4 +1,4 @@
-/* Global constants */ //<>//
+/* Global constants */ //<>// //<>//
 final float MIN_SPEED_MULTIPLIER = 0.1, MAX_SPEED_MULTIPLIER = 20.0; // Speed constraints.
 final float MIN_ANGLE = -PI/3, MAX_ANGLE = PI/3; // Angle constraints.
 final float GRAVITY = 9.81;
@@ -34,7 +34,7 @@ float absrX, absrZ; // Absolute rotation of the box.
 
 /* Settings, called on start */
 void settings() {
-  // fullScreen(P3D); // Because why not  
+   //fullScreen(P3D); // Because why not  
   size(1000, 1000, P3D);
 }
 
@@ -55,7 +55,7 @@ void draw() {
     cylinderMode();
     b.display2D();
   } else {
-    p.update(); //<>// //<>//
+    p.update(); //<>// //<>// //<>//
     p.display();
     b.update();
     b.display();
