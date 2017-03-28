@@ -64,23 +64,24 @@ class Cylinder {
 // conditions to may add a cylinder 
 void cylinderMode() {
 
-  camera(width/2, height/2, depth, width/2, height/2, 0, 0, 1, 0);
+  camera(centerX, centerY, depth, centerX, centerY, 0, 0, 1, 0);
   float sizeSideX = (width - boxWidth) / 2;
   float sizeSideY = (height - boxHeight) / 2;
   lights();
   pushMatrix();
   fill(255, 255, 255);
   stroke(0);
-  rect(width/2-(boxWidth/2), height/2-(boxHeight/2), boxWidth, boxHeight);
+  rect(centerX - boxWidth / 2, centerY - boxHeight / 2, boxWidth, boxHeight);
+
   noStroke();
   popMatrix();
 
   addingMode = false;
 
   if ((mouseX<(centerX+boxWidth/2)) && (mouseX>(centerX-boxWidth/2)) && (mouseY<(centerY+boxHeight/2)) && (mouseY>centerY-boxHeight/2)) {
-
     if (!((mouseX>(b.location.x - b.radius)) && (mouseX < (b.location.x + b.radius)) && (mouseY>(b.location.z - b.radius)) && (mouseY<(b.location.z + b.radius)))) {
     addingMode = true;
+
     }
   }
   for (Cylinder c : cylinders) {

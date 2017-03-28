@@ -36,10 +36,12 @@ void mouseWheel(MouseEvent event) {
     speedMultiplier = MIN_SPEED_MULTIPLIER;
   }
 }
+
 public void mouseClicked() {
-  print(addingMode);
   if (cylinderMode && addingMode) {
+    print(addingMode);
     cylinders.add(new Cylinder(new PVector(mouseX, 0, mouseY)));
+
   }
 }
 
