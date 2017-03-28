@@ -64,12 +64,12 @@ class Cylinder {
   // conditions to may add a cylinder 
   void cylinderMode() {
 
-    camera(width/2, height/2, height, width/2, height/2, 0, 0, 1, 0);
+    camera(width/2, height/2,depth, width/2, height/2, 0, 0, 1, 0);
     float sizeSideX = (width - boxWidth) / 2;
     float sizeSideY = (height - boxHeight) / 2;
     lights();
     pushMatrix();
-    fill(255, 245, 104);
+    fill(255, 255, 255);
     stroke(0);
     rect(width/2-(boxWidth/2), height/2-(boxHeight/2), boxWidth, boxHeight);
     noStroke();

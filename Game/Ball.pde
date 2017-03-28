@@ -16,13 +16,14 @@ class Ball {
   void display() {
     pushMatrix();
     translate(location.x, -boxThickness/2-radius, location.z);
-    fill(246, 142, 86);
+    fill(0, 0, 0);
     lights();
     sphere(radius);
     popMatrix();
   }
 
   void display2D() {
+    fill(0, 0, 0);
     ellipse(map(location.x, -450, 450, radius, boxWidth - radius), map(location.z, -450, 450, radius, boxHeight - radius), radius, radius);
   }
 
@@ -62,11 +63,11 @@ class Ball {
     for (Cylinder c : cylinders) {
       if (sqrt(pow((this.location.x - c.location.x), 2)) < radius + c.cylinderBaseSize) {
         PVector norm = new PVector().normalize();
-       // this.velocity = (this.velocity.sub((this.velocity.dot(norm))).mult(2));
+        // this.velocity = (this.velocity.sub((this.velocity.dot(norm))).mult(2));
       }
       if (sqrt(pow((this.location.z - c.location.z), 2)) < radius + c.cylinderBaseSize) {
         PVector norm = new PVector().normalize();
-     //   this.velocity = this.velocity.sub((this.velocity.dot(norm)).mult(2));
+        //   this.velocity = this.velocity.sub((this.velocity.dot(norm)).mult(2));
       }
     }
   }
