@@ -71,16 +71,18 @@ void cylinderMode() {
   }
   popMatrix();
 
-  boolean outOfBound = (mouseX < screenX(CENTER_X - BOX_WIDTH / 2 + RADIUS, CENTER_Y - BOX_HEIGHT / 2, 0)) // Left
-    & (mouseX > screenX(CENTER_X + BOX_WIDTH / 2 - RADIUS, CENTER_Y - BOX_HEIGHT / 2, 0)) // Right
-    & (mouseY < screenY(CENTER_X - BOX_WIDTH / 2, CENTER_Y - BOX_HEIGHT / 2 + RADIUS, 0)) // Up
-    & (mouseY > screenY(CENTER_X + BOX_WIDTH / 2, CENTER_Y + BOX_HEIGHT / 2 - RADIUS, 0)), // Down
+  boolean outOfBound = (mouseX < screenX(CENTER_X - BOX_WIDTH / 2 + CYLINDER_BASE, CENTER_Y - BOX_HEIGHT / 2, 0)) // Left
+    || (mouseX > screenX(CENTER_X + BOX_WIDTH / 2 - CYLINDER_BASE, CENTER_Y - BOX_HEIGHT / 2, 0)) // Right
+    || (mouseY < screenY(CENTER_X - BOX_WIDTH / 2, CENTER_Y - BOX_HEIGHT / 2 + CYLINDER_BASE, 0)) // Up
+    || (mouseY > screenY(CENTER_X + BOX_WIDTH / 2, CENTER_Y + BOX_HEIGHT / 2 - CYLINDER_BASE, 0)), // Down
 
     onTheBall = (true),
     
     onACylinder = (true);
 
   canAddCylinder = !outOfBound & !onTheBall & !onACylinder;
+  
+  print(+" "+mouseX+"\n");
    
   /*if ((mouseX<(centerX+boxWidth/2)) && (mouseX>(centerX-boxWidth/2)) && (mouseY<(centerY+boxHeight/2)) && (mouseY>centerY-boxHeight/2)) {
    if (!((mouseX>(b.location.x - b.radius)) && (mouseX < (b.location.x + b.radius)) && (mouseY>(b.location.z - b.radius)) && (mouseY<(b.location.z + b.radius)))) {
