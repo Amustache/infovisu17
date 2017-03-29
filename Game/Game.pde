@@ -1,14 +1,12 @@
 /**
  * Main program and scene
  */
- 
-/* Settings, called on start */
+
+/* Settings is called before anything */
 void settings() {
-  if(fullscreen) {
-    fullScreen(P3D);
-  } else {
-    size(800, 800, P3D);
-  }
+  size(1200, 800, P3D);
+  CENTER_X = height/2;
+  CENTER_Y = width/2;
 }
 
 /* Setup, called on first frame */
@@ -21,7 +19,7 @@ void draw() {
   camera(CENTER_X, CENTER_Y, depth, CENTER_X, CENTER_Y, 0, 0, 1, 0);
   setLight();
   background(BG_COLOR);
-  if(cylinderModeIsOn) {
+  if (cylinderModeIsOn) {
     cylinderMode();
     ball.display2D();
   } else {

@@ -51,7 +51,8 @@ public void mouseClicked() {
 
 /* Keyboard settings */
 void keyPressed() {
-  if (key == CODED) {
+  switch (key) {
+  case CODED:
     switch(keyCode) {
       // Zoom with UP DOWN
     case UP:
@@ -62,7 +63,13 @@ void keyPressed() {
       break;
     case SHIFT:
       cylinderModeIsOn = true;
+      break;
     }
+    break;
+  case 'f':
+  case 'F':
+    fullscreen = !fullscreen;
+    break;
   }
 }
 

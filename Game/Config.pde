@@ -29,15 +29,15 @@ final int CYLINDER_HEIGHT = 50;
 final int CYLINDER_RESOLUTION = 40;
 
 // Scene parameters.
-final float CENTER_X = width/2;
-final float CENTER_Y = height/2;
+float CENTER_X;// = width/2;
+float CENTER_Y;// = height/2;
 final int BG_COLOR = 230;
 
 /* Global variables */
 
 // Booleans
-boolean cylinderModeIsOn, canAddCylinder;
-boolean fullscreen = true;
+boolean cylinderModeIsOn = false, canAddCylinder = false;
+boolean fullscreen = false;
 
 float speedMultiplier = 0.1;
 float depth = 2000;
