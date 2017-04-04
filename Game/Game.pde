@@ -1,4 +1,4 @@
-/**
+/** //<>//
  * Main program and scene
  */
 
@@ -54,18 +54,20 @@ void draw() {
     pushMatrix();
     {
       translate(width/2, height/2);
-      pushMatrix();
+
+      pushMatrix(); //<>//
       {
         rotateX(rX);
         rotateZ(rZ);
-        plate.display();
         ball.update();
         ball.display();
+        plate.display();
+        ball.checkEdges();
       }
       popMatrix();
 
-      
-      
+
+
 
       for (Cylinder c : cylinders) {
         pushMatrix();

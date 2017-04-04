@@ -16,12 +16,12 @@ final float ELASTICITY = 0.7;
 final float NORMAL_FORCE = 1;
 final float MU = 0.01;
 final float FRICTION_MAGNITUDE = NORMAL_FORCE * MU;
-final int RADIUS = 50;
+final int RADIUS = 25;
 
 // Box
 final int BOX_WIDTH = 500;
 final int BOX_HEIGHT = 500;
-final int BOX_THICKNESS = 40;
+final int BOX_THICKNESS = 20;
 
 // Cylinder
 final int CYLINDER_BASE = 50;

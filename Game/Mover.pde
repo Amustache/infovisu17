@@ -16,7 +16,7 @@ class Mover {
   void display() {
     pushMatrix();
     {
-      //translate(location.x, -BOX_THICKNESS/2 - radius, location.z);
+      translate(location.x, -BOX_THICKNESS/2 - radius, location.z);
       stroke(238,169,144);
       lights();
       sphere(radius);

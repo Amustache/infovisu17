@@ -39,7 +39,7 @@ class Cylinder {
   void display() {
     pushMatrix();
     {
-      //translate(location.x, -BOX_THICKNESS/2 - cHeight, location.z);
+      translate(location.x, -BOX_THICKNESS/2 - cHeight, location.z);
       lights();
       shape(openCylinder);
     }
