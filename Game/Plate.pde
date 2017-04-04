@@ -1,9 +1,10 @@
+/**
+ * Define the game plate
+ */
 class Plate {
-
-  // Box parameters.
-  final int bWidth;// = 1000;
-  final int bHeight;// = 1000;
-  final int bThickness;// = 40;
+  int bWidth;// = 1000;
+  int bHeight;// = 1000;
+  int bThickness;// = 40;
 
   Plate(int bWidth_, int bHeight_, int bThickness_) {
     bWidth = bWidth_;
@@ -12,20 +13,18 @@ class Plate {
   }
 
   void update() {
-    translate(centerX, centerY);
+    translate(CENTER_X, CENTER_Y);
     rotateBox();
   }
 
   void display() {
-    box(boxWidth, boxThickness, boxHeight);
-    fill(255);
-    stroke(150, 150, 0);
+    fill(163,145,147);
+    stroke(102,84,94);
+    box(bWidth, bThickness, bHeight);
   }
 
   /* Control inclinaison with mouse */
   void rotateBox() {
-    // float rX = map(-(mouseY - origineY), 0, height, 0, PI/3);  
-    // float rZ = map(-(mouseX - origineX), 0, height, 0, PI/3);
     rotateX(rX);
     rotateZ(rZ);
   }

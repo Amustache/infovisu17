@@ -1,3 +1,6 @@
+/**
+ * Every user command so far
+ */
 /**********Mouse**********/
 
 /* Map the relative position of the mouse to the relative position of the box */
@@ -38,10 +41,9 @@ void mouseWheel(MouseEvent event) {
 }
 
 public void mouseClicked() {
-  if (cylinderMode && addingMode) {
-    print(addingMode);
-    cylinders.add(new Cylinder(new PVector(mouseX, 0, mouseY)));
-
+  if (cylinderModeIsOn && canAddCylinder) {
+    cylinders.add(new Cylinder(new PVector(mouseX-width/2, 0, mouseY-height/2)));
+    println(cylinders);
   }
 }
 
@@ -49,7 +51,8 @@ public void mouseClicked() {
 
 /* Keyboard settings */
 void keyPressed() {
-  if (key == CODED) {
+  switch (key) {
+  case CODED:
     switch(keyCode) {
       // Zoom with UP DOWN
     case UP:
@@ -59,12 +62,18 @@ void keyPressed() {
       depth += 50 * speedMultiplier;
       break;
     case SHIFT:
-      cylinderMode = true;
+      cylinderModeIsOn = true;
+      break;
     }
+    break;
+  case 'f':
+  case 'F':
+    fullscreen = !fullscreen;
+    break;
   }
 }
 
 public void keyReleased() {
   if (keyCode == SHIFT)
-    cylinderMode = false;
+    cylinderModeIsOn = false;
 }
