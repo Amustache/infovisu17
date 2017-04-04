@@ -1,4 +1,4 @@
-/** //<>// //<>//
+/** //<>//
  * Main program and scene
  */
 
@@ -52,12 +52,6 @@ void draw() {
       canAddCylinder = mousePressed && !outOfBound;
     }
     popMatrix();
-
-    /*cylinderMode();
-     ball.display2D();
-     for (Cylinder c : cylinders) {
-     c.display2D();
-     }*/
   } else { // NOT cylinder mode
     pushMatrix();
     {
@@ -75,8 +69,6 @@ void draw() {
         for (Cylinder c : cylinders) {
           pushMatrix();
           {
-            translate(c.location.x, -BOX_THICKNESS/2 - cHeight, c.location.z);
-            rotateX(-PI/2);
             c.display();
           }
           popMatrix();
@@ -87,30 +79,25 @@ void draw() {
     popMatrix();
 
     pushMatrix();
-    drawBande();
-    image(bande, 2*BOX_WIDTH/7.0f + 20 + 20, 4.0f/5.0f*height + 5);
+    {
+      drawBande();
+      image(bande, 2*BOX_WIDTH/7.0f + 20 + 20, 4.0f/5.0f*height + 5);
+    }
     popMatrix();
 
     pushMatrix();
-    drawIcone();
-    image(icone, 0, 4.0f/5.0f*height);
+    {
+      drawIcone();
+      image(icone, 0, 4.0f/5.0f*height);
+    }
     popMatrix();
 
     pushMatrix();
-    drawScore();
-    image(score, BOX_WIDTH/7.0f + 20, 4.0f/5.0f*height);
+    {
+      drawScore();
+      image(score, BOX_WIDTH/7.0f + 20, 4.0f/5.0f*height);
+    }
     popMatrix();
-
-    /*plate.update();
-     plate.display();
-     ball.update();
-     ball.display();
-     ball.checkEdges();
-     ball.checkCylinderCollision(cylinders);
-     for (Cylinder c : cylinders) {
-     c.display();
-     }
-     println();*/
   }
 }
 
