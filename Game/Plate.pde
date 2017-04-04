@@ -13,13 +13,15 @@ class Plate {
   }
 
   void update() {
-    translate(CENTER_X, CENTER_Y);
-    rotateBox();
+
+      translate(CENTER_X, CENTER_Y);
+      rotateBox();
+
   }
 
   void display() {
-    fill(163,145,147);
-    stroke(102,84,94);
+    fill(163, 145, 147);
+    stroke(102, 84, 94);
     box(bWidth, bThickness, bHeight);
   }
 

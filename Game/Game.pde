@@ -17,7 +17,7 @@ void setup() {
 
 /* Update, called on each frame */
 void draw() {
-  camera(CENTER_X, CENTER_Y, depth, CENTER_X, CENTER_Y, 0, 0, 1, 0);
+  //camera(CENTER_X, CENTER_Y, depth, CENTER_X, CENTER_Y, 0, 0, 1, 0);
   setLight();
   background(BG_COLOR);
   if (cylinderModeIsOn) {
