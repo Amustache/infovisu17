@@ -13,10 +13,6 @@ class Plate {
   }
 
   void update() {
-
-      translate(CENTER_X, CENTER_Y);
-      rotateBox();
-
   }
 
   void display() {
@@ -27,6 +23,7 @@ class Plate {
 
   /* Control inclinaison with mouse */
   void rotateBox() {
+    
     rotateX(rX);
     rotateZ(rZ);
   }

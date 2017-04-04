@@ -39,7 +39,7 @@ class Cylinder {
   void display() {
     pushMatrix();
     {
-      translate(location.x, -BOX_THICKNESS/2 - cHeight, location.z);
+      //translate(location.x, -BOX_THICKNESS/2 - cHeight, location.z);
       lights();
       shape(openCylinder);
     }
@@ -51,7 +51,7 @@ class Cylinder {
     {
       stroke(102,84,94);
       fill(246,224,181);
-      translate(CENTER_X, CENTER_Y);
+      //translate(CENTER_X, CENTER_Y);
       ellipse(location.x, location.z, cBase * 2, cBase * 2);
     }
     popMatrix();
@@ -119,14 +119,14 @@ class Cylinder {
 // conditions to may add a cylinder 
 void cylinderMode() {
   lights();
-  pushMatrix();
+/*  pushMatrix();
   {
     fill(255, 255, 255);
     stroke(0);
     rect(CENTER_X - BOX_WIDTH / 2, CENTER_Y - BOX_HEIGHT / 2, BOX_WIDTH, BOX_HEIGHT);
     noStroke();
   }
-  popMatrix();
+  popMatrix();*/
 
   boolean outOfBound = (mouseX < screenX(CENTER_X - BOX_WIDTH / 2 + CYLINDER_BASE * 2, CENTER_Y - BOX_HEIGHT / 2, 0)) // Left
     || (mouseX > screenX(CENTER_X + BOX_WIDTH / 2 - CYLINDER_BASE * 2, CENTER_Y - BOX_HEIGHT / 2, 0)) // Right
@@ -137,7 +137,7 @@ void cylinderMode() {
 
     onACylinder = (false);
 
-  canAddCylinder = !outOfBound & !onTheBall & !onACylinder;
+  //canAddCylinder = true;//!outOfBound & !onTheBall & !onACylinder;
 
   /*if ((mouseX<(centerX+boxWidth/2)) && (mouseX>(centerX-boxWidth/2)) && (mouseY<(centerY+boxHeight/2)) && (mouseY>centerY-boxHeight/2)) {
    if (!((mouseX>(b.location.x - b.radius)) && (mouseX < (b.location.x + b.radius)) && (mouseY>(b.location.z - b.radius)) && (mouseY<(b.location.z + b.radius)))) {

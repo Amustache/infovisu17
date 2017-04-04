@@ -19,8 +19,8 @@ final float FRICTION_MAGNITUDE = NORMAL_FORCE * MU;
 final int RADIUS = 50;
 
 // Box
-final int BOX_WIDTH = 1000;
-final int BOX_HEIGHT = 1000;
+final int BOX_WIDTH = 500;
+final int BOX_HEIGHT = 500;
 final int BOX_THICKNESS = 40;
 
 // Cylinder

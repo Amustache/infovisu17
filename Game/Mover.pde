@@ -16,7 +16,7 @@ class Mover {
   void display() {
     pushMatrix();
     {
-      translate(location.x, -BOX_THICKNESS/2 - radius, location.z);
+      //translate(location.x, -BOX_THICKNESS/2 - radius, location.z);
       stroke(238,169,144);
       lights();
       sphere(radius);
@@ -29,7 +29,7 @@ class Mover {
     {
       stroke(102,84,94);
       fill(238,169,144);
-      translate(CENTER_X, CENTER_Y);
+      //translate(CENTER_X, CENTER_Y);
       ellipse(location.x, location.z, radius * 2, radius * 2);
     }
     popMatrix();

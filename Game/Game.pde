@@ -17,26 +17,83 @@ void setup() {
 
 /* Update, called on each frame */
 void draw() {
-  //camera(CENTER_X, CENTER_Y, depth, CENTER_X, CENTER_Y, 0, 0, 1, 0);
   setLight();
   background(BG_COLOR);
   if (cylinderModeIsOn) {
-    cylinderMode();
-    ball.display2D();
-    for (Cylinder c : cylinders) {
-      c.display2D();
+    pushMatrix();
+    {
+      translate(width/2, height/2);
+      pushMatrix();
+      {
+        rotateX(PI/2);
+        plate.display();
+      }
+      popMatrix();
+
+      ball.display2D();
+
+      boolean outOfBound = (mouseX > width/2 + BOX_WIDTH / 2) // Left
+        || (mouseX < width/2 - BOX_WIDTH / 2) // Right
+        || (mouseY < height/2 - BOX_HEIGHT / 2) // Up
+        || (mouseY > height/2 + BOX_HEIGHT / 2), // Down
+
+        onTheBall = (false), 
+
+        onACylinder = (false);
+
+      canAddCylinder = mousePressed && !outOfBound;
     }
+    popMatrix();
+
+    /*cylinderMode();
+     ball.display2D();
+     for (Cylinder c : cylinders) {
+     c.display2D();
+     }*/
   } else {
-    plate.update();
-    plate.display();
-    ball.update();
-    ball.display();
-    ball.checkEdges();
-    ball.checkCylinderCollision(cylinders);
-    for (Cylinder c : cylinders) {
-      c.display();
+    pushMatrix();
+    {
+      translate(width/2, height/2);
+      pushMatrix();
+      {
+        rotateX(rX);
+        rotateZ(rZ);
+        plate.display();
+        ball.update();
+        ball.display();
+      }
+      popMatrix();
+
+      
+      
+
+      for (Cylinder c : cylinders) {
+        pushMatrix();
+        {
+          translate(c.location.x, -BOX_THICKNESS/2 - cHeight, c.location.z);
+          c.display();
+        }
+        popMatrix();
+      }
     }
-    println();
+    popMatrix();
+
+
+
+
+
+
+
+    /*plate.update();
+     plate.display();
+     ball.update();
+     ball.display();
+     ball.checkEdges();
+     ball.checkCylinderCollision(cylinders);
+     for (Cylinder c : cylinders) {
+     c.display();
+     }
+     println();*/
   }
 }
 
