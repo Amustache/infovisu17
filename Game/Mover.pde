@@ -29,8 +29,8 @@ class Mover {
     {
       stroke(102, 84, 94);
       fill(238, 169, 144);
-      //translate(CENTER_X, CENTER_Y);
-      ellipse(location.x, location.z, radius * 2, radius * 2);
+      lights();
+      ellipse(location.x, location.z, radius, radius);
     }
     popMatrix();
   }

@@ -1,4 +1,4 @@
-/** //<>//
+/** //<>// //<>//
  * Main program and scene
  */
 
@@ -13,6 +13,7 @@ void settings() {
 void setup() {
   cylinderModeIsOn = false;
   initCylinder();
+  bande = createGraphics(5*width/7, height/5, P2D);
 }
 
 /* Update, called on each frame */
@@ -28,13 +29,14 @@ void draw() {
         rotateX(-PI/2);
         plate.display();
       }
-      popMatrix();
-
       ball.display2D();
 
       for (Cylinder c : cylinders) {
         c.display2D();
       }
+      popMatrix();
+
+
 
       boolean outOfBound = (mouseX > width/2 + BOX_WIDTH / 2 - CYLINDER_BASE) // Left
         || (mouseX < width/2 - BOX_WIDTH / 2 + CYLINDER_BASE) // Right
@@ -59,7 +61,7 @@ void draw() {
     {
       translate(width/2, height/2);
 
-      pushMatrix(); //<>//
+      pushMatrix();
       {
         rotateX(rX);
         rotateZ(rZ);
@@ -82,7 +84,10 @@ void draw() {
     }
     popMatrix();
 
-
+pushMatrix();
+          drawBande();
+          image(bande, 2*BOX_WIDTH/7.0f + 20 + 20, 4.0f/5.0f*height + 5);
+        popMatrix();
 
 
 
@@ -107,3 +112,13 @@ void setLight() {
   ambientLight(153, 102, 0);
   ambient(51, 26, 0);
 }
+
+public void drawBande(){
+      lights();
+      bande.beginDraw();
+      bande.stroke(240, 213, 183);
+      bande.fill(200, 213, 183);
+      bande.rect(0, 0, 5*width/7, height/5/2 + 30);
+      bande.fill(240, 180, 183);
+      bande.endDraw();
+    }

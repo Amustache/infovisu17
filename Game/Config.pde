@@ -43,10 +43,12 @@ float speedMultiplier = 0.1;
 float depth = 2000;
 
 Plate plate = new Plate(BOX_WIDTH, BOX_HEIGHT, BOX_THICKNESS);  
-Mover ball = new Mover(RADIUS, new PVector(0, 0, 0), new PVector(1, 1, 1));
+Mover ball = new Mover(RADIUS, new PVector(0, 0, 0), new PVector(0, 0, 0));
 
 ArrayList<Cylinder> cylinders = new ArrayList<Cylinder>();
 
 // Inclinaisons
 float rX = 0;
 float rZ = 0;
+
+PGraphics bande;
