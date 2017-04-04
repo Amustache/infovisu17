@@ -56,6 +56,7 @@ class Cylinder {
     }
     popMatrix();
   }
+
 }
 /*
 class Cylinder {
@@ -119,13 +120,18 @@ class Cylinder {
 // conditions to may add a cylinder 
 void cylinderMode() {
   lights();
+<<<<<<< HEAD
 /*  pushMatrix();
+=======
+  pushMatrix();
+>>>>>>> 654f8a3700c6358eea3478241b23fc5011b95dfd
   {
     fill(255, 255, 255);
     stroke(0);
     rect(CENTER_X - BOX_WIDTH / 2, CENTER_Y - BOX_HEIGHT / 2, BOX_WIDTH, BOX_HEIGHT);
     noStroke();
   }
+<<<<<<< HEAD
   popMatrix();*/
 
   boolean outOfBound = (mouseX < screenX(CENTER_X - BOX_WIDTH / 2 + CYLINDER_BASE * 2, CENTER_Y - BOX_HEIGHT / 2, 0)) // Left
@@ -138,6 +144,20 @@ void cylinderMode() {
     onACylinder = (false);
 
   //canAddCylinder = true;//!outOfBound & !onTheBall & !onACylinder;
+=======
+  popMatrix();
+
+  boolean outOfBound = (mouseX < screenX(CENTER_X - BOX_WIDTH / 2 + CYLINDER_BASE * 2, CENTER_Y - BOX_HEIGHT / 2, 0)) // Left
+    || (mouseX > screenX(CENTER_X + BOX_WIDTH / 2 - CYLINDER_BASE * 2, CENTER_Y - BOX_HEIGHT / 2, 0)) // Right
+    || (mouseY < screenY(CENTER_X - BOX_WIDTH / 2, CENTER_Y - BOX_HEIGHT / 2 + CYLINDER_BASE * 2, 0)) // Up
+    || (mouseY > screenY(CENTER_X + BOX_WIDTH / 2, CENTER_Y + BOX_HEIGHT / 2 - CYLINDER_BASE * 2, 0)), // Down
+
+    onTheBall = (false), 
+
+    onACylinder = (false);
+
+  canAddCylinder = !outOfBound & !onTheBall & !onACylinder;
+>>>>>>> 654f8a3700c6358eea3478241b23fc5011b95dfd
 
   /*if ((mouseX<(centerX+boxWidth/2)) && (mouseX>(centerX-boxWidth/2)) && (mouseY<(centerY+boxHeight/2)) && (mouseY>centerY-boxHeight/2)) {
    if (!((mouseX>(b.location.x - b.radius)) && (mouseX < (b.location.x + b.radius)) && (mouseY>(b.location.z - b.radius)) && (mouseY<(b.location.z + b.radius)))) {

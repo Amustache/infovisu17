@@ -23,7 +23,6 @@ class Plate {
 
   /* Control inclinaison with mouse */
   void rotateBox() {
-    
     rotateX(rX);
     rotateZ(rZ);
   }
