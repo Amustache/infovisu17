@@ -25,12 +25,16 @@ void draw() {
       translate(width/2, height/2);
       pushMatrix();
       {
-        rotateX(PI/2);
+        rotateX(-PI/2);
         plate.display();
       }
       popMatrix();
 
       ball.display2D();
+
+      for (Cylinder c : cylinders) {
+        c.display2D();
+      }
 
       boolean outOfBound = (mouseX > width/2 + BOX_WIDTH / 2) // Left
         || (mouseX < width/2 - BOX_WIDTH / 2) // Right
