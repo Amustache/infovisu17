@@ -67,6 +67,7 @@ void draw() {
         ball.display();
         plate.display();
         ball.checkEdges();
+        ball.checkCylinderCollision(cylinders);
         for (Cylinder c : cylinders) {
           pushMatrix();
           {
