@@ -12,6 +12,7 @@ void settings() {
 /* Setup, called on first frame */
 void setup() {
   cylinderModeIsOn = false;
+  initCylinder();
 }
 
 /* Update, called on each frame */
@@ -22,6 +23,9 @@ void draw() {
   if (cylinderModeIsOn) {
     cylinderMode();
     ball.display2D();
+    for (Cylinder c : cylinders) {
+      c.display2D();
+    }
   } else {
     plate.update();
     plate.display();
@@ -29,6 +33,10 @@ void draw() {
     ball.display();
     ball.checkEdges();
     ball.checkCylinderCollision(cylinders);
+    for (Cylinder c : cylinders) {
+      c.display();
+    }
+    println();
   }
 }
 

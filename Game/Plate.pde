@@ -18,9 +18,9 @@ class Plate {
   }
 
   void display() {
+    fill(163,145,147);
+    stroke(102,84,94);
     box(bWidth, bThickness, bHeight);
-    fill(255);
-    stroke(150, 150, 0);
   }
 
   /* Control inclinaison with mouse */

@@ -42,8 +42,8 @@ void mouseWheel(MouseEvent event) {
 
 public void mouseClicked() {
   if (cylinderModeIsOn && canAddCylinder) {
-    print(canAddCylinder);
-    cylinders.add(new Cylinder(CYLINDER_BASE, CYLINDER_HEIGHT, CYLINDER_RESOLUTION, new PVector(mouseX, 0, mouseY)));
+    cylinders.add(new Cylinder(new PVector(mouseX-width/2, 0, mouseY-height/2)));
+    println(cylinders);
   }
 }
 

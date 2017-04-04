@@ -17,7 +17,7 @@ class Mover {
     pushMatrix();
     {
       translate(location.x, -BOX_THICKNESS/2 - radius, location.z);
-      fill(0, 0, 0);
+      stroke(238,169,144);
       lights();
       sphere(radius);
     }
@@ -27,11 +27,10 @@ class Mover {
   void display2D() {
     pushMatrix();
     {
-      fill(0, 0, 0);
-      ellipse(
-        map(location.x, -450, 450, CENTER_X - BOX_WIDTH / 2 + radius, CENTER_X + BOX_WIDTH / 2 - radius), 
-        map(location.z, -450, 450, CENTER_Y - BOX_HEIGHT / 2 + radius, CENTER_Y + BOX_HEIGHT / 2 - radius), 
-        radius * 2, radius * 2);
+      stroke(102,84,94);
+      fill(238,169,144);
+      translate(CENTER_X, CENTER_Y);
+      ellipse(location.x, location.z, radius * 2, radius * 2);
     }
     popMatrix();
   }
@@ -70,11 +69,11 @@ class Mover {
   void checkCylinderCollision(ArrayList<Cylinder> cylinders) {
     //  V2 = V1 − 2(V1 · n)n
     for (Cylinder c : cylinders) {
-      if (sqrt(pow((this.location.x - c.location.x), 2)) < radius + c.cBase) {
+      if (sqrt(pow((this.location.x - c.location.x), 2)) < radius + CYLINDER_BASE) {
         PVector norm = new PVector().normalize();
         // this.velocity = (this.velocity.sub((this.velocity.dot(norm))).mult(2));
       }
-      if (sqrt(pow((this.location.z - c.location.z), 2)) < radius + c.cBase) {
+      if (sqrt(pow((this.location.z - c.location.z), 2)) < radius + CYLINDER_BASE) {
         PVector norm = new PVector().normalize();
         //   this.velocity = this.velocity.sub((this.velocity.dot(norm)).mult(2));
       }
