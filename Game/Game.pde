@@ -36,10 +36,10 @@ void draw() {
         c.display2D();
       }
 
-      boolean outOfBound = (mouseX > width/2 + BOX_WIDTH / 2) // Left
-        || (mouseX < width/2 - BOX_WIDTH / 2) // Right
-        || (mouseY < height/2 - BOX_HEIGHT / 2) // Up
-        || (mouseY > height/2 + BOX_HEIGHT / 2), // Down
+      boolean outOfBound = (mouseX > width/2 + BOX_WIDTH / 2 - CYLINDER_BASE) // Left
+        || (mouseX < width/2 - BOX_WIDTH / 2 + CYLINDER_BASE) // Right
+        || (mouseY < height/2 - BOX_HEIGHT / 2 + CYLINDER_BASE) // Up
+        || (mouseY > height/2 + BOX_HEIGHT / 2 - CYLINDER_BASE), // Down
 
         onTheBall = (false), 
 
@@ -54,7 +54,7 @@ void draw() {
      for (Cylinder c : cylinders) {
      c.display2D();
      }*/
-  } else {
+  } else { // NOT cylinder mode
     pushMatrix();
     {
       translate(width/2, height/2);
@@ -67,20 +67,17 @@ void draw() {
         ball.display();
         plate.display();
         ball.checkEdges();
+        for (Cylinder c : cylinders) {
+          pushMatrix();
+          {
+            translate(c.location.x, -BOX_THICKNESS/2 - cHeight, c.location.z);
+            rotateX(-PI/2);
+            c.display();
+          }
+          popMatrix();
+        }
       }
       popMatrix();
-
-
-
-
-      for (Cylinder c : cylinders) {
-        pushMatrix();
-        {
-          translate(c.location.x, -BOX_THICKNESS/2 - cHeight, c.location.z);
-          c.display();
-        }
-        popMatrix();
-      }
     }
     popMatrix();
 

@@ -1,9 +1,9 @@
 /**
  * Define a cylinder
  */
-int cBase = 100;
-int cHeight = 50;
-int cResolution = 40;
+int cBase = CYLINDER_BASE;
+int cHeight = CYLINDER_HEIGHT;
+int cResolution = CYLINDER_RESOLUTION;
 
 PShape openCylinder = new PShape();
 
@@ -39,7 +39,7 @@ class Cylinder {
   void display() {
     pushMatrix();
     {
-      translate(location.x, -BOX_THICKNESS/2 - cHeight, location.z);
+      //translate(location.x, 0, location.z);
       lights();
       shape(openCylinder);
     }
