@@ -52,3 +52,5 @@ float rX = 0;
 float rZ = 0;
 
 PGraphics bande;
+PGraphics icone;
+PGraphics score;

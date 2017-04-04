@@ -14,6 +14,8 @@ void setup() {
   cylinderModeIsOn = false;
   initCylinder();
   bande = createGraphics(5*width/7, height/5, P2D);
+  icone = createGraphics(width/7, height/5, P2D);
+  score = createGraphics(width/7, height/5, P2D);
 }
 
 /* Update, called on each frame */
@@ -84,14 +86,20 @@ void draw() {
     }
     popMatrix();
 
-pushMatrix();
-          drawBande();
-          image(bande, 2*BOX_WIDTH/7.0f + 20 + 20, 4.0f/5.0f*height + 5);
-        popMatrix();
+    pushMatrix();
+    drawBande();
+    image(bande, 2*BOX_WIDTH/7.0f + 20 + 20, 4.0f/5.0f*height + 5);
+    popMatrix();
 
+    pushMatrix();
+    drawIcone();
+    image(icone, 0, 4.0f/5.0f*height);
+    popMatrix();
 
-
-
+    pushMatrix();
+    drawScore();
+    image(score, BOX_WIDTH/7.0f + 20, 4.0f/5.0f*height);
+    popMatrix();
 
     /*plate.update();
      plate.display();
@@ -113,12 +121,32 @@ void setLight() {
   ambient(51, 26, 0);
 }
 
-public void drawBande(){
-      lights();
-      bande.beginDraw();
-      bande.stroke(240, 213, 183);
-      bande.fill(200, 213, 183);
-      bande.rect(0, 0, 5*width/7, height/5/2 + 30);
-      bande.fill(240, 180, 183);
-      bande.endDraw();
-    }
+public void drawBande() {
+  lights();
+  bande.beginDraw();
+  bande.stroke(240, 213, 183);
+  bande.fill(200, 213, 183);
+  bande.rect(0, 0, 5*width/7, height/5/2 + 30);
+  bande.fill(240, 180, 183);
+  bande.endDraw();
+}
+
+public void drawIcone() {
+  lights();
+  icone.beginDraw();
+  icone.fill(255, 245, 104);
+  icone.stroke(255);
+  icone.rect(10, 10, BOX_WIDTH/7, BOX_WIDTH/7);
+  icone.fill(246, 142, 86);
+  icone.endDraw();
+}
+
+public void drawScore() {
+  lights();
+  score.beginDraw();
+  score.stroke(255);
+  score.fill(240, 213, 183);
+  score.rect(10, 10, BOX_WIDTH/7, BOX_WIDTH/7);
+  score.fill(50);
+  score.endDraw();
+}
