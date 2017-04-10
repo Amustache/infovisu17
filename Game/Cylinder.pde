@@ -72,6 +72,8 @@ class Cylinder {
     {
       stroke(102, 84, 94);
       fill(246, 224, 181);
+      translate(location.x,location.z, depth/2);
+      rotateX(-PI/2);
       //translate(CENTER_X, CENTER_Y);
       ellipse(location.x, location.z, cBase * 2, cBase * 2);
     }

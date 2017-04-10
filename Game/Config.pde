@@ -54,3 +54,5 @@ float rZ = 0;
 PGraphics bande;
 PGraphics icone;
 PGraphics score;
+
+protected static float scores, lastScore;

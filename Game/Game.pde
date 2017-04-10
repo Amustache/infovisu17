@@ -16,6 +16,8 @@ void setup() {
   bande = createGraphics(5*width/7, height/5, P2D);
   icone = createGraphics(width/7, height/5, P2D);
   score = createGraphics(width/7, height/5, P2D);
+   scores = 0.0;
+   lastScore = 0.0;
 }
 
 /* Update, called on each frame */
@@ -132,8 +134,10 @@ public void drawScore() {
   lights();
   score.beginDraw();
   score.stroke(255);
+  String s = "Total score:\n" + Math.round(scores*1000.0)/1000.0 + "\nVelocity:\n" + Math.round(sqrt(pow(ball.velocity.x, 2) + pow(ball.velocity.z, 2))*1000.0)/1000.0 + "\nLast score:\n" + Math.round(lastScore*1000.0)/1000.0;
   score.fill(240, 213, 183);
   score.rect(10, 10, BOX_WIDTH/7, BOX_WIDTH/7);
   score.fill(50);
+  score.text(s, 15, 15, BOX_WIDTH/7 - 15, BOX_HEIGHT/7 - 15);
   score.endDraw();
 }
