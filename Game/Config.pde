@@ -56,3 +56,17 @@ PGraphics icone;
 PGraphics score;
 
 protected static float scores, lastScore;
+
+HScrollbar hs;
+void settings() {
+size(400, 200, P2D);
+}
+void setup() {
+
+}
+void draw() {
+background(255);
+hs.update();
+hs.display();
+println(hs.getPos());
+}

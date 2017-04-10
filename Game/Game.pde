@@ -13,11 +13,12 @@ void settings() {
 void setup() {
   cylinderModeIsOn = false;
   initCylinder();
+  hs = new HScrollbar(50, 90, 300, 20);
   bande = createGraphics(5*width/7, height/5, P2D);
   icone = createGraphics(width/7, height/5, P2D);
   score = createGraphics(width/7, height/5, P2D);
-   scores = 0.0;
-   lastScore = 0.0;
+  scores = 0.0;
+  lastScore = 0.0;
 }
 
 /* Update, called on each frame */
@@ -91,6 +92,15 @@ void draw() {
     {
       drawIcone();
       image(icone, 0, 4.0f/5.0f*height);
+    }
+    popMatrix();
+
+    pushMatrix();
+    {
+      background(255);
+      hs.update();
+      hs.display();
+      println(hs.getPos());
     }
     popMatrix();
 
