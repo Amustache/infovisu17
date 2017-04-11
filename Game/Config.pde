@@ -69,7 +69,7 @@ void setup() {
   cylinderModeIsOn = false;
   initCylinder();
   hs = new HScrollbar(50, 90, 300, 20);
-  bande = createGraphics(5*width/7, height/5, P2D);
+  bande = createGraphics(5 * BOX_SIZE/5, BOX_SIZE/5 + 10, P2D);
   icone = createGraphics(BOX_SIZE/5, BOX_SIZE/5, P2D);
   score = createGraphics(BOX_SIZE/5, BOX_SIZE/5, P2D);
   scores = 0;
