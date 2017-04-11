@@ -38,6 +38,13 @@ void draw() {
 
   // Affichage
   ball.display();
+
+  pushMatrix();
+  {
+    hs.update();
+    hs.display();
+  }
+  popMatrix();
 }
 
 /* Settings for light */
@@ -102,10 +109,10 @@ void drawBarChart() {
     barChart.background(interfaceColor);
     barChart.stroke(strokeColor);
     barChart.fill(plateColor);
-    barChart.rect(1, 1, barChart.width - 2, barChart.height - 2);
+    barChart.rect(1, 1, barChart.width - 2, (barChart.height - 2)*5/7);
 
     if (!cylinderModeIsOn && millis() - timer >= 500) {
-      if(Math.abs(score) > max) {
+      if (Math.abs(score) > max) {
         max = Math.abs(score);
       }
       scores.add(score);
@@ -114,13 +121,13 @@ void drawBarChart() {
 
     int pos = 1;
     for (int sc : scores) {
-      if(sc > 0) {
+      if (sc > 0) {
         barChart.fill(0, 255, 0);
       } else {
         barChart.fill(255, 0, 0);
       }
-      
-      barChart.rect(pos, (barChart.height - 2)/2, rectWidth, map(-sc, 0, max, 0, (barChart.height - 2)/2));
+
+      barChart.rect(pos, (barChart.height - 2)/2, rectWidth*hs.getPos(), map(-sc, 0, max, 0, ((barChart.height - 2)*5/7)/2));
       pos += rectWidth;
     }
   }
