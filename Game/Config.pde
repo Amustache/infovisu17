@@ -46,7 +46,7 @@ int textColor = strokeColor;
 /* Global variables */
 
 // Booleans
-boolean cylinderModeIsOn = false, canAddCylinder = false;
+boolean cylinderModeIsOn = false;
 boolean fullscreen = false;
 
 float speedMultiplier = 0.1;
