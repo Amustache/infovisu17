@@ -41,9 +41,11 @@ void mouseWheel(MouseEvent event) {
 }
 
 public void mouseClicked() {
-  if (cylinderModeIsOn && canAddCylinder) {
-    cylinders.add(new Cylinder(new PVector(mouseX-width/2, 0, mouseY-height/2)));
-    println(cylinders);
+  if (cylinderModeIsOn) {
+    Cylinder test = new Cylinder(new PVector(mouseX-width/2, 0, mouseY-height/2));
+    if (!test.outOfRange() && !test.overlapsBall(ball) && !test.overlapsCylinder(cylinders)) {
+      cylinders.add(test);
+    }
   }
 }
 

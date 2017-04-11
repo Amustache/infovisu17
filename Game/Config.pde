@@ -19,8 +19,7 @@ final float FRICTION_MAGNITUDE = NORMAL_FORCE * MU;
 final int RADIUS = 25;
 
 // Box
-final int BOX_WIDTH = 500;
-final int BOX_HEIGHT = 500;
+final int BOX_SIZE = 500;
 final int BOX_THICKNESS = 20;
 
 // Cylinder
@@ -42,7 +41,7 @@ boolean fullscreen = false;
 float speedMultiplier = 0.1;
 float depth = 2000;
 
-Plate plate = new Plate(BOX_WIDTH, BOX_HEIGHT, BOX_THICKNESS);  
+Plate plate = new Plate(BOX_SIZE, BOX_SIZE, BOX_THICKNESS);  
 Mover ball = new Mover(RADIUS, new PVector(0, 0, 0), new PVector(0, 0, 0));
 
 ArrayList<Cylinder> cylinders = new ArrayList<Cylinder>();
@@ -55,18 +54,30 @@ PGraphics bande;
 PGraphics icone;
 PGraphics score;
 
-protected static float scores, lastScore;
+protected static int scores, lastScore;
 
 HScrollbar hs;
-void settings() {
-size(400, 200, P2D);
-}
-void setup() {
 
+void settings() {
+  // size(400, 200, P2D);
+  size(1200, 800, P3D);
+  CENTER_X = height/2;
+  CENTER_Y = width/2;
 }
-void draw() {
-background(255);
-hs.update();
-hs.display();
-println(hs.getPos());
+
+void setup() {
+  cylinderModeIsOn = false;
+  initCylinder();
+  hs = new HScrollbar(50, 90, 300, 20);
+  bande = createGraphics(5*width/7, height/5, P2D);
+  icone = createGraphics(BOX_SIZE/5, BOX_SIZE/5, P2D);
+  score = createGraphics(BOX_SIZE/5, BOX_SIZE/5, P2D);
+  scores = 0;
+  lastScore = 0;
 }
+/*void draw() {
+ background(255);
+ hs.update();
+ hs.display();
+ println(hs.getPos());
+ }*/

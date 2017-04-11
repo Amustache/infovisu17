@@ -12,18 +12,16 @@ class Plate {
     bThickness = bThickness_;
   }
 
-  void update() {
-  }
-
   void display() {
     fill(163, 145, 147);
     stroke(102, 84, 94);
+    translate(width/2, height/2);
+    if (cylinderModeIsOn) {
+      rotateX(-PI/2);
+    } else {
+      rotateX(rX);
+      rotateZ(rZ);
+    }
     box(bWidth, bThickness, bHeight);
-  }
-
-  /* Control inclinaison with mouse */
-  void rotateBox() {
-    rotateX(rX);
-    rotateZ(rZ);
   }
 }

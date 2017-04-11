@@ -14,63 +14,61 @@ class Mover {
   }
 
   void display() {
+    stroke(102, 84, 94);
+    fill(238, 169, 144);
     pushMatrix();
     {
       translate(location.x, -BOX_THICKNESS/2 - radius, location.z);
-      stroke(238, 169, 144);
-      lights();
-      sphere(radius);
-    }
-    popMatrix();
-  }
 
-  void display2D() {
-    pushMatrix();
-    {
-      stroke(102, 84, 94);
-      fill(238, 169, 144);
-      lights();
-      ellipse(location.x, location.z, radius, radius);
+      if (cylinderModeIsOn) {
+        rotateX(-PI/2);
+        ellipse(0, 0, radius * 2, radius * 2);
+      } else {
+        sphere(radius);
+      }
     }
     popMatrix();
   }
 
   void update() {
-    gravity.x = sin(rZ) * GRAVITY;
-    gravity.z = -sin(rX) * GRAVITY;  
+    // Update only if SHIFT is not pressed
+    if (!cylinderModeIsOn) {
+      gravity.x = sin(rZ) * GRAVITY;
+      gravity.z = -sin(rX) * GRAVITY;  
 
-    friction = velocity.copy();
-    friction.mult(-1);
-    friction.normalize();
-    friction.mult(FRICTION_MAGNITUDE);
+      friction = velocity.copy();
+      friction.mult(-1);
+      friction.normalize();
+      friction.mult(FRICTION_MAGNITUDE);
 
-    velocity.add(gravity);
-    velocity.add(friction);
-    location.add(velocity);
+      velocity.add(gravity);
+      velocity.add(friction);
+      location.add(velocity);
+    }
   }
 
   void checkEdges() {
-    if (location.x + RADIUS > BOX_WIDTH/2) {
+    if (location.x + RADIUS > BOX_SIZE/2) {
       lastScore = scores;
       scores -= sqrt(pow(velocity.x, 2) + pow(velocity.z, 2));
       velocity.x = -velocity.x * ELASTICITY;
-      location.x = BOX_WIDTH/2 - RADIUS;
-    } else if (location.x - RADIUS < -BOX_WIDTH/2) {
+      location.x = BOX_SIZE/2 - RADIUS;
+    } else if (location.x - RADIUS < -BOX_SIZE/2) {
       lastScore = scores;
       scores -= sqrt(pow(velocity.x, 2) + pow(velocity.z, 2));
       velocity.x = -velocity.x * ELASTICITY;
-      location.x = -BOX_WIDTH/2 + RADIUS;
+      location.x = -BOX_SIZE/2 + RADIUS;
     }
-    if (location.z + RADIUS > BOX_WIDTH/2) {
+    if (location.z + RADIUS > BOX_SIZE/2) {
       lastScore = scores;
       scores -= sqrt(pow(velocity.x, 2) + pow(velocity.z, 2));
       velocity.z = -velocity.z * ELASTICITY;
-      location.z = BOX_WIDTH/2 - RADIUS;
-    } else if (location.z - RADIUS < -BOX_WIDTH/2) {
+      location.z = BOX_SIZE/2 - RADIUS;
+    } else if (location.z - RADIUS < -BOX_SIZE/2) {
       lastScore = scores;
       scores -= sqrt(pow(velocity.x, 2) + pow(velocity.z, 2));
       velocity.z = -velocity.z * ELASTICITY;
-      location.z = -BOX_WIDTH/2 + RADIUS;
+      location.z = -BOX_SIZE/2 + RADIUS;
     }
   }
 
