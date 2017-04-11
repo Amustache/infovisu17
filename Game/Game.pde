@@ -1,4 +1,4 @@
-/** //<>// //<>// //<>//
+/** //<>//
  * Main program and scene
  */
 
@@ -38,11 +38,6 @@ void draw() {
 
   // Affichage
   ball.display();
-
-  if (millis() - timer >= 1000) {
-    scores.add(score);
-    timer = millis();
-  }
 }
 
 /* Settings for light */
@@ -98,47 +93,78 @@ public void drawScore() {
   scoreBox.endDraw();
 }
 
-public void drawBarChart() {
-  lights();
+void drawBarChart() {
+  //lights();
   barChart.beginDraw();
   {
-
     barChart.stroke(strokeColor);
     barChart.fill(plateColor);
     barChart.rect(1, 1, barChart.width - 2, barChart.height - 2);
 
-    currHeight = barChart.height - 1;
-
-    barChart.stroke(strokeColor);
-    barChart.fill(ballColor);
-
-    /* counter += 1;
-     println("Counter" + counter);
-     if (counter > 60) {
-     for (int i = 0; i < score / scorePerRect; ++i) {
-     
-     println("CurrWidth" + currWidth);
-     
-     barChart.rect(currWidth, currHeight, rectWidth, rectHeight);
-     barChart.fill(255, 255, 255);
-     currHeight -= rectHeight + 1;
-     }
-     currWidth += rectWidth + 1;
-     }*/
-
-
-
-    barChart.fill(240, 180, 183);
-    if (millis()*1000 % 1000 < 0.1 ) {
-      scores.add(score);
-    }
-    for (int i = 0; i < scores.size(); i++) {
-      for (int j = 0; j < max(0, scores.get(i)) / 10; j++) {
-        barChart.rect(i*rectWidth+10, height/5/2+30-(j+1)*rectHeight, rectWidth, rectHeight);
+    if (!cylinderModeIsOn && millis() - timer >= 1000) {
+      if(Math.abs(score) > max) {
+        max = Math.abs(score);
       }
+      scores.add(score);
+      timer = millis();
     }
 
-    barChart.endDraw();
-    counter = 0;
+    int pos = 1;
+    for (int sc : scores) {
+      if(sc > 0) {
+        barChart.fill(0, 255, 0);
+      } else {
+        barChart.fill(255, 0, 0);
+      }
+      
+      barChart.rect(pos, (barChart.height - 2)/2, rectWidth, map(-sc, 0, max, 0, (barChart.height - 2)/2));
+      pos += rectWidth;
+    }
   }
+  barChart.endDraw();
 }
+
+/*public void drawBarChart() {
+ lights();
+ barChart.beginDraw();
+ {
+ 
+ barChart.stroke(strokeColor);
+ barChart.fill(plateColor);
+ barChart.rect(1, 1, barChart.width - 2, barChart.height - 2);
+ 
+ currHeight = barChart.height - 1;
+ 
+ barChart.stroke(strokeColor);
+ barChart.fill(ballColor);
+ 
+    /* counter += 1;
+ println("Counter" + counter);
+ if (counter > 60) {
+ for (int i = 0; i < score / scorePerRect; ++i) {
+ 
+ println("CurrWidth" + currWidth);
+ 
+ barChart.rect(currWidth, currHeight, rectWidth, rectHeight);
+ barChart.fill(255, 255, 255);
+ currHeight -= rectHeight + 1;
+ }
+ currWidth += rectWidth + 1;
+ }*/
+
+
+
+/*barChart.fill(240, 180, 183);
+ if (millis()*1000 % 1000 < 0.1 ) {
+ scores.add(score);
+ }
+ for (int i = 0; i < scores.size(); i++) {
+ for (int j = 0; j < max(0, scores.get(i)) / 10; j++) {
+ barChart.rect(i*rectWidth+10, height/5/2+30-(j+1)*rectHeight, rectWidth, rectHeight);
+ }
+ }
+ 
+ barChart.endDraw();
+ counter = 0;
+ }
+ }*/

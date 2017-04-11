@@ -69,7 +69,7 @@ HScrollbar hs;
 int counter;
 
 ArrayList<Integer> scores = new ArrayList<Integer>(); 
-protected static int score, lastScore, timer;
+protected static int score, lastScore, timer, max;
 
 int currHeight, currWidth, scorePerRect, rectHeight, rectWidth;
 
@@ -91,10 +91,10 @@ void setup() {
   barChart = createGraphics(3 * BOX_SIZE/5, BOX_SIZE/5, P2D);
   score = 0;
   lastScore = 0;
-  currWidth = 1;
-  scorePerRect = 10;
-  rectHeight = rectWidth = 10;
-  counter = 0;
+  //scorePerRect = 10;
+  rectWidth = 10;
+  //counter = 0;
+  max = -5;
 }
 /*void draw() {
  background(255);
