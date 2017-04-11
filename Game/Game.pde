@@ -1,4 +1,4 @@
-/** //<>//
+/** //<>// //<>//
  * Main program and scene
  */
 
@@ -104,22 +104,29 @@ public void drawScore() {
 
 public void drawBarChart() {
   lights();
-  barChart.beginDraw();
-  {
-    barChart.stroke(strokeColor);
-    barChart.fill(plateColor);
-    barChart.rect(1, 1, barChart.width - 2, barChart.height - 2);
+  counter ++;
+  if (counter > 60) {
+    barChart.beginDraw();
+    {
+      barChart.stroke(strokeColor);
+      barChart.fill(plateColor);
+      barChart.rect(1, 1, barChart.width - 2, barChart.height - 2);
 
-    currHeight = barChart.height - 1;
-    
-    barChart.stroke(strokeColor);
-    barChart.fill(ballColor);
-    for (int i = 0; i < score / scorePerRect; ++i) {
-      barChart.rect(currWidth, currHeight, rectWidth, rectHeight);
-      currHeight += rectHeight + 1;
+      currHeight = barChart.height - 1;
+
+      barChart.stroke(strokeColor);
+      barChart.fill(ballColor);
+      for (int i = 0; i < score / scorePerRect; ++i) {
+
+        print("CurrWidth" + currWidth);
+
+        barChart.rect(currWidth, /*currHeight*/ 0, rectWidth, rectHeight);
+        barChart.fill(0, 0, 0);
+        currHeight -= rectHeight + 1;
+      }
+      currWidth += rectWidth + 1;
     }
-    
-    currWidth += rectWidth + 1;
+    barChart.endDraw();
+    counter = 0;
   }
-  barChart.endDraw();
 }

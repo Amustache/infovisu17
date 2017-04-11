@@ -32,6 +32,9 @@ final int CYLINDER_RESOLUTION = 40;
 float CENTER_X;// = width/2;
 float CENTER_Y;// = height/2;
 
+
+int counter = 0;
+
 // Colors
 int strokeColor = new Color(102, 84, 94).getRGB();
 int plateColor = new Color(163, 145, 147).getRGB();
@@ -90,7 +93,7 @@ void setup() {
   lastScore = 0;
   currWidth = 1;
   scorePerRect = 10;
-  rectHeight = rectWidth = 1;
+  rectHeight = rectWidth = 10;
 }
 /*void draw() {
  background(255);
