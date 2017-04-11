@@ -33,11 +33,14 @@ void draw() {
 
   drawIcone();
   //image(icone, 0, 4.0f/5.0f*height);
-  image(icone, width/2 - bande.width/2 + 5, height - bande.height - 5);
+  image(icone, width/2 - bande.width/2 + 10, height - bande.height - 5);
 
   drawScore();
   //image(score, BOX_SIZE/7.0f + 20, 4.0f/5.0f*height);
-  image(score, width/2 - bande.width/2 + icone.width + 10, height - bande.height - 5);
+  image(score, width/2 - bande.width/2 + icone.width + 20, height - bande.height - 5);
+  
+  drawVisualizer();
+  image(visualizer, width/2 - bande.width/2 + icone.width + score.width + 30, height - bande.height - 5);
 
   // On affiche la plaque
   plate.display();
@@ -111,17 +114,17 @@ public void drawIcone() {
   lights();
   icone.beginDraw();
   {
-    //icone.fill(255, 245, 104);
-    icone.background(255, 245, 104);
-    //icone.stroke(255);
-    //icone.rect(10, 10, BOX_SIZE/7, BOX_SIZE/7);
-    //icone.fill(246, 142, 86);
-    icone.ellipse(icone.width/2 + (ball.location.x * icone.width / BOX_SIZE),
-      icone.height/2 + (ball.location.z * icone.height / BOX_SIZE),
+    icone.stroke(0);
+    icone.fill(163, 145, 147);
+    icone.rect(1, 1, score.width - 2, score.height - 2);
+    icone.fill(238, 169, 144);
+    icone.ellipse(icone.width/2 + (ball.location.x * icone.width / BOX_SIZE), 
+      icone.height/2 + (ball.location.z * icone.height / BOX_SIZE), 
       RADIUS/2, RADIUS/2);
-    for(Cylinder c : cylinders) {
-      icone.ellipse(icone.width/2 + c.location.x * icone.width / BOX_SIZE),
-        icone.height/2 + c.location.z * icone.height / BOX_SIZE),
+    icone.fill(246, 224, 181);
+    for (Cylinder c : cylinders) {
+      icone.ellipse(icone.width/2 + c.location.x * icone.width / BOX_SIZE, 
+        icone.height/2 + c.location.z * icone.height / BOX_SIZE, 
         CYLINDER_BASE/2, CYLINDER_BASE/2);
     }
   }
@@ -132,13 +135,28 @@ public void drawScore() {
   lights();
   score.beginDraw();
   {
-    //score.stroke(255);
-    score.background(240, 213, 183);
-    String s = "Total score:\n" + Math.round(scores*1000.0)/1000.0 + "\nVelocity:\n" + Math.round(sqrt(pow(ball.velocity.x, 2) + pow(ball.velocity.z, 2))*1000.0)/1000.0 + "\nLast score:\n" + Math.round(lastScore*1000.0)/1000.0;
-    //score.fill(240, 213, 183);
-    //score.rect(10, 10, BOX_SIZE/7, BOX_SIZE/7);
+    score.stroke(0);
+    score.fill(240, 213, 183);
+    score.rect(1, 1, score.width - 2, score.height - 2);
+    String s = "\nTotal score:\n" + scores +
+      "\nVelocity:\n" + (int)(sqrt(pow(ball.velocity.x, 2) + pow(ball.velocity.z, 2))) +
+      "\nLast score:\n" + lastScore;
     score.fill(50);
-    score.text(s, 15, 15, BOX_SIZE/7 - 15, BOX_SIZE/7 - 15);
+    score.text(s, 2, 2);
   }
   score.endDraw();
+}
+
+public void drawVisualizer() {
+  lights();
+  visualizer.beginDraw();
+  {
+    visualizer.stroke(0);
+    visualizer.fill(240, 213, 183);
+    visualizer.rect(1, 1, visualizer.width - 2, visualizer.height - 2);
+    
+    // Stuff (?)
+    
+  }
+  visualizer.endDraw();
 }

@@ -53,6 +53,7 @@ float rZ = 0;
 PGraphics bande;
 PGraphics icone;
 PGraphics score;
+PGraphics visualizer;
 
 protected static int scores, lastScore;
 
@@ -69,9 +70,10 @@ void setup() {
   cylinderModeIsOn = false;
   initCylinder();
   hs = new HScrollbar(50, 90, 300, 20);
-  bande = createGraphics(5 * BOX_SIZE/5, BOX_SIZE/5 + 10, P2D);
+  bande = createGraphics(5 * (BOX_SIZE/5 + 10), BOX_SIZE/5 + 10, P2D);
   icone = createGraphics(BOX_SIZE/5, BOX_SIZE/5, P2D);
   score = createGraphics(BOX_SIZE/5, BOX_SIZE/5, P2D);
+  visualizer = createGraphics(3 * BOX_SIZE/5, BOX_SIZE/5, P2D);
   scores = 0;
   lastScore = 0;
 }

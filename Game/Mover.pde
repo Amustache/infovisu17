@@ -49,24 +49,24 @@ class Mover {
 
   void checkEdges() {
     if (location.x + RADIUS > BOX_SIZE/2) {
-      lastScore = scores;
-      scores -= sqrt(pow(velocity.x, 2) + pow(velocity.z, 2));
+      lastScore = (int)sqrt(pow(velocity.x, 2) + pow(velocity.z, 2));
+      scores -= lastScore;
       velocity.x = -velocity.x * ELASTICITY;
       location.x = BOX_SIZE/2 - RADIUS;
     } else if (location.x - RADIUS < -BOX_SIZE/2) {
-      lastScore = scores;
-      scores -= sqrt(pow(velocity.x, 2) + pow(velocity.z, 2));
+      lastScore = (int)sqrt(pow(velocity.x, 2) + pow(velocity.z, 2));
+      scores -= lastScore;
       velocity.x = -velocity.x * ELASTICITY;
       location.x = -BOX_SIZE/2 + RADIUS;
     }
     if (location.z + RADIUS > BOX_SIZE/2) {
-      lastScore = scores;
-      scores -= sqrt(pow(velocity.x, 2) + pow(velocity.z, 2));
+      lastScore = (int)sqrt(pow(velocity.x, 2) + pow(velocity.z, 2));
+      scores -= lastScore;
       velocity.z = -velocity.z * ELASTICITY;
       location.z = BOX_SIZE/2 - RADIUS;
     } else if (location.z - RADIUS < -BOX_SIZE/2) {
-      lastScore = scores;
-      scores -= sqrt(pow(velocity.x, 2) + pow(velocity.z, 2));
+      lastScore = (int)sqrt(pow(velocity.x, 2) + pow(velocity.z, 2));
+      scores -= lastScore;
       velocity.z = -velocity.z * ELASTICITY;
       location.z = -BOX_SIZE/2 + RADIUS;
     }
@@ -77,8 +77,8 @@ class Mover {
     //  V2 = V1 − 2(V1 · n)n
     for (Cylinder c : cylinders) {
       if (sqrt(pow((this.location.x - c.location.x), 2)+pow((this.location.z - c.location.z), 2)) <= radius + CYLINDER_BASE) {
-        lastScore = scores;
-        scores += sqrt(pow(velocity.x, 2) + pow(velocity.z, 2));
+        lastScore = (int)sqrt(pow(velocity.x, 2) + pow(velocity.z, 2));
+        scores -= lastScore;
         PVector n = new PVector(location.x - c.location.x, 0, location.z - c.location.z);
         n.normalize();
         location.x = c.location.x + n.x * (radius + CYLINDER_BASE);
