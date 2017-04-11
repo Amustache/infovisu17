@@ -1,11 +1,11 @@
-/** //<>// //<>//
+/** //<>// //<>// //<>//
  * Main program and scene
  */
 
 /* Update, called on each frame */
 void draw() {
   // Configuration de base
-  setLight();
+  //setLight();
   background(bgColor);
 
   drawBande();
@@ -53,7 +53,7 @@ void setLight() {
 }
 
 public void drawBande() {
-  lights();
+  //lights();
   bande.beginDraw();
   {
     bande.background(interfaceColor);
@@ -66,28 +66,24 @@ public void drawBande() {
 }
 
 public void drawIcone() {
-  lights();
+  //lights();
   icone.beginDraw();
   {
     icone.stroke(0);
     icone.fill(plateColor);
     icone.rect(1, 1, scoreBox.width - 2, scoreBox.height - 2);
     icone.fill(ballColor);
-    icone.ellipse(icone.width/2 + (ball.location.x * icone.width / BOX_SIZE), 
-      icone.height/2 + (ball.location.z * icone.height / BOX_SIZE), 
-      RADIUS/2, RADIUS/2);
+    icone.ellipse(map(ball.location.x, -250, 250, 1, scoreBox.width - 2), map(ball.location.z, -250, 250, 1, scoreBox.height - 2), RADIUS/2, RADIUS/2);
     icone.fill(cylinderColor);
     for (Cylinder c : cylinders) {
-      icone.ellipse(icone.width/2 + c.location.x * icone.width / BOX_SIZE, 
-        icone.height/2 + c.location.z * icone.height / BOX_SIZE, 
-        CYLINDER_BASE/2, CYLINDER_BASE/2);
+      icone.ellipse(map(c.location.x, -250, 250, 1, scoreBox.width - 2), map(c.location.z, -250, 250, 1, scoreBox.height - 2), CYLINDER_BASE/2, CYLINDER_BASE/2);
     }
   }
   icone.endDraw();
 }
 
 public void drawScore() {
-  lights();
+  //lights();
   scoreBox.beginDraw();
   {
     scoreBox.stroke(strokeColor);
@@ -104,28 +100,44 @@ public void drawScore() {
 
 public void drawBarChart() {
   lights();
-  counter ++;
-  if (counter > 60) {
-    barChart.beginDraw();
-    {
-      barChart.stroke(strokeColor);
-      barChart.fill(plateColor);
-      barChart.rect(1, 1, barChart.width - 2, barChart.height - 2);
+  barChart.beginDraw();
+  {
 
-      currHeight = barChart.height - 1;
+    barChart.stroke(strokeColor);
+    barChart.fill(plateColor);
+    barChart.rect(1, 1, barChart.width - 2, barChart.height - 2);
 
-      barChart.stroke(strokeColor);
-      barChart.fill(ballColor);
-      for (int i = 0; i < score / scorePerRect; ++i) {
+    currHeight = barChart.height - 1;
 
-        print("CurrWidth" + currWidth);
+    barChart.stroke(strokeColor);
+    barChart.fill(ballColor);
 
-        barChart.rect(currWidth, /*currHeight*/ 0, rectWidth, rectHeight);
-        barChart.fill(0, 0, 0);
-        currHeight -= rectHeight + 1;
-      }
-      currWidth += rectWidth + 1;
+    /* counter += 1;
+     println("Counter" + counter);
+     if (counter > 60) {
+     for (int i = 0; i < score / scorePerRect; ++i) {
+     
+     println("CurrWidth" + currWidth);
+     
+     barChart.rect(currWidth, currHeight, rectWidth, rectHeight);
+     barChart.fill(255, 255, 255);
+     currHeight -= rectHeight + 1;
+     }
+     currWidth += rectWidth + 1;
+     }*/
+
+
+
+    barChart.fill(240, 180, 183);
+    if (millis()*1000 % 1000 < 0.1 ) {
+      scores.add(score);
     }
+    for (int i = 0; i < scores.size(); i++) {
+      for (int j = 0; j < max(0, scores.get(i)) / 10; j++) {
+        barChart.rect(i*rectWidth+10, height/5/2+30-(j+1)*rectHeight, rectWidth, rectHeight);
+      }
+    }
+
     barChart.endDraw();
     counter = 0;
   }

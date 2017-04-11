@@ -14,7 +14,7 @@ class Mover {
   }
 
   void display() {
-    stroke(strokeColor);
+    stroke(ballColor - 1638400);
     fill(ballColor);
     pushMatrix();
     {
