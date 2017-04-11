@@ -5,7 +5,7 @@
 
 /* Map the relative position of the mouse to the relative position of the box */
 void mouseDragged() {
-  if (!cylinderModeIsOn) {
+  if (!cylinderModeIsOn && !hs.locked) {
     // Following X
     if (pmouseY > mouseY)
       rX += 0.1 * speedMultiplier;

@@ -65,6 +65,7 @@ PGraphics bande;
 PGraphics icone;
 PGraphics scoreBox;
 PGraphics barChart;
+PGraphics scroll;
 HScrollbar hs;
 int counter;
 
@@ -84,11 +85,13 @@ void settings() {
 void setup() {
   cylinderModeIsOn = false;
   initCylinder();
-  hs = new HScrollbar(50, 90, 300, 20);
+  //hs = new HScrollbar(width*0.464, height*0.954, 300, 20);
+  hs = new HScrollbar(0, 0, 300, 20);
   bande = createGraphics(5 * (BOX_SIZE/5 + 10), BOX_SIZE/5 + 10, P2D);
   icone = createGraphics(BOX_SIZE/5, BOX_SIZE/5, P2D);
   scoreBox = createGraphics(BOX_SIZE/5, BOX_SIZE/5, P2D);
   barChart = createGraphics(3 * BOX_SIZE/5, BOX_SIZE/5, P2D);
+  scroll = createGraphics(3 * BOX_SIZE/5, BOX_SIZE/5, P2D);
   score = 0;
   lastScore = 0;
   //scorePerRect = 10;

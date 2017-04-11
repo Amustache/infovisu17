@@ -35,6 +35,7 @@ class HScrollbar {
    * @brief Updates the state of the scrollbar according to the mouse movement
    */
   void update() {
+    int a = width/2 - bande.width/2 + icone.width + scoreBox.width + 31;
     if (isMouseOver()) {
       mouseOver = true;
     } else {
@@ -47,7 +48,7 @@ class HScrollbar {
       locked = false;
     }
     if (locked) {
-      newSliderPosition = constrain(mouseX - barHeight/2, sliderPositionMin, sliderPositionMax);
+      newSliderPosition = constrain(mouseX - a - barHeight/2, sliderPositionMin, sliderPositionMax);
     }
     if (abs(newSliderPosition - sliderPosition) > 1) {
       sliderPosition = sliderPosition + (newSliderPosition - sliderPosition);
@@ -73,8 +74,10 @@ class HScrollbar {
    * @return Whether the mouse is hovering the scrollbar
    */
   boolean isMouseOver() {
-    if (mouseX > xPosition && mouseX < xPosition+barWidth &&
-      mouseY > yPosition && mouseY < yPosition+barHeight) {
+    int a = width/2 - bande.width/2 + icone.width + scoreBox.width + 31;
+    int b = height - bande.height + 74;
+    if (mouseX > a /*xPosition*/ && mouseX < a /*xPosition*/ +barWidth &&
+      mouseY > b /*yPosition*/ && mouseY < b /*yPosition*/ +barHeight) {
       return true;
     } else {
       return false;
@@ -85,15 +88,19 @@ class HScrollbar {
    * @brief Draws the scrollbar in its current state
    */
   void display() {
-    noStroke();
-    fill(204);
-    rect(xPosition, yPosition, barWidth, barHeight);
-    if (mouseOver || locked) {
-      fill(0, 0, 0);
-    } else {
-      fill(102, 102, 102);
+    scroll.beginDraw();
+    {
+      scroll.noStroke();
+      scroll.fill(204);
+      scroll.rect(xPosition, yPosition, barWidth, barHeight);
+      if (mouseOver || locked) {
+        scroll.fill(0, 0, 0);
+      } else {
+        scroll.fill(102, 102, 102);
+      }
+      scroll.rect(sliderPosition, yPosition, barHeight, barHeight);
     }
-    rect(sliderPosition, yPosition, barHeight, barHeight);
+    scroll.endDraw();
   }
 
   /**

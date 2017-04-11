@@ -22,6 +22,17 @@ void draw() {
 
   drawBarChart();
   image(barChart, width/2 - bande.width/2 + icone.width + scoreBox.width + 30, height - bande.height - 5);
+  
+  hs.update();
+  hs.display();
+  image(scroll, width/2 - bande.width/2 + icone.width + scoreBox.width + 31, height - bande.height + 74);
+
+  //pushMatrix();
+  //{
+  //  hs.update();
+  //  hs.display();
+  //}
+  //popMatrix();
 
   // On affiche la plaque
   plate.display();
@@ -38,13 +49,6 @@ void draw() {
 
   // Affichage
   ball.display();
-
-  pushMatrix();
-  {
-    hs.update();
-    hs.display();
-  }
-  popMatrix();
 }
 
 /* Settings for light */
@@ -127,8 +131,8 @@ void drawBarChart() {
         barChart.fill(255, 0, 0);
       }
 
-      barChart.rect(pos, (barChart.height - 2)/2, rectWidth*hs.getPos(), map(-sc, 0, max, 0, ((barChart.height - 2)*5/7)/2));
-      pos += rectWidth;
+      barChart.rect(pos, ((barChart.height - 2)*5/7)/2, rectWidth*hs.getPos(), map(-sc, 0, max, 0, ((barChart.height - 2)*5/7)/2));
+      pos += rectWidth*hs.getPos();
     }
   }
   barChart.endDraw();

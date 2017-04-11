@@ -49,23 +49,23 @@ class Mover {
 
   void checkEdges() {
     if (location.x + RADIUS > BOX_SIZE/2) {
-      lastScore = -(int)sqrt(pow(velocity.x, 1) + pow(velocity.z, 1));
+      lastScore = -(int)sqrt(pow(velocity.x, 2) + pow(velocity.z, 2));
       score += lastScore;
       velocity.x = -velocity.x * ELASTICITY;
       location.x = BOX_SIZE/2 - RADIUS;
     } else if (location.x - RADIUS < -BOX_SIZE/2) {
-      lastScore = -(int)sqrt(pow(velocity.x, 1) + pow(velocity.z, 1));
+      lastScore = -(int)sqrt(pow(velocity.x, 2) + pow(velocity.z, 2));
       score += lastScore;
       velocity.x = -velocity.x * ELASTICITY;
       location.x = -BOX_SIZE/2 + RADIUS;
     }
     if (location.z + RADIUS > BOX_SIZE/2) {
-      lastScore = -(int)sqrt(pow(velocity.x, 1) + pow(velocity.z, 1));
+      lastScore = -(int)sqrt(pow(velocity.x, 2) + pow(velocity.z, 2));
       score += lastScore;
       velocity.z = -velocity.z * ELASTICITY;
       location.z = BOX_SIZE/2 - RADIUS;
     } else if (location.z - RADIUS < -BOX_SIZE/2) {
-      lastScore = -(int)sqrt(pow(velocity.x, 1) + pow(velocity.z, 1));
+      lastScore = -(int)sqrt(pow(velocity.x, 2) + pow(velocity.z, 2));
       score += lastScore;
       velocity.z = -velocity.z * ELASTICITY;
       location.z = -BOX_SIZE/2 + RADIUS;
