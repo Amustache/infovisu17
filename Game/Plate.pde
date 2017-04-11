@@ -13,8 +13,9 @@ class Plate {
   }
 
   void display() {
-    fill(163, 145, 147);
-    stroke(102, 84, 94);
+    //fill(163, 145, 147);
+    fill(plateColor);
+    stroke(strokeColor);
     translate(width/2, height/2);
     if (cylinderModeIsOn) {
       rotateX(-PI/2);

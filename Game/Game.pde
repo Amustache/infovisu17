@@ -2,30 +2,11 @@
  * Main program and scene
  */
 
-/* Settings is called before anything */
-/*void settings() {
- size(1200, 800, P3D);
- CENTER_X = height/2;
- CENTER_Y = width/2;
- }*/
-
-/* Setup, called on first frame */
-/*void setup() {
- cylinderModeIsOn = false;
- initCylinder();
- hs = new HScrollbar(50, 90, 300, 20);
- bande = createGraphics(5*width/7, height/5, P2D);
- icone = createGraphics(width/7, height/5, P2D);
- score = createGraphics(width/7, height/5, P2D);
- scores = 0.0;
- lastScore = 0.0;
- }*/
-
 /* Update, called on each frame */
 void draw() {
   // Configuration de base
   setLight();
-  background(BG_COLOR);
+  background(bgColor);
 
   drawBande();
   //image(bande, 2*BOX_SIZE/7.0f + 20 + 20, 4.0f/5.0f*height + 5);
@@ -37,10 +18,10 @@ void draw() {
 
   drawScore();
   //image(score, BOX_SIZE/7.0f + 20, 4.0f/5.0f*height);
-  image(score, width/2 - bande.width/2 + icone.width + 20, height - bande.height - 5);
-  
-  drawVisualizer();
-  image(visualizer, width/2 - bande.width/2 + icone.width + score.width + 30, height - bande.height - 5);
+  image(scoreBox, width/2 - bande.width/2 + icone.width + 20, height - bande.height - 5);
+
+  drawBarChart();
+  image(barChart, width/2 - bande.width/2 + icone.width + scoreBox.width + 30, height - bande.height - 5);
 
   // On affiche la plaque
   plate.display();
@@ -58,36 +39,10 @@ void draw() {
   // Affichage
   ball.display();
 
-  /*pushMatrix();
-   {
-   drawBande();
-   image(bande, 2*BOX_SIZE/7.0f + 20 + 20, 4.0f/5.0f*height + 5);
-   }
-   popMatrix();
-   
-   pushMatrix();
-   {
-   drawIcone();
-   image(icone, 0, 4.0f/5.0f*height);
-   }
-   popMatrix();
-   
-   pushMatrix();
-   {
-   background(255);
-   hs.update();
-   hs.display();
-   println(hs.getPos());
-   }
-   popMatrix();
-   
-   pushMatrix();
-   {
-   drawScore();
-   image(score, BOX_SIZE/7.0f + 20, 4.0f/5.0f*height);
-   }
-   popMatrix();
-   }*/
+  if (millis() - timer >= 1000) {
+    scores.add(score);
+    timer = millis();
+  }
 }
 
 /* Settings for light */
@@ -101,7 +56,7 @@ public void drawBande() {
   lights();
   bande.beginDraw();
   {
-    bande.background(200, 213, 183);
+    bande.background(interfaceColor);
     //bande.stroke(240, 213, 183);
     //bande.fill(200, 213, 183);
     //bande.rect(0, 0, 5*width/7, height/5/2 + 30);
@@ -115,13 +70,13 @@ public void drawIcone() {
   icone.beginDraw();
   {
     icone.stroke(0);
-    icone.fill(163, 145, 147);
-    icone.rect(1, 1, score.width - 2, score.height - 2);
-    icone.fill(238, 169, 144);
+    icone.fill(plateColor);
+    icone.rect(1, 1, scoreBox.width - 2, scoreBox.height - 2);
+    icone.fill(ballColor);
     icone.ellipse(icone.width/2 + (ball.location.x * icone.width / BOX_SIZE), 
       icone.height/2 + (ball.location.z * icone.height / BOX_SIZE), 
       RADIUS/2, RADIUS/2);
-    icone.fill(246, 224, 181);
+    icone.fill(cylinderColor);
     for (Cylinder c : cylinders) {
       icone.ellipse(icone.width/2 + c.location.x * icone.width / BOX_SIZE, 
         icone.height/2 + c.location.z * icone.height / BOX_SIZE, 
@@ -133,30 +88,29 @@ public void drawIcone() {
 
 public void drawScore() {
   lights();
-  score.beginDraw();
+  scoreBox.beginDraw();
   {
-    score.stroke(0);
-    score.fill(240, 213, 183);
-    score.rect(1, 1, score.width - 2, score.height - 2);
-    String s = "\nTotal score:\n" + scores +
+    scoreBox.stroke(strokeColor);
+    scoreBox.fill(plateColor);
+    scoreBox.rect(1, 1, scoreBox.width - 2, scoreBox.height - 2);
+    String s = "\nTotal score:\n" + score +
       "\nVelocity:\n" + (int)(sqrt(pow(ball.velocity.x, 2) + pow(ball.velocity.z, 2))) +
       "\nLast score:\n" + lastScore;
-    score.fill(50);
-    score.text(s, 2, 2);
+    scoreBox.fill(textColor);
+    scoreBox.text(s, 2, 2);
   }
-  score.endDraw();
+  scoreBox.endDraw();
 }
 
-public void drawVisualizer() {
+public void drawBarChart() {
   lights();
-  visualizer.beginDraw();
+  barChart.beginDraw();
   {
-    visualizer.stroke(0);
-    visualizer.fill(240, 213, 183);
-    visualizer.rect(1, 1, visualizer.width - 2, visualizer.height - 2);
-    
+    barChart.stroke(strokeColor);
+    barChart.fill(plateColor);
+    barChart.rect(1, 1, barChart.width - 2, barChart.height - 2);
+
     // Stuff (?)
-    
   }
-  visualizer.endDraw();
+  barChart.endDraw();
 }

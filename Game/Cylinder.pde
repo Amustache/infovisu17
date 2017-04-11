@@ -57,8 +57,8 @@ class Cylinder {
   }
 
   void display() {
-    stroke(102, 84, 94);
-    fill(246, 224, 181);
+    stroke(strokeColor);
+    fill(cylinderColor);
     pushMatrix();
     {
       translate(location.x, -BOX_THICKNESS/2 - cHeight, location.z);

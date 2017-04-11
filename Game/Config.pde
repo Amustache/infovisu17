@@ -1,6 +1,7 @@
 /**
  * Global constants and variables
  */
+import java.awt.Color;
 
 /* Global constants */
 
@@ -30,7 +31,15 @@ final int CYLINDER_RESOLUTION = 40;
 // Scene parameters.
 float CENTER_X;// = width/2;
 float CENTER_Y;// = height/2;
-final int BG_COLOR = 230;
+
+// Colors
+int strokeColor = new Color(102, 84, 94).getRGB();
+int plateColor = new Color(163, 145, 147).getRGB();
+int ballColor = new Color(238, 169, 144).getRGB();
+int cylinderColor = new Color(246, 224, 181).getRGB();
+int bgColor = new Color(200,200,200).getRGB();
+int interfaceColor = new Color(128,128,128).getRGB();
+int textColor = strokeColor;
 
 /* Global variables */
 
@@ -52,10 +61,11 @@ float rZ = 0;
 
 PGraphics bande;
 PGraphics icone;
-PGraphics score;
-PGraphics visualizer;
+PGraphics scoreBox;
+PGraphics barChart;
 
-protected static int scores, lastScore;
+ArrayList<Integer> scores = new ArrayList<Integer>(); 
+protected static int score, lastScore, timer;
 
 HScrollbar hs;
 
@@ -72,9 +82,9 @@ void setup() {
   hs = new HScrollbar(50, 90, 300, 20);
   bande = createGraphics(5 * (BOX_SIZE/5 + 10), BOX_SIZE/5 + 10, P2D);
   icone = createGraphics(BOX_SIZE/5, BOX_SIZE/5, P2D);
-  score = createGraphics(BOX_SIZE/5, BOX_SIZE/5, P2D);
-  visualizer = createGraphics(3 * BOX_SIZE/5, BOX_SIZE/5, P2D);
-  scores = 0;
+  scoreBox = createGraphics(BOX_SIZE/5, BOX_SIZE/5, P2D);
+  barChart = createGraphics(3 * BOX_SIZE/5, BOX_SIZE/5, P2D);
+  score = 0;
   lastScore = 0;
 }
 /*void draw() {
