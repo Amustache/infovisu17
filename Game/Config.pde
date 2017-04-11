@@ -63,12 +63,14 @@ PGraphics bande;
 PGraphics icone;
 PGraphics scoreBox;
 PGraphics barChart;
+HScrollbar hs;
 
 ArrayList<Integer> scores = new ArrayList<Integer>(); 
 protected static int score, lastScore, timer;
 
-HScrollbar hs;
+int currHeight, currWidth, scorePerRect, rectHeight, rectWidth;
 
+/* Settings and startup */
 void settings() {
   // size(400, 200, P2D);
   size(1200, 800, P3D);
@@ -86,6 +88,9 @@ void setup() {
   barChart = createGraphics(3 * BOX_SIZE/5, BOX_SIZE/5, P2D);
   score = 0;
   lastScore = 0;
+  currWidth = 1;
+  scorePerRect = 10;
+  rectHeight = rectWidth = 1;
 }
 /*void draw() {
  background(255);

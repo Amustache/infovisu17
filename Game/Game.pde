@@ -110,7 +110,16 @@ public void drawBarChart() {
     barChart.fill(plateColor);
     barChart.rect(1, 1, barChart.width - 2, barChart.height - 2);
 
-    // Stuff (?)
+    currHeight = barChart.height - 1;
+    
+    barChart.stroke(strokeColor);
+    barChart.fill(ballColor);
+    for (int i = 0; i < score / scorePerRect; ++i) {
+      barChart.rect(currWidth, currHeight, rectWidth, rectHeight);
+      currHeight += rectHeight + 1;
+    }
+    
+    currWidth += rectWidth + 1;
   }
   barChart.endDraw();
 }
