@@ -33,12 +33,12 @@ float CENTER_X;// = width/2;
 float CENTER_Y;// = height/2;
 
 // Colors
-int strokeColor = new Color(102, 84, 94).getRGB();
-int plateColor = new Color(163, 145, 147).getRGB();
-int ballColor = new Color(238, 169, 144).getRGB();
-int cylinderColor = new Color(246, 224, 181).getRGB();
-int bgColor = new Color(200,200,200).getRGB();
-int interfaceColor = new Color(128,128,128).getRGB();
+int strokeColor = new Color(48, 48, 48).getRGB();
+int plateColor = new Color(6, 101, 130).getRGB();
+int ballColor = new Color(200, 0, 0).getRGB();
+int cylinderColor = new Color(239, 236, 202).getRGB();
+int bgColor = new Color(255, 255, 255).getRGB();
+int interfaceColor = new Color(230, 226, 175).getRGB();
 int textColor = strokeColor;
 
 /* Global variables */

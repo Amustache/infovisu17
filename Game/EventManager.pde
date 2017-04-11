@@ -5,27 +5,28 @@
 
 /* Map the relative position of the mouse to the relative position of the box */
 void mouseDragged() {
+  if (!cylinderModeIsOn) {
+    // Following X
+    if (pmouseY > mouseY)
+      rX += 0.1 * speedMultiplier;
+    if (pmouseY < mouseY)
+      rX -= 0.1 * speedMultiplier;
 
-  // Following X
-  if (pmouseY > mouseY)
-    rX += 0.1 * speedMultiplier;
-  if (pmouseY < mouseY)
-    rX -= 0.1 * speedMultiplier;
+    if (rX > MAX_ANGLE)
+      rX = MAX_ANGLE;
+    if (rX < MIN_ANGLE)
+      rX = MIN_ANGLE;
 
-  if (rX > MAX_ANGLE)
-    rX = MAX_ANGLE;
-  if (rX < MIN_ANGLE)
-    rX = MIN_ANGLE;
-
-  // Following Z
-  if (pmouseX < mouseX)
-    rZ += 0.1 * speedMultiplier;
-  if (pmouseX > mouseX)
-    rZ -= 0.1 * speedMultiplier;
-  if (rZ > MAX_ANGLE)
-    rZ = MAX_ANGLE;
-  if (rZ < MIN_ANGLE)
-    rZ = MIN_ANGLE;
+    // Following Z
+    if (pmouseX < mouseX)
+      rZ += 0.1 * speedMultiplier;
+    if (pmouseX > mouseX)
+      rZ -= 0.1 * speedMultiplier;
+    if (rZ > MAX_ANGLE)
+      rZ = MAX_ANGLE;
+    if (rZ < MIN_ANGLE)
+      rZ = MIN_ANGLE;
+  }
 }
 
 /* Control the speed multiplier with the mouse wheel */

@@ -1,11 +1,11 @@
-/** //<>//
+/** //<>// //<>//
  * Main program and scene
  */
 
 /* Update, called on each frame */
 void draw() {
   // Configuration de base
-  setLight();
+  //setLight();
   background(bgColor);
 
   drawBande();
@@ -53,7 +53,7 @@ void setLight() {
 }
 
 public void drawBande() {
-  lights();
+  //lights();
   bande.beginDraw();
   {
     bande.background(interfaceColor);
@@ -66,28 +66,24 @@ public void drawBande() {
 }
 
 public void drawIcone() {
-  lights();
+  //lights();
   icone.beginDraw();
   {
     icone.stroke(0);
     icone.fill(plateColor);
     icone.rect(1, 1, scoreBox.width - 2, scoreBox.height - 2);
     icone.fill(ballColor);
-    icone.ellipse(icone.width/2 + (ball.location.x * icone.width / BOX_SIZE), 
-      icone.height/2 + (ball.location.z * icone.height / BOX_SIZE), 
-      RADIUS/2, RADIUS/2);
+    icone.ellipse(map(ball.location.x, -250,250,1,scoreBox.width - 2),map(ball.location.z, -250,250,1,scoreBox.height - 2),RADIUS/2, RADIUS/2);
     icone.fill(cylinderColor);
     for (Cylinder c : cylinders) {
-      icone.ellipse(icone.width/2 + c.location.x * icone.width / BOX_SIZE, 
-        icone.height/2 + c.location.z * icone.height / BOX_SIZE, 
-        CYLINDER_BASE/2, CYLINDER_BASE/2);
+      icone.ellipse(map(c.location.x, -250,250,1,scoreBox.width - 2),map(c.location.z, -250,250,1,scoreBox.height - 2),CYLINDER_BASE/2, CYLINDER_BASE/2);
     }
   }
   icone.endDraw();
 }
 
 public void drawScore() {
-  lights();
+  //lights();
   scoreBox.beginDraw();
   {
     scoreBox.stroke(strokeColor);
@@ -103,7 +99,7 @@ public void drawScore() {
 }
 
 public void drawBarChart() {
-  lights();
+  //lights();
   barChart.beginDraw();
   {
     barChart.stroke(strokeColor);
