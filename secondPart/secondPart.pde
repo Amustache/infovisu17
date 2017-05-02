@@ -26,7 +26,7 @@ void draw() {
   img2 = hueing(img);
   img2.updatePixels();//update pixels
   image(img2, img.width, 0);
-  
+
   thresholdMin.display();
   thresholdMin.update();
   thresholdMax.display();
@@ -127,7 +127,7 @@ PImage convolute(PImage img) {
   // corresponding weights in the kernel matrix
   // - sum all these intensities and divide it by normFactor
   // - set result.pixels[y * img.width + x] to this value
-  
+
   for (int x = 1; x < img.width - 1; ++x) {
     for (int y = 1; y < img.height - 1; ++y) {
       int sum = 0;
@@ -164,4 +164,58 @@ PImage gaussianBlur(PImage img) {
     }
   }
   return result;
+}
+
+PImage scharr(PImage img) {
+
+  float[][] hKernel = 
+    {{ 3, 10, 3 }, 
+    { 0, 0, 0 }, 
+    { -3, -10, -3 }};
+  float[][] vKernel = 
+    {{ 3, 0, -3 }, 
+    { 10, 0, -10 }, 
+    { 3, 0, -3 }};
+  float normFactor = 1.f;
+
+  PImage result = createImage(img.width, img.height, ALPHA);
+  // clear the image
+  for (int i = 0; i < img.width * img.height; i++) {
+    result.pixels[i] = color(0);
+  }
+  float max=0;
+  float[] buffer = new float[img.width * img.height];
+
+  for (int x = 1; x < img.width - 1; ++x) {
+    for (int y = 1; y < img.height - 1; ++y) {
+      float sum_h = conv(hKernel, 3, img, normFactor, x, y);
+      float sum_v = conv(vKernel, 3, img, normFactor, x, y);
+
+      float sum = sqrt(pow(sum_h, 2) + pow(sum_v, 2));
+      buffer[y * img.width + x] = sum;
+      if (sum > max) {
+        max = sum;
+      }
+    }
+  }
+
+  for (int y = 2; y < img.height - 2; y++) { // Skip top and bottom edges
+    for (int x = 2; x < img.width - 2; x++) { // Skip left and right
+      int val=(int) ((buffer[y * img.width + x] / max)*255);
+      result.pixels[y * img.width + x]=color(val);
+    }
+  }
+  return result;
+}
+
+
+float conv(float[][] kernel, int size, PImage img, float normFactor, int x, int y) {
+  float sum = 0;
+  for (int a = x - (size/2); a <= x + (size/2); a++) {
+    for (int b = y - (size/2); b <= y + (size/2); b++) {
+      sum += kernel[b -y + (size/2)][a -x + (size/2)] * brightness(img.pixels[b * img.width + a]);
+    }
+  }
+  sum /= normFactor;
+  return sum;
 }
