@@ -1,6 +1,6 @@
 HScrollbar thresholdMin;
 HScrollbar thresholdMax;
-PImage img;
+PImage img, img2;
 void settings() {
   size(1600, 600);
 }
@@ -13,8 +13,12 @@ void setup() {
 }
 
 void draw() {
-  image(img, 0, 0);//show image
-  PImage img2 = img.copy();
+  image(img, 0, 0);//show image 
+  img2 = thresholdHSB(img, 100, 200, 100, 200, 100, 157);
+  img2 = scharr(img2);
+  img2 = threshold(img2, 100);
+  image(img2, img.width, 0);
+  /**PImage img2 = img.copy();
   img2.loadPixels();
 
   for (int x = 0; x < img2.width; x++)
@@ -23,14 +27,14 @@ void draw() {
         img2.pixels[y*img2.width+x] = color(0, 0, 0);
   /* appying threshold
    img2 = threshold(img, 128); */
-  img2 = hueing(img);
+  /*img2 = hueing(img);
   img2.updatePixels();//update pixels
   image(img2, img.width, 0);
 
   thresholdMin.display();
   thresholdMin.update();
   thresholdMax.display();
-  thresholdMax.update();
+  thresholdMax.update();*/
 }
 
 PImage threshold(PImage img, int threshold) {
@@ -207,7 +211,6 @@ PImage scharr(PImage img) {
   }
   return result;
 }
-
 
 float conv(float[][] kernel, int size, PImage img, float normFactor, int x, int y) {
   float sum = 0;
