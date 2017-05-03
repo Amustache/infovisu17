@@ -1,5 +1,10 @@
-HScrollbar thresholdMin;
-HScrollbar thresholdMax;
+/*HScrollbar thresholdHMin;
+HScrollbar thresholdHMax;
+HScrollbar thresholdSMin;
+HScrollbar thresholdSMax;
+HScrollbar thresholdBMin;
+HScrollbar thresholdBMax;
+HScrollbar thresholdthrshld;*/
 PImage img, img2;
 void settings() {
   size(1600, 600);
@@ -7,17 +12,37 @@ void settings() {
 
 void setup() {
   img = loadImage("board1.jpg");
-  thresholdMin = new HScrollbar(0, 580, 800, 20);
-  thresholdMax = new HScrollbar(0, 550, 800, 20);
-  //noLoop(); // no interactive behaviour: draw() will be called only once.
+  /*thresholdHMin = new HScrollbar(0, 580, 800, 20);
+  thresholdHMax = new HScrollbar(10, 550, 800, 20);
+  thresholdSMin = new HScrollbar(20, 520, 800, 20);
+  thresholdSMax = new HScrollbar(30, 490, 800, 20);
+  thresholdBMin = new HScrollbar(40, 460, 800, 20);
+  thresholdBMax = new HScrollbar(50, 430, 800, 20);
+  thresholdthrshld = new HScrollbar(60, 400, 800, 20);*/
+  noLoop(); // no interactive behaviour: draw() will be called only once.
 }
 
 void draw() {
-  image(img, 0, 0);//show image 
-  img2 = thresholdHSB(img, 100, 200, 100, 200, 100, 157);
+  image(img, 0, 0); //show image 
+  
+  // Valeurs empiriques
+  int Hmin = 112; // (int)(255 * thresholdHMin.getPos());
+  int Hmax = 139; // (int)(255 * thresholdHMax.getPos());
+  int Smin = 98; // (int)(255 * thresholdSMin.getPos());
+  int Smax = 255; // (int)(255 * thresholdSMax.getPos());
+  int Bmin = 0; // (int)(255 * thresholdBMin.getPos());
+  int Bmax = 151; // (int)(255 * thresholdBMax.getPos());
+  int thrshld = 180; // (int)(255 * thresholdthrshld.getPos());
+  
+  // println(Hmin, Hmax, Smin, Smax, Bmin, Bmax);
+  // println(thrshld);
+  
+  img2 = thresholdHSB(img, Hmin, Hmax, Smin, Smax, Bmin, Bmax);
+  img2 = gaussianBlur(img2);
   img2 = scharr(img2);
-  img2 = threshold(img2, 100);
+  img2 = threshold(img2, thrshld);
   image(img2, img.width, 0);
+  
   /**PImage img2 = img.copy();
   img2.loadPixels();
 
@@ -29,12 +54,26 @@ void draw() {
    img2 = threshold(img, 128); */
   /*img2 = hueing(img);
   img2.updatePixels();//update pixels
-  image(img2, img.width, 0);
+  image(img2, img.width, 0);*/
 
-  thresholdMin.display();
-  thresholdMin.update();
-  thresholdMax.display();
-  thresholdMax.update();*/
+  /*thresholdHMin.display();
+  thresholdHMin.update();
+  thresholdHMax.display();
+  thresholdHMax.update();
+  
+  thresholdSMin.display();
+  thresholdSMin.update();
+  thresholdSMax.display();
+  thresholdSMax.update();
+  
+  thresholdBMin.display();
+  thresholdBMin.update();
+  thresholdBMax.display();
+  thresholdBMax.update();
+  
+  thresholdthrshld.display();
+  thresholdthrshld.update();*/
+  
 }
 
 PImage threshold(PImage img, int threshold) {
