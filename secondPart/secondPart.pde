@@ -38,9 +38,9 @@ void draw() {
   // println(thrshld);
   
   img2 = thresholdHSB(img, Hmin, Hmax, Smin, Smax, Bmin, Bmax);
-  img2 = gaussianBlur(img2);
+  /*img2 = gaussianBlur(img2);
   img2 = scharr(img2);
-  img2 = threshold(img2, thrshld);
+  img2 = threshold(img2, thrshld);*/
   image(img2, img.width, 0);
   
   /**PImage img2 = img.copy();
