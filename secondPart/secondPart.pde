@@ -11,7 +11,7 @@ void settings() {
 }
 
 void setup() {
-  img = loadImage("board1.jpg");
+  img = cam.get();
   /*thresholdHMin = new HScrollbar(0, 580, 800, 20);
   thresholdHMax = new HScrollbar(10, 550, 800, 20);
   thresholdSMin = new HScrollbar(20, 520, 800, 20);
@@ -38,9 +38,9 @@ void draw() {
   // println(thrshld);
   
   img2 = thresholdHSB(img, Hmin, Hmax, Smin, Smax, Bmin, Bmax);
-  /*img2 = gaussianBlur(img2);
+  img2 = gaussianBlur(img2);
   img2 = scharr(img2);
-  img2 = threshold(img2, thrshld);*/
+  img2 = threshold(img2, thrshld);
   image(img2, img.width, 0);
   
   /**PImage img2 = img.copy();
