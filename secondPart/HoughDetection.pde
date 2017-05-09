@@ -11,6 +11,19 @@ List<PVector> hough(PImage edgeImg) {
     edgeImg.height*edgeImg.height) * 2) / discretizationStepsR +1);
   // our accumulator
   int[] accumulator = new int[phiDim * rDim];
+
+  float[] tabSin = new float[phiDim];
+  float[] tabCos = new float[phiDim];
+
+  float ang = 0;
+  float inverseR = 1.f / discretizationStepsR;
+
+  for (int accPhi = 0; accPhi < phiDim; ang += discretizationStepsPhi, accPhi++) {
+    // we can also pre-multiply by (1/discretizationStepsR) since we need it in the Hough loop
+    tabSin[accPhi] = (float) (Math.sin(ang) * inverseR);
+    tabCos[accPhi] = (float) (Math.cos(ang) * inverseR);
+  }
+
   // Fill the accumulator: on edge points (ie, white pixels of the edge
   // image), store all possible (r, phi) pairs describing lines going
   // through the point.
@@ -23,6 +36,17 @@ List<PVector> hough(PImage edgeImg) {
         // accumulator, and increment accordingly the accumulator.
         // Be careful: r may be negative, so you may want to center onto
         // the accumulator: r += rDim / 2
+        for (int phiIdx = 0; phiIdx < phiDim; phiIdx++) {
+          float phi = phiIdx * discretizationStepsPhi;
+          int accPhi = Math.round(phi / discretizationStepsPhi);
+
+          float r = x * tabCos[accPhi] +  y * tabSin[accPhi];
+          r += (rDim - 1.f) / 2.f;
+
+          int idx = Math.round(r + (phiIdx + 1) * (rDim + 2) + 1);
+
+          accumulator[idx] += 1;
+        }
       }
     }
   }
@@ -40,7 +64,7 @@ List<PVector> hough(PImage edgeImg) {
   return lines;
 }
 
-void display() {
+void display(int rDim, int phiDim, int[] accumulator) {
   PImage houghImg = createImage(rDim, phiDim, ALPHA);
   for (int i = 0; i < accumulator.length; i++) {
     houghImg.pixels[i] = color(min(255, accumulator[i]));
@@ -50,7 +74,7 @@ void display() {
   houghImg.updatePixels();
 }
 
-void plot() {
+void plot(PImage edgeImg, List<PVector> lines) {
   for (int idx = 0; idx < lines.size(); idx++) {
     PVector line=lines.get(idx);
     float r = line.x;

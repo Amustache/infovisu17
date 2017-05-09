@@ -1,6 +1,6 @@
 import processing.video.*;
 Capture cam;
-PImage img;
+PImage imgW;
 void webSettings() {
   size(640, 480);
 }
@@ -22,6 +22,6 @@ void webDraw() {
   if (cam.available() == true) {
     cam.read();
   }
-  img = cam.get();
-  image(img, 0, 0);
+  imgW = cam.get();
+  image(imgW, 0, 0);
 }

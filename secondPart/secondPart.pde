@@ -11,7 +11,7 @@ void settings() {
 }
 
 void setup() {
-  img = loadImage("board1.jpg");
+  img = cam.get();
   /*thresholdHMin = new HScrollbar(0, 580, 800, 20);
   thresholdHMax = new HScrollbar(10, 550, 800, 20);
   thresholdSMin = new HScrollbar(20, 520, 800, 20);
