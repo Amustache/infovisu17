@@ -1,4 +1,4 @@
-class HScrollbar {
+/*class HScrollbar {
   float barWidth;  //Bar's width in pixels
   float barHeight; //Bar's height in pixels
   float xPosition;  //Bar's x position in pixels
@@ -18,7 +18,7 @@ class HScrollbar {
    * @param w The width of the bar in pixels
    * @param h The height of the bar in pixels
    */
-  HScrollbar (float x, float y, float w, float h) {
+/*  HScrollbar (float x, float y, float w, float h) {
     barWidth = w;
     barHeight = h;
     xPosition = x;
@@ -34,7 +34,7 @@ class HScrollbar {
   /**
    * Updates the state of the scrollbar according to the mouse movement
    */
-  void update() {
+/*  void update() {
     if (isMouseOver()) {
       mouseOver = true;
     }
@@ -64,7 +64,7 @@ class HScrollbar {
    * 
    * @return val clamped into the interval [minVal, maxVal]
    */
-  float constrain(float val, float minVal, float maxVal) {
+/*  float constrain(float val, float minVal, float maxVal) {
     return min(max(val, minVal), maxVal);
   }
 
@@ -72,7 +72,7 @@ class HScrollbar {
    * Gets whether the mouse is hovering the scrollbar
    * Whether the mouse is hovering the scrollbar
    */
-  boolean isMouseOver() {
+/*  boolean isMouseOver() {
     if (mouseX > xPosition && mouseX < xPosition+barWidth &&
       mouseY > yPosition && mouseY < yPosition+barHeight) {
       return true;
@@ -85,7 +85,7 @@ class HScrollbar {
   /**
    * Draws the scrollbar in its current state
    */ 
-  void display() {
+/*  void display() {
     noStroke();
     fill(204);
     rect(xPosition, yPosition, barWidth, barHeight);
@@ -102,7 +102,7 @@ class HScrollbar {
    * Gets the slider position
    * The slider position in the interval [0,1] corresponding to [leftmost position, rightmost position]
    */
-  float getPos() {
+/*  float getPos() {
     return (sliderPosition - xPosition)/(barWidth - barHeight);
   }
 }

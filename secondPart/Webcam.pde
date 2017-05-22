@@ -1,4 +1,4 @@
-import processing.video.*;
+/*import processing.video.*;
 Capture cam;
 PImage imgW;
 void webSettings() {
@@ -24,4 +24,4 @@ void webDraw() {
   }
   imgW = cam.get();
   image(imgW, 0, 0);
-}
+}*/
