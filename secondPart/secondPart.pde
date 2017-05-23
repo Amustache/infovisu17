@@ -29,7 +29,7 @@ void draw() {
   img2 = threshold(img2, thrshld);
   image(img2, img.width, 0);*/
   
-  img2 = b.findConnectedComponents(img, true);
+  img2 = b.findConnectedComponents(img, false);
   image(img2, img.width, 0);
 
   //Hough h = new Hough( img, minVotes);

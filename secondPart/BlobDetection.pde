@@ -24,7 +24,7 @@ class BlobDetection {
         int W = !(i % img.height == 0) ? (i - 1) : (-1), // Basically, "is this shit out of bound?"
           NW = !(i % img.height == 0) && !(i - img.height < 0) ? (i - img.height - 1) : (-1), 
           NN = !(i - img.height < 0) ? (i - img.height) : (-1), 
-          NE = !(i + 1 % img.height == 0) && !(i - img.height < 0) ? (i - img.height + 1) : (-1);
+          NE = !((i + 1) % img.height == 0) && !(i - img.height < 0) ? (i - img.height + 1) : (-1);
 
         if (W > -1 && labels[W] > 0) {
           neigh.add(labels[W]);
@@ -44,12 +44,17 @@ class BlobDetection {
 
         if (neigh.size() > 0) { // If some of the four neighbour pixels have a label
           labels[i] = neigh.get(0);
+          ArrayList<Integer> temp = new ArrayList<Integer>();
           for (int n : neigh) {
             labels[i] = Math.min(labels[i], n);
+            temp.addAll(labelsEquivalences.get(n - 1));
           }
           for (int n : neigh) {
-            labelsEquivalences.get(labels[i] - 1).add(n);
+            //labelsEquivalences.get(labels[i] - 1).addAll(labelsEquivalences.get(n - 1));
+            //labelsEquivalences.get(n - 1).addAll(labelsEquivalences.get(n - 1));
+            labelsEquivalences.get(n - 1).addAll(temp);
           }
+          labelsEquivalences.get(labels[i] - 1).addAll(temp);
         } else { // else new label
           ++currentLabel;
           labels[i] = currentLabel;
@@ -57,7 +62,7 @@ class BlobDetection {
           labelsEquivalences.get(currentLabel - 1).add(currentLabel);
         }
       }
-    } // Until here, everything's working
+    }
     
     println(labelsEquivalences); // debug
 
@@ -80,7 +85,7 @@ class BlobDetection {
       }
     }
     
-    println(nbPixels);
+    //println(nbPixels);
 
     // Finally,
     // if onlyBiggest==false, output an image with each blob colored in one uniform color
