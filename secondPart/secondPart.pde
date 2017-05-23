@@ -1,8 +1,7 @@
 import processing.video.*;
 
 PImage image;
-Movie camera;
-//Hough hough;
+Hough hough;
 
 Capture cam;
 int minVotes = 50; 
