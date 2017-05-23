@@ -1,6 +1,7 @@
 //import processing.video.*;
 
-//Hough hough;
+PImage image;
+Hough hough;
 
 //Capture cam;
 int minVotes = 50; 
@@ -14,7 +15,7 @@ void settings() {
 
 void setup() {
   // img = loadImage("BlobDetection_Test.bmp");
-  img = loadImage("board3.jpg");
+  img = loadImage("board1.jpg");
   b = new BlobDetection();
   // hough = new Hough(img, minVotes);
   noLoop(); // no interactive behaviour: draw() will be called only once.
@@ -45,7 +46,7 @@ void draw() {
   
   edgeDetector = threshold(scharr(gaussianBlur(thresholdHSB(img, Hmin, Hmax, Smin, Smax, Bmin, Bmax))), thrshld);
   blobDetection = b.findConnectedComponents(thresholdHSB(img, Hmin, Hmax, Smin, Smax, Bmin, Bmax), false);
-  fourCorners = threshold(scharr(gaussianBlur(blobDetection)), thrshld);
+  fourCorners = threshold(scharr(gaussianBlur(blobDetection)), thrshld); // Need add hough
   
   image(edgeDetector, 1200, 0);
   image(blobDetection, 600, 0);
