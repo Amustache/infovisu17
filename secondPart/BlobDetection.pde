@@ -24,7 +24,7 @@ class BlobDetection {
         int W = !(i % img.height == 0) ? (i - 1) : (-1), // Basically, "is this shit out of bound?"
           NW = !(i % img.height == 0) && !(i - img.height < 0) ? (i - img.height - 1) : (-1), 
           NN = !(i - img.height < 0) ? (i - img.height) : (-1), 
-          NE = !(i + 1 % img.height == 0) && !(i - img.height < 0) ? (i - img.height + 1) : (-1);
+          NE = !((i + 1) % img.height == 0) && !(i - img.height < 0) ? (i - img.height + 1) : (-1);
 
         if (W > -1 && labels[W] > 0) {
           neigh.add(labels[W]);
@@ -44,12 +44,17 @@ class BlobDetection {
 
         if (neigh.size() > 0) { // If some of the four neighbour pixels have a label
           labels[i] = neigh.get(0);
+          ArrayList<Integer> temp = new ArrayList<Integer>();
           for (int n : neigh) {
             labels[i] = Math.min(labels[i], n);
+            temp.addAll(labelsEquivalences.get(n - 1));
           }
           for (int n : neigh) {
-            labelsEquivalences.get(labels[i] - 1).add(n);
+            //labelsEquivalences.get(labels[i] - 1).addAll(labelsEquivalences.get(n - 1));
+            //labelsEquivalences.get(n - 1).addAll(labelsEquivalences.get(n - 1));
+            labelsEquivalences.get(n - 1).addAll(temp);
           }
+          labelsEquivalences.get(labels[i] - 1).addAll(temp);
         } else { // else new label
           ++currentLabel;
           labels[i] = currentLabel;
@@ -57,8 +62,8 @@ class BlobDetection {
           labelsEquivalences.get(currentLabel - 1).add(currentLabel);
         }
       }
-    } // Until here, everything's working
-    
+    }
+
     println(labelsEquivalences); // debug
 
     // Second pass: re-label the pixels by their equivalent class
@@ -74,12 +79,11 @@ class BlobDetection {
       if (labels[i] > 0) {
         labels[i] = labelsEquivalences.get(labels[i] - 1).first();
         if (onlyBiggest) {
-          nbPixels.set(labelsEquivalences.get(labels[i] - 1).first() - 1, 
-            nbPixels.get(labelsEquivalences.get(labels[i] - 1).first() - 1) + 1);
+          nbPixels.set(labels[i] - 1, nbPixels.get(labels[i] - 1) + 1);
         }
       }
     }
-    
+
     println(nbPixels);
 
     // Finally,
@@ -89,13 +93,15 @@ class BlobDetection {
     // TODO!
 
     int maxBlob = -1, maxSize = -1;
-    for (int i = 0; i < nbPixels.size(); ++i) {
-      if (maxSize < nbPixels.get(i)) {
-        maxBlob = i;
-        maxSize = nbPixels.get(i);
+    if (onlyBiggest) {
+      for (int i = 0; i < nbPixels.size(); ++i) {
+        if (maxSize < nbPixels.get(i)) {
+          maxBlob = i + 1;
+          maxSize = nbPixels.get(i);
+        }
       }
     }
-    
+
     println(maxBlob);
     println(maxSize);
 
@@ -107,12 +113,12 @@ class BlobDetection {
           result.pixels[i] = color(0);
         }
       } else {
-          if(labels[i] > 0) {
-            int hash = (Integer.toString(labels[i]) + "Tant va la cruche à l'eau qu'à la fin tu me les brises.").hashCode();
-            result.pixels[i] = color((hash & 0xFF0000) >> 16, (hash & 0x00FF00) >> 8, hash & 0x0000FF);
-          } else {
-            result.pixels[i] = color(0);
-          }
+        if (labels[i] > 0) {
+          int hash = (Integer.toString(labels[i]) + "Tant va la cruche à l'eau qu'à la fin tu me les brises.").hashCode();
+          result.pixels[i] = color((hash & 0xFF0000) >> 16, (hash & 0x00FF00) >> 8, hash & 0x0000FF);
+        } else {
+          result.pixels[i] = color(0);
+        }
       }
     }
 
