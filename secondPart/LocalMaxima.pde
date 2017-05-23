@@ -4,7 +4,7 @@
  -> Not forget to put this code back in the HoughDetection class
  -> if you try and compile it, it won't work
  Thank you for your attention.
- */
+
 //access accumulator as accumulator[phi + rDim + r] += 1
 int bestC = 1;
 ArrayList<Integer> bestCandidates = new ArrayList<Integer>();
@@ -42,4 +42,4 @@ void localMaxima(int[] accumulator)
       }
     }
 
-    //this must be implemented BEFORE sorting the bestCandidates list
+    //this must be implemented BEFORE sorting the bestCandidates list*/
