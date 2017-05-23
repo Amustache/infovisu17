@@ -78,7 +78,7 @@ class Hough {
     // Choose best lines
     ArrayList<Integer> bestCandidates = new ArrayList<Integer>();
 
-    localMaxima(accumulator);
+    localMaxima(accumulator, bestCandidates);
 
 
     Collections.sort(bestCandidates, new comparator(accumulator));
@@ -130,7 +130,7 @@ class Hough {
   int bestC = 1;
   int regionSize = 10;
 
-  void localMaxima(int[] accumulator)
+  void localMaxima(int[] accumulator, ArrayList<Integer> bestCandidates)
   { 
     for (int r = 0; r<rDim; ++r) {
       for (int phi = 0; phi < phiDim; ++phi) {
