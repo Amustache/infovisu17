@@ -1,30 +1,19 @@
-/*HScrollbar thresholdHMin;
-HScrollbar thresholdHMax;
-HScrollbar thresholdSMin;
-HScrollbar thresholdSMax;
-HScrollbar thresholdBMin;
-HScrollbar thresholdBMax;
-HScrollbar thresholdthrshld;*/
+int minVotes=50; 
 PImage img, img2;
+BlobDetection b;
 void settings() {
   size(1600, 600);
 }
 
 void setup() {
-  img = cam.get();
-  /*thresholdHMin = new HScrollbar(0, 580, 800, 20);
-  thresholdHMax = new HScrollbar(10, 550, 800, 20);
-  thresholdSMin = new HScrollbar(20, 520, 800, 20);
-  thresholdSMax = new HScrollbar(30, 490, 800, 20);
-  thresholdBMin = new HScrollbar(40, 460, 800, 20);
-  thresholdBMax = new HScrollbar(50, 430, 800, 20);
-  thresholdthrshld = new HScrollbar(60, 400, 800, 20);*/
+  img = loadImage("BlobDetection_Test.bmp");
+  b = new BlobDetection();
   noLoop(); // no interactive behaviour: draw() will be called only once.
 }
 
 void draw() {
   image(img, 0, 0); //show image 
-  
+
   // Valeurs empiriques
   int Hmin = 112; // (int)(255 * thresholdHMin.getPos());
   int Hmax = 139; // (int)(255 * thresholdHMax.getPos());
@@ -33,47 +22,31 @@ void draw() {
   int Bmin = 0; // (int)(255 * thresholdBMin.getPos());
   int Bmax = 151; // (int)(255 * thresholdBMax.getPos());
   int thrshld = 180; // (int)(255 * thresholdthrshld.getPos());
-  
-  // println(Hmin, Hmax, Smin, Smax, Bmin, Bmax);
-  // println(thrshld);
-  
-  img2 = thresholdHSB(img, Hmin, Hmax, Smin, Smax, Bmin, Bmax);
+
+  /*img2 = thresholdHSB(img, Hmin, Hmax, Smin, Smax, Bmin, Bmax);
   img2 = gaussianBlur(img2);
   img2 = scharr(img2);
   img2 = threshold(img2, thrshld);
-  image(img2, img.width, 0);
+  image(img2, img.width, 0);*/
   
-  /**PImage img2 = img.copy();
-  img2.loadPixels();
+  img2 = b.findConnectedComponents(img, true);
+  image(img2, img.width, 0);
 
-  for (int x = 0; x < img2.width; x++)
-    for (int y = 0; y < img2.height; y++)
-      if (y%2==0)
-        img2.pixels[y*img2.width+x] = color(0, 0, 0);
+  //Hough h = new Hough( img, minVotes);
+//image(h.accImg, img.width, 0);
+
+  /**PImage img2 = img.copy();
+   img2.loadPixels();
+   
+   for (int x = 0; x < img2.width; x++)
+   for (int y = 0; y < img2.height; y++)
+   if (y%2==0)
+   img2.pixels[y*img2.width+x] = color(0, 0, 0);
   /* appying threshold
    img2 = threshold(img, 128); */
   /*img2 = hueing(img);
-  img2.updatePixels();//update pixels
-  image(img2, img.width, 0);*/
-
-  /*thresholdHMin.display();
-  thresholdHMin.update();
-  thresholdHMax.display();
-  thresholdHMax.update();
-  
-  thresholdSMin.display();
-  thresholdSMin.update();
-  thresholdSMax.display();
-  thresholdSMax.update();
-  
-  thresholdBMin.display();
-  thresholdBMin.update();
-  thresholdBMax.display();
-  thresholdBMax.update();
-  
-  thresholdthrshld.display();
-  thresholdthrshld.update();*/
-  
+   img2.updatePixels();//update pixels
+   image(img2, img.width, 0);*/
 }
 
 PImage threshold(PImage img, int threshold) {
