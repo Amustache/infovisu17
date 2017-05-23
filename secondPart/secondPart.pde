@@ -1,9 +1,12 @@
-import processing.video.*;
+PImage image;
+Movie camera;
+Hough hough;   
 
 Capture cam;
-int minVotes=50; 
+int minVotes = 50; 
 PImage img, img2;
 BlobDetection b;
+
 void settings() {
   size(1280, 480);
 }
