@@ -9,17 +9,6 @@ class Hough {
   int minVotes;
   PImage accImg;
 
-  float discretizationStepsPhi = 0.06f; 
-  float discretizationStepsR = 2.5f;
-  // dimensions of the accumulator
-  int phiDim = (int) (Math.PI / discretizationStepsPhi +1);
-  //The max radius is the image diagonal, but it can be also negative
-  int rDim  =(int) ((sqrt(edgeImg.width*edgeImg.width +
-    edgeImg.height*edgeImg.height) * 2) / discretizationStepsR +1);
-
-  // our accumulator
-  int[] accumulator = new int[phiDim * rDim];
-
 
   public Hough(PImage img, int minVotes) {
     edgeImg = img;
@@ -28,6 +17,19 @@ class Hough {
   }
 
   List<PVector> hough() {
+
+
+    float discretizationStepsPhi = 0.06f; 
+    float discretizationStepsR = 2.5f;
+    // dimensions of the accumulator
+    int phiDim = (int) (Math.PI / discretizationStepsPhi +1);
+    //The max radius is the image diagonal, but it can be also negative
+    int rDim  =(int) ((sqrt(edgeImg.width*edgeImg.width +
+      edgeImg.height*edgeImg.height) * 2) / discretizationStepsR +1);
+
+    // our accumulator
+    int[] accumulator = new int[(phiDim + 2) * (rDim + 2)];
+
 
     //sin cos table
     float[] tabSin = new float[phiDim];
@@ -56,10 +58,11 @@ class Hough {
             int accPhi = Math.round(phi / discretizationStepsPhi);
 
             float r = x * tabCos[accPhi] +  y * tabSin[accPhi];
-            r += (rDim - 1.f) / 2.f;
+            r += (rDim) / 2.f;
 
             int idx = Math.round(r + (phiIdx + 1) * (rDim + 2) + 1);
-
+           // System.out.print(idx);
+            //System.out.print(" ");
             accumulator[idx] += 1;
           }
         }
@@ -78,7 +81,7 @@ class Hough {
     // Choose best lines
     ArrayList<Integer> bestCandidates = new ArrayList<Integer>();
 
-    localMaxima(accumulator, bestCandidates);
+    localMaxima(accumulator, bestCandidates, phiDim, rDim);
 
 
     Collections.sort(bestCandidates, new comparator(accumulator));
@@ -130,7 +133,7 @@ class Hough {
   int bestC = 1;
   int regionSize = 10;
 
-  void localMaxima(int[] accumulator, ArrayList<Integer> bestCandidates)
+  void localMaxima(int[] accumulator, ArrayList<Integer> bestCandidates, int phiDim, int rDim)
   { 
     for (int r = 0; r<rDim; ++r) {
       for (int phi = 0; phi < phiDim; ++phi) {
