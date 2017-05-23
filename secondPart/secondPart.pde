@@ -1,3 +1,9 @@
+import processing.video.Movie;
+
+PImage image;
+Movie camera;
+Hough hough;   
+
 int minVotes=50; 
 PImage img, img2;
 BlobDetection b;
@@ -6,12 +12,14 @@ void settings() {
 }
 
 void setup() {
-  img = loadImage("BlobDetection_Test.bmp");
+  //img = loadImage("BlobDetection_Test.bmp");
   b = new BlobDetection();
+  hough = new Hough(img, minVotes);
   noLoop(); // no interactive behaviour: draw() will be called only once.
 }
 
 void draw() {
+   img = cam.get();
   image(img, 0, 0); //show image 
 
   // Valeurs empiriques
