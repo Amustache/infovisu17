@@ -106,7 +106,16 @@ public final class Hough {
       }
     }
 
-   // Collections.sort(bestCandidates, new HoughComparator(accumulator));
+
+    Collections.sort(bestCandidates, new Comparator<Integer>() {
+      @Override
+        public int compare(Integer a, Integer b)
+      {
+        if (accumulator[a] > accumulator[b] && a < b)) return -1;
+        return 1;
+      }
+    }
+    );
 
 
     ArrayList<PVector> lines = new ArrayList<PVector>();
