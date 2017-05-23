@@ -78,33 +78,7 @@ public final class Hough {
     // Choose best lines
     ArrayList<Integer> bestCandidates = new ArrayList<Integer>();
 
-    int neighbourhood = 10;
-
-    for (int accR = 0; accR < rDim; accR++) {
-      for (int accPhi = 0; accPhi < phiDim; accPhi++) {
-
-        int idx = (accPhi + 1) * (rDim + 2) + accR + 1;
-
-        if (accumulator[idx] > minVotes) {
-          boolean bestCandidate = true;
-          for (int dPhi = -neighbourhood / 2; dPhi < neighbourhood / 2 + 1; dPhi++) {
-            if (accPhi + dPhi < 0 || accPhi + dPhi >= phiDim) continue;
-            for (int dR = -neighbourhood / 2; dR < neighbourhood / 2 + 1; dR++) {
-              if (accR + dR < 0 || accR + dR >= rDim) continue;
-              int neighbourIdx = (accPhi + dPhi + 1) * (rDim + 2) + accR + dR + 1;
-              if (accumulator[idx] < accumulator[neighbourIdx]) {
-                bestCandidate = false;
-                break;
-              }
-            }
-            if (!bestCandidate) break;
-          }
-          if (bestCandidate) {
-            bestCandidates.add(idx);
-          }
-        }
-      }
-    }
+    localMaxima(accumulator);
 
 
     Collections.sort(bestCandidates, new Comparator<Integer>() {
@@ -116,7 +90,6 @@ public final class Hough {
       }
     }
     );
-
 
     ArrayList<PVector> lines = new ArrayList<PVector>();
 
@@ -199,5 +172,43 @@ public final class Hough {
       }
     }
     return intersections;
+  }
+
+
+  //access accumulator as accumulator[phi + rDim + r] += 1
+  int bestC = 1;
+  int regionSize = 10;
+
+  void localMaxima(int[] accumulator)
+  { 
+    for (int r = 0; r<rDim; ++r) {
+      for (int phi = 0; phi < phiDim; ++phi) {
+
+        int i = (phi + 1)*(rDim + 1) + r + 1; //find exact value in function of r and phi
+
+        if (accumulator[i]>minVotes) {
+          bestC = 0; //true
+
+          for (int dphi = -regionSize/2; dphi < regionSize/2 + 1; ++dphi) {
+            if !(accPhi + dPhi < 0 || accPhi + dPhi >= phiDim) break;
+
+            for (int dr = -regionSize/2; dr < regionSize/2 + 1; ++dr) {
+              if !(accR + dR < 0 || accR + dR >= rDim) break;
+
+              int index = (phi + dphi + 1)*(rDim + 2) + r + dr + 1; //formule copiée
+              if (accumulator[idx] < accumulator[index]) {
+                bestC = 1; //false
+                break;
+              }
+            }
+            if (bestC == 1) break;
+          }
+
+          if (bestC == 0) {
+            bestCandidates.add(i);
+          }
+        }
+      }
+    }
   }
 }
