@@ -16,6 +16,7 @@ void settings() {
 void setup() {
   // img = loadImage("BlobDetection_Test.bmp");
   b = new BlobDetection();
+  // hough = new Hough(img, minVotes);
   // noLoop(); // no interactive behaviour: draw() will be called only once.
 
   String[] cameras = Capture.list();
