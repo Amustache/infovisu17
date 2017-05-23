@@ -1,3 +1,5 @@
+import processing.video.*;
+
 PImage image;
 Movie camera;
 Hough hough;   
