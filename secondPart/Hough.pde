@@ -141,13 +141,13 @@ class Hough {
           bestC = 0; //true
 
           for (int dphi = -regionSize/2; dphi < regionSize/2 + 1; ++dphi) {
-            if (!(phi + dPhi < 0 || phi + dPhi >= phiDim)) break;
+            if (!(phi + dphi < 0 || phi + dphi >= phiDim)) break;
 
             for (int dr = -regionSize/2; dr < regionSize/2 + 1; ++dr) {
-              if (!(r + dR < 0 || r + dR >= rDim)) break;
+              if (!(r + dr < 0 || r + dr >= rDim)) break;
 
               int index = (phi + dphi + 1)*(rDim + 2) + r + dr + 1; //formule copiée
-              if (accumulator[idx] < accumulator[index]) {
+              if (accumulator[index] < accumulator[index]) {
                 bestC = 1; //false
                 break;
               }
