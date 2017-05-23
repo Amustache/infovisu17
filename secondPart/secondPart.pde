@@ -1,26 +1,46 @@
-import processing.video.Movie;
+import processing.video.*;
 
 PImage image;
 Movie camera;
 Hough hough;   
 
+Capture cam;
 int minVotes = 50; 
 PImage img, img2;
 BlobDetection b;
+
 void settings() {
-  size(1600, 600);
+  size(1280, 480);
 }
 
 void setup() {
-  //img = loadImage("BlobDetection_Test.bmp");
+  // img = loadImage("BlobDetection_Test.bmp");
   b = new BlobDetection();
-  hough = new Hough(img, minVotes);
-  noLoop(); // no interactive behaviour: draw() will be called only once.
+  // hough = new Hough(img, minVotes);
+  // noLoop(); // no interactive behaviour: draw() will be called only once.
+
+  String[] cameras = Capture.list();
+  if (cameras.length == 0) {
+    println("There are no cameras available for capture.");
+    exit();
+  } else {
+    println("Available cameras:");
+    for (int i = 0; i < cameras.length; i++) {
+      println(cameras[i]);
+    }
+    cam = new Capture(this, cameras[0]);
+    cam.start();
+  }
 }
 
 void draw() {
-   img = cam.get();
-  image(img, 0, 0); //show image 
+  if (cam.available()) {
+    cam.read();
+  }
+
+  img = cam.get();
+
+  image(img, 0, 0); //show image
 
   // Valeurs empiriques
   int Hmin = 112; // (int)(255 * thresholdHMin.getPos());
@@ -31,17 +51,16 @@ void draw() {
   int Bmax = 151; // (int)(255 * thresholdBMax.getPos());
   int thrshld = 180; // (int)(255 * thresholdthrshld.getPos());
 
-  /*img2 = thresholdHSB(img, Hmin, Hmax, Smin, Smax, Bmin, Bmax);
-  img2 = gaussianBlur(img2);
-  img2 = scharr(img2);
-  img2 = threshold(img2, thrshld);
-  image(img2, img.width, 0);*/
+  img2 = thresholdHSB(img, Hmin, Hmax, Smin, Smax, Bmin, Bmax); // HBS thresholding
+  img2 = b.findConnectedComponents(img, true); // Blob detection
+  img2 = gaussianBlur(img2); // Blurring
+  img2 = scharr(img2); // Edge detection
+  img2 = threshold(img2, thrshld); // Suppression of pixels with low brightness
   
-  img2 = b.findConnectedComponents(img, true);
   image(img2, img.width, 0);
 
   //Hough h = new Hough( img, minVotes);
-//image(h.accImg, img.width, 0);
+  //image(h.accImg, img.width, 0);
 
   /**PImage img2 = img.copy();
    img2.loadPixels();

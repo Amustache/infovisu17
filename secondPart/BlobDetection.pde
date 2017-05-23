@@ -64,7 +64,7 @@ class BlobDetection {
       }
     }
 
-    println(labelsEquivalences); // debug
+    // println(labelsEquivalences); // debug
 
     // Second pass: re-label the pixels by their equivalent class
     // if onlyBiggest==true, count the number of pixels for each label
@@ -84,7 +84,7 @@ class BlobDetection {
       }
     }
 
-    println(nbPixels);
+    // println(nbPixels); // debug
 
     // Finally,
     // if onlyBiggest==false, output an image with each blob colored in one uniform color
@@ -102,8 +102,8 @@ class BlobDetection {
       }
     }
 
-    println(maxBlob);
-    println(maxSize);
+    // println(maxBlob); // debug
+    // println(maxSize);
 
     for (int i = 0; i < img.width * img.height; ++i) {
       if (onlyBiggest) {
