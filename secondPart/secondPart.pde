@@ -1,6 +1,5 @@
 //import processing.video.*;
 
-PImage image;
 //Hough hough;
 
 //Capture cam;

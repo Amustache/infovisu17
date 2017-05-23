@@ -1,4 +1,4 @@
-/*import java.util.ArrayList;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -9,6 +9,18 @@ class Hough {
   int minVotes;
   PImage accImg;
 
+  float discretizationStepsPhi = 0.06f; 
+  float discretizationStepsR = 2.5f;
+  // dimensions of the accumulator
+  int phiDim = (int) (Math.PI / discretizationStepsPhi +1);
+  //The max radius is the image diagonal, but it can be also negative
+  int rDim  =(int) ((sqrt(edgeImg.width*edgeImg.width +
+    edgeImg.height*edgeImg.height) * 2) / discretizationStepsR +1);
+
+  // our accumulator
+  int[] accumulator = new int[phiDim * rDim];
+
+
   public Hough(PImage img, int minVotes) {
     edgeImg = img;
     this.minVotes = minVotes;
@@ -16,17 +28,6 @@ class Hough {
   }
 
   List<PVector> hough() {
-
-    float discretizationStepsPhi = 0.06f; 
-    float discretizationStepsR = 2.5f;
-    // dimensions of the accumulator
-    int phiDim = (int) (Math.PI / discretizationStepsPhi +1);
-    //The max radius is the image diagonal, but it can be also negative
-    int rDim  =(int) ((sqrt(edgeImg.width*edgeImg.width +
-      edgeImg.height*edgeImg.height) * 2) / discretizationStepsR +1);
-
-    // our accumulator
-    int[] accumulator = new int[phiDim * rDim];
 
     //sin cos table
     float[] tabSin = new float[phiDim];
@@ -80,17 +81,7 @@ class Hough {
     localMaxima(accumulator);
 
 
-    Collections.sort(bestCandidates, new Comparator<Integer>() {
-      @Override
-        public int compare(Integer a, Integer b)
-      {
-        if (accumulator[a] > accumulator[b] && a < b) return -1;
-        else {
-          return 1;
-        }
-      }
-    }
-    );
+    Collections.sort(bestCandidates, new comparator(accumulator));
 
     ArrayList<PVector> lines = new ArrayList<PVector>();
 
@@ -104,7 +95,7 @@ class Hough {
 
       lines.add(new PVector(r, phi));
     }
-    
+
     return lines;
   }
 
@@ -153,7 +144,7 @@ class Hough {
             if (!(accPhi + dPhi < 0 || accPhi + dPhi >= phiDim)) break;
 
             for (int dr = -regionSize/2; dr < regionSize/2 + 1; ++dr) {
-              if(!(accR + dR < 0 || accR + dR >= rDim)) break;
+              if (!(accR + dR < 0 || accR + dR >= rDim)) break;
 
               int index = (phi + dphi + 1)*(rDim + 2) + r + dr + 1; //formule copiée
               if (accumulator[idx] < accumulator[index]) {
@@ -171,4 +162,17 @@ class Hough {
       }
     }
   }
-}*/
+}
+
+class comparator implements Comparator<Integer> {
+  int[] accumulator;
+  comparator(int[] accumulator) {
+    this.accumulator = accumulator;
+  }
+
+  int compare(Integer l1, Integer l2) {
+    if (accumulator[l1] > accumulator[l2]
+      || (accumulator[l1] == accumulator[l2] && l1 < l2)) return -1;
+    return 1;
+  }
+}
