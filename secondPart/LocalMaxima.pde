@@ -19,19 +19,24 @@ void localMaxima(int[] accumulator)
       int i = (phi + 1)*(rDim + 1) + r + 1; //find exact value in function of r and phi
 
       if (accumulator[i]>minVotes) {
-
+        bestC = 0; //true
+        
         for (int dphi = -regionSize/2; dphi < regionSize/2 + 1; ++dphi) {
+          if !(accPhi + dPhi < 0 || accPhi + dPhi >= phiDim) break;
+          
           for (int dr = -regionSize/2; dr < regionSize/2 + 1; ++dr) {
+             if !(accR + dR < 0 || accR + dR >= rDim) break;
 
-            int index = (phi + dphi + 1)*(rDim + 2) + r + dr + 1;
+            int index = (phi + dphi + 1)*(rDim + 2) + r + dr + 1; //formule copiée
             if (accumulator[idx] < accumulator[index]) {
-              bestC = 0;
+              bestC = 1; //false
               break;
             }
           }
+          if(bestC == 1) break;
         }
 
-        if (bestC == 1) {
+        if (bestC == 0) {
           bestCandidates.add(i);
         }
       }
