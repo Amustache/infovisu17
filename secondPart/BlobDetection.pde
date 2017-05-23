@@ -63,7 +63,7 @@ class BlobDetection {
         }
       }
     }
-    
+
     println(labelsEquivalences); // debug
 
     // Second pass: re-label the pixels by their equivalent class
@@ -79,13 +79,12 @@ class BlobDetection {
       if (labels[i] > 0) {
         labels[i] = labelsEquivalences.get(labels[i] - 1).first();
         if (onlyBiggest) {
-          nbPixels.set(labelsEquivalences.get(labels[i] - 1).first() - 1, 
-            nbPixels.get(labelsEquivalences.get(labels[i] - 1).first() - 1) + 1);
+          nbPixels.set(labels[i] - 1, nbPixels.get(labels[i] - 1) + 1);
         }
       }
     }
-    
-    //println(nbPixels);
+
+    println(nbPixels);
 
     // Finally,
     // if onlyBiggest==false, output an image with each blob colored in one uniform color
@@ -94,13 +93,15 @@ class BlobDetection {
     // TODO!
 
     int maxBlob = -1, maxSize = -1;
-    for (int i = 0; i < nbPixels.size(); ++i) {
-      if (maxSize < nbPixels.get(i)) {
-        maxBlob = i;
-        maxSize = nbPixels.get(i);
+    if (onlyBiggest) {
+      for (int i = 0; i < nbPixels.size(); ++i) {
+        if (maxSize < nbPixels.get(i)) {
+          maxBlob = i + 1;
+          maxSize = nbPixels.get(i);
+        }
       }
     }
-    
+
     println(maxBlob);
     println(maxSize);
 
@@ -112,12 +113,12 @@ class BlobDetection {
           result.pixels[i] = color(0);
         }
       } else {
-          if(labels[i] > 0) {
-            int hash = (Integer.toString(labels[i]) + "Tant va la cruche à l'eau qu'à la fin tu me les brises.").hashCode();
-            result.pixels[i] = color((hash & 0xFF0000) >> 16, (hash & 0x00FF00) >> 8, hash & 0x0000FF);
-          } else {
-            result.pixels[i] = color(0);
-          }
+        if (labels[i] > 0) {
+          int hash = (Integer.toString(labels[i]) + "Tant va la cruche à l'eau qu'à la fin tu me les brises.").hashCode();
+          result.pixels[i] = color((hash & 0xFF0000) >> 16, (hash & 0x00FF00) >> 8, hash & 0x0000FF);
+        } else {
+          result.pixels[i] = color(0);
+        }
       }
     }
 
