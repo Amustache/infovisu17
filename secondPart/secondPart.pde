@@ -2,19 +2,21 @@ import processing.video.*;
 
 PImage image;
 Movie camera;
-Hough hough;   
+//Hough hough;
 
 Capture cam;
 int minVotes = 50; 
-PImage img, img2;
+PImage img, img2, img3;
 BlobDetection b;
 
 void settings() {
-  size(1280, 480);
+  // size(1280, 480);
+    size(1600, 600);
 }
 
 void setup() {
   // img = loadImage("BlobDetection_Test.bmp");
+  img = loadImage("img/board1.jpg");
   b = new BlobDetection();
   // hough = new Hough(img, minVotes);
   // noLoop(); // no interactive behaviour: draw() will be called only once.
@@ -38,7 +40,7 @@ void draw() {
     cam.read();
   }
 
-  img = cam.get();
+  // img = cam.get();
 
   image(img, 0, 0); //show image
 
@@ -52,12 +54,13 @@ void draw() {
   int thrshld = 180; // (int)(255 * thresholdthrshld.getPos());
 
   img2 = thresholdHSB(img, Hmin, Hmax, Smin, Smax, Bmin, Bmax); // HBS thresholding
-  img2 = b.findConnectedComponents(img, true); // Blob detection
+  img2 = b.findConnectedComponents(img2, true); // Blob detection // <<<<<<<<<< THIS SHIT.
   img2 = gaussianBlur(img2); // Blurring
   img2 = scharr(img2); // Edge detection
   img2 = threshold(img2, thrshld); // Suppression of pixels with low brightness
   
   image(img2, img.width, 0);
+  //image(img3, img.width, 0);
 
   //Hough h = new Hough( img, minVotes);
   //image(h.accImg, img.width, 0);
