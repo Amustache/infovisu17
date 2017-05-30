@@ -8,6 +8,8 @@ import java.awt.Color;
 // Speed constraints
 final float MIN_SPEED_MULTIPLIER = 0.1, MAX_SPEED_MULTIPLIER = 20.0;
 
+PShape s; // Blender
+
 // Angle constraints
 final float MIN_ANGLE = -PI/3, MAX_ANGLE = PI/3;
 
@@ -83,6 +85,11 @@ void settings() {
 }
 
 void setup() {
+  s = loadShape("toblerone.obj"); // Blender
+  PImage tex = loadImage("tex.png");
+  s.scale(2.5);
+  s.setTexture(tex);
+  
   cylinderModeIsOn = false;
   initCylinder();
   //hs = new HScrollbar(width*0.464, height*0.954, 300, 20);

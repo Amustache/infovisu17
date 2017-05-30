@@ -62,11 +62,16 @@ class Cylinder {
     pushMatrix();
     {
       translate(location.x, -BOX_THICKNESS/2 - cHeight, location.z);
-      rotateX(-PI/2);
+      //rotateX(-PI/2);
       if (cylinderModeIsOn) {
-        ellipse(0, 0, cBase * 2, cBase * 2);
+        //ellipse(0, 0, cBase * 2, cBase * 2);
+        rotateX(-PI/2);
+        rect(0, 0, cBase, cBase);
       } else {
-        shape(cylinder);
+        //shape(cylinder);
+        rotateX(-PI);
+        rotateY(PI);
+        shape(s); // Blender
       }
     }
     popMatrix();

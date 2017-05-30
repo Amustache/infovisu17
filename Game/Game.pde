@@ -4,9 +4,14 @@
 
 /* Update, called on each frame */
 void draw() {
+
   // Configuration de base
   //setLight();
-  background(bgColor);
+  PImage img;
+  img = loadImage("fb6YP3H.jpg");
+  background(img);
+  
+    //background(bgColor);
 
   drawBande();
   //image(bande, 2*BOX_SIZE/7.0f + 20 + 20, 4.0f/5.0f*height + 5);
@@ -22,7 +27,7 @@ void draw() {
 
   drawBarChart();
   image(barChart, width/2 - bande.width/2 + icone.width + scoreBox.width + 30, height - bande.height - 5);
-  
+
   hs.update();
   hs.display();
   image(scroll, width/2 - bande.width/2 + icone.width + scoreBox.width + 31, height - bande.height + 74);
@@ -83,7 +88,7 @@ public void drawIcone() {
     icone.ellipse(map(ball.location.x, -250, 250, 1, scoreBox.width - 2), map(ball.location.z, -250, 250, 1, scoreBox.height - 2), RADIUS/2, RADIUS/2);
     icone.fill(cylinderColor);
     for (Cylinder c : cylinders) {
-      icone.ellipse(map(c.location.x, -250, 250, 1, scoreBox.width - 2), map(c.location.z, -250, 250, 1, scoreBox.height - 2), CYLINDER_BASE/2, CYLINDER_BASE/2);
+      icone.rect(map(c.location.x, -250, 250, 1, scoreBox.width - 2), map(c.location.z, -250, 250, 1, scoreBox.height - 2), CYLINDER_BASE/4, CYLINDER_BASE/4);
     }
   }
   icone.endDraw();
