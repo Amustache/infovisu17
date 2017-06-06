@@ -46,8 +46,8 @@ void draw() {
   int Bmax = 151; // (int)(255 * thresholdBMax.getPos());
   int thrshld = 180; // (int)(255 * thresholdthrshld.getPos());
 
-  edgeDetector = threshold(scharr(gaussianBlur(thresholdHSB(img, Hmin, Hmax, Smin, Smax, Bmin, Bmax))), thrshld);
-  blobDetection = b.findConnectedComponents(thresholdHSB(img, Hmin, Hmax, Smin, Smax, Bmin, Bmax), true);
+  edgeDetector = gaussianBlur(thresholdHSB(img, Hmin, Hmax, Smin, Smax, Bmin, Bmax));//threshold(scharr(gaussianBlur(thresholdHSB(img, Hmin, Hmax, Smin, Smax, Bmin, Bmax))), thrshld);
+  blobDetection = b.findConnectedComponents(gaussianBlur(thresholdHSB(img, Hmin, Hmax, Smin, Smax, Bmin, Bmax)), false);
   fourCorners = threshold(scharr(gaussianBlur(blobDetection)), thrshld); // Need add hough
   hough = new Hough(fourCorners, minVotes);
   hough.hough();
