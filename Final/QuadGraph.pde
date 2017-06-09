@@ -3,18 +3,19 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.ArrayList;
 import java.util.Map;
+
 class QuadGraph {
-  
-  public QuadGraph(){
+
+  public QuadGraph() {
   }
 
   boolean verbose = false;
-  
+
   List<int[]> cycles = new ArrayList<int[]>();
   int[][] graph;
 
   List<PVector> findBestQuad(List<PVector> lines, int width, int height, int max_quad_area, int min_quad_area, boolean verbose) {
-    this.verbose=verbose;
+    this.verbose=verbose; //<>//
     build(lines, width, height); //<>//
     findCycles(verbose);
     ArrayList<PVector> bestQuad=new ArrayList<PVector>();
@@ -97,7 +98,7 @@ class QuadGraph {
     else
       return false;
   }
-  
+
   PVector intersection(PVector line1, PVector line2) {
 
     double sin_t1 = Math.sin(line1.y);
@@ -112,7 +113,7 @@ class QuadGraph {
     int x = (int) ((r2 * sin_t1 - r1 * sin_t2) / denom);
     int y = (int) ((-r2 * cos_t1 + r1 * cos_t2) / denom);
 
-    return new PVector(x,y);
+    return new PVector(x, y);
   }
 
   void findCycles(boolean verbose) {
@@ -292,7 +293,7 @@ class QuadGraph {
     if (   (i1>0 && i2>0 && i3>0 && i4>0) 
       || (i1<0 && i2<0 && i3<0 && i4<0))
       return true;
-    else if(verbose)
+    else if (verbose)
       System.out.println("Eliminating non-convex quad");
     return false;
   }
@@ -312,8 +313,7 @@ class QuadGraph {
     if (area < max_area && area > min_area)
       return area;
     return 0;
-    
-   }
+  }
 
   /** Compute the (cosine) of the four angles of the quad, and check they are all large enough
    * (the quad representing our board should be close to a rectangle)
@@ -336,7 +336,7 @@ class QuadGraph {
     if (cos1 < min_cos && cos2 < min_cos && cos3 < min_cos && cos4 < min_cos)
       return true;
     else {
-      if(verbose)
+      if (verbose)
         System.out.println("Flat quad");
       return false;
     }
@@ -368,44 +368,44 @@ class QuadGraph {
 
     return quad;
   }
-  
+
   /*
    List<PVector> drawQuad(List<PVector> corners) {
-
-      List<PVector> toReturn = new ArrayList<PVector>();
-        QuadGraph qg = new QuadGraph();
-        qg.build(corners, 600, 480);
-
-        List<int[]> quads = qg.findCycles();
-
-        for (int[] quad : quads) {
-            PVector l1 = corners.get(quad[0]);
-            PVector l2 = corners.get(quad[1]);
-            PVector l3 = corners.get(quad[2]);
-            PVector l4 = corners.get(quad[3]);
-
-            PVector c12 = intersection(l1, l2);
-            PVector c23 = intersection(l2, l3);
-            PVector c34 = intersection(l3, l4);
-            PVector c41 = intersection(l4, l1);
-
-            if(isConvex(c12, c23, c34, c41)
-                && nonFlatQuad(c12, c23, c34, c41)
-                && validArea(c12, c23, c34, c41, 200000, 50000)
-                ) {
-                
-                if(toReturn.isEmpty()) {
-                  toReturn.add(c12);
-                  toReturn.add(c23);
-                  toReturn.add(c34);
-                  toReturn.add(c41);
-                }
-            }
-        }
-        
-        return toReturn;
-    }
-  */
+   
+   List<PVector> toReturn = new ArrayList<PVector>();
+   QuadGraph qg = new QuadGraph();
+   qg.build(corners, 600, 480);
+   
+   List<int[]> quads = qg.findCycles();
+   
+   for (int[] quad : quads) {
+   PVector l1 = corners.get(quad[0]);
+   PVector l2 = corners.get(quad[1]);
+   PVector l3 = corners.get(quad[2]);
+   PVector l4 = corners.get(quad[3]);
+   
+   PVector c12 = intersection(l1, l2);
+   PVector c23 = intersection(l2, l3);
+   PVector c34 = intersection(l3, l4);
+   PVector c41 = intersection(l4, l1);
+   
+   if(isConvex(c12, c23, c34, c41)
+   && nonFlatQuad(c12, c23, c34, c41)
+   && validArea(c12, c23, c34, c41, 200000, 50000)
+   ) {
+   
+   if(toReturn.isEmpty()) {
+   toReturn.add(c12);
+   toReturn.add(c23);
+   toReturn.add(c34);
+   toReturn.add(c41);
+   }
+   }
+   }
+   
+   return toReturn;
+   }
+   */
 }
 
 class CWComparator implements Comparator<PVector> {

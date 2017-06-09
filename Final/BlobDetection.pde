@@ -7,7 +7,7 @@ class BlobDetection {
     PImage result = createImage(input.width, input.height, RGB);
     // First pass: label the pixels and store labels’ equivalences
     int [] labels= new int [input.width*input.height];
-    for (int i = 0; i < img.width * img.height; ++i) {
+    for (int i = 0; i < input.width * input.height; ++i) {
       labels[i] = 0;
     }
     List<TreeSet<Integer>> labelsEquivalences= new ArrayList<TreeSet<Integer>>(); // This be the equivalences
@@ -17,14 +17,14 @@ class BlobDetection {
     labelsEquivalences.get(currentLabel - 1).add(currentLabel); // Add the first label
 
     // TODO!
-    for (int i = 0; i < img.width * img.height; ++i) {
-      if (brightness(color(img.pixels[i])) > 128) {
+    for (int i = 0; i < input.width * input.height; ++i) {
+      if (brightness(color(input.pixels[i])) > 128) {
         List<Integer> neigh = new ArrayList<Integer>();
 
-        int W = !(i % img.height == 0) ? (i - 1) : (-1), // Basically, "is this shit out of bound?"
-          NW = !(i % img.height == 0) && !(i - img.height < 0) ? (i - img.height - 1) : (-1), 
-          NN = !(i - img.height < 0) ? (i - img.height) : (-1), 
-          NE = !((i + 1) % img.height == 0) && !(i - img.height < 0) ? (i - img.height + 1) : (-1);
+        int W = !(i % input.height == 0) ? (i - 1) : (-1), // Basically, "is this shit out of bound?"
+          NW = !(i % input.height == 0) && !(i - input.height < 0) ? (i - input.height - 1) : (-1), 
+          NN = !(i - input.height < 0) ? (i - input.height) : (-1), 
+          NE = !((i + 1) % input.height == 0) && !(i - input.height < 0) ? (i - input.height + 1) : (-1);
 
         if (W > -1 && labels[W] > 0) {
           neigh.add(labels[W]);
@@ -75,7 +75,7 @@ class BlobDetection {
       nbPixels.add(0);
     }
 
-    for (int i = 0; i < img.width * img.height; ++i) { // Relabel the shits
+    for (int i = 0; i < input.width * input.height; ++i) { // Relabel the shits
       if (labels[i] > 0) {
         labels[i] = labelsEquivalences.get(labels[i] - 1).first();
         if (onlyBiggest) {
@@ -105,7 +105,7 @@ class BlobDetection {
     // println(maxBlob); // debug
     // println(maxSize);
 
-    for (int i = 0; i < img.width * img.height; ++i) {
+    for (int i = 0; i < input.width * input.height; ++i) {
       if (onlyBiggest) {
         if (labels[i] == maxBlob) {
           result.pixels[i] = color(255);

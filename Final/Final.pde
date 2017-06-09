@@ -1,4 +1,4 @@
-/** //<>//
+/** //<>// //<>//
  * Main program and scene
  */
 
@@ -9,6 +9,9 @@ void draw() {
     cam.read();
   }
   input = cam.get();
+  
+  // Image traitée
+  traitee = threshold(scharr(gaussianBlur(thresholdHSB(input, Hmin, Hmax, Smin, Smax, Bmin, Bmax))), thrshld);
 
   // Configuration de base
   //setLight();

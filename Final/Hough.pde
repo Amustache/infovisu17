@@ -61,7 +61,7 @@ class Hough {
             r += (rDim) / 2.f;
 
             int idx = Math.round(r + (phiIdx + 1) * (rDim + 2) + 1);
-           // System.out.print(idx);
+            // System.out.print(idx);
             //System.out.print(" ");
             accumulator[idx] += 1;
           }

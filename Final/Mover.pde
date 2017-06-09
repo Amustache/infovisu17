@@ -77,12 +77,12 @@ class Mover {
 
   void checkCylinderCollision(ArrayList<Cylinder> cylinders) {
     //  V2 = V1 − 2(V1 · n)n
-    
+
     Iterator<Cylinder> iter = cylinders.iterator();
-    
-    while(iter.hasNext()) {
+
+    while (iter.hasNext()) {
       Cylinder c = iter.next();
-      
+
       if (sqrt(pow((this.location.x - c.location.x), 2)+pow((this.location.z - c.location.z), 2)) <= radius + CYLINDER_BASE) {
         lastScore = (int)sqrt(pow(velocity.x, 2) + pow(velocity.z, 2));
         score += lastScore;
@@ -93,7 +93,7 @@ class Mover {
 
         n.mult(velocity.dot(n) * 2);
         velocity.sub(n).mult(ELASTICITY);
-        
+
         iter.remove();
       }
     }

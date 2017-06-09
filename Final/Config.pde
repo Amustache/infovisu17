@@ -46,9 +46,19 @@ int textColor = strokeColor;
 
 /* Global variables */
 
+// Valeurs empiriques
+int Hmin = 112; // (int)(255 * thresholdHMin.getPos());
+int Hmax = 139; // (int)(255 * thresholdHMax.getPos());
+int Smin = 98; // (int)(255 * thresholdSMin.getPos());
+int Smax = 255; // (int)(255 * thresholdSMax.getPos());
+int Bmin = 0; // (int)(255 * thresholdBMin.getPos());
+int Bmax = 151; // (int)(255 * thresholdBMax.getPos());
+int thrshld = 180; // (int)(255 * thresholdthrshld.getPos());
+
 // Camera
 Capture cam;
-PImage input;
+//Movie cam;
+PImage input, traitee;
 
 // Booleans
 boolean cylinderModeIsOn = false;
@@ -102,6 +112,9 @@ void setup() {
     cam = new Capture(this, cameras[0]);
     cam.start();
   }
+
+  //cam = new Movie(this, "testvideo.mp4");
+  //cam.loop();
 
   s = loadShape("toblerone.obj"); // Blender
   PImage tex = loadImage("tex.png");
