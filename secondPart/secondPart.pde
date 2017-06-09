@@ -50,7 +50,7 @@ void draw() {
   //blobDetection = b.findConnectedComponents(gaussianBlur(thresholdHSB(img, Hmin, Hmax, Smin, Smax, Bmin, Bmax)), false);
   fourCorners = threshold(scharr(gaussianBlur(edgeDetector)), thrshld); // Need add hough
   hough = new Hough(fourCorners, minVotes);
-  hough.hough();
+  hough.hough(img, 4);
 
   image(edgeDetector, 1200, 0);
   //image(blobDetection, 600, 0);
