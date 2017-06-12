@@ -1,6 +1,7 @@
 import java.awt.Color;
-import java.util.Iterator;
+import java.util.*;
 import processing.video.*;
+
 
 /* Global constants */
 // [External] Tunning window

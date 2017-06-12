@@ -12,7 +12,7 @@ void draw() {
     cam.read();
   }
   input = cam.get();
-  
+
   // Valeurs empiriques
   Hmin = 112;
   Hmax = 139;
@@ -21,9 +21,6 @@ void draw() {
   Bmin = 0;
   Bmax = 151;
   thrshld = 180;
-  
-  // Image traitée
-  output = threshold(scharr(gaussianBlur(thresholdHSB(input, Hmin, Hmax, Smin, Smax, Bmin, Bmax))), thrshld);
 
   // Interface
   drawBande();

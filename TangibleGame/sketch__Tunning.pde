@@ -12,6 +12,11 @@ class Tunning extends PApplet {
   }
 
   void draw() {
+    // Image traitée
+    output = threshold(scharr(gaussianBlur(thresholdHSB(input, Hmin, Hmax, Smin, Smax, Bmin, Bmax))), thrshld);
+    // Blob detection not used because fuck you that's why.
+    ArrayList<PVector> lines = hough(output, 6);
+
     background(interfaceColor);
     drawTunning();
     image(tr, 0, 0);
