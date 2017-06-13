@@ -22,7 +22,7 @@ class Tunning extends PApplet {
     drawTunning();
     image(tr, 0, 0);
 
-    if (quad. > 0) {
+    if (quadz.size() > 0) {
       PVector rot = tg.get3DRotations(quadz);
 
       println(degrees(rot.x) + " , " + degrees(rot.y) + " , " + degrees(rot.z));
