@@ -141,7 +141,7 @@ ArrayList<PVector> hough(PImage edgeImg, int nLines) {
     int x3 = (int) (-(y3 - r / (tabSin[accPhi]/inverseR)) * ((tabSin[accPhi]/inverseR) / (tabCos[accPhi]/inverseR)));
 
     // Finally, plot the lines
-    stroke(204, 102, 0);
+    /*stroke(204, 102, 0);
     if (y0 > 0) {
       if (x1 > 0)
         line(x0, y0, x1, y1);
@@ -157,7 +157,7 @@ ArrayList<PVector> hough(PImage edgeImg, int nLines) {
           line(x1, y1, x3, y3);
       } else
         line(x2, y2, x3, y3);
-    }
-  } 
+    }*/
+  }
   return lines;
 }

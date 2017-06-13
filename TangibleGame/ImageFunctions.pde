@@ -1,4 +1,4 @@
-PImage threshold(PImage img, int threshold) {
+  PImage threshold(PImage img, int threshold) {
   PImage result = createImage(img.width, img.height, RGB);
   result.loadPixels();
   for (int i = 0; i < img.width * img.height; i++) {

@@ -16,10 +16,17 @@ class Tunning extends PApplet {
     output = threshold(scharr(gaussianBlur(thresholdHSB(input, Hmin, Hmax, Smin, Smax, Bmin, Bmax))), thrshld);
     // Blob detection not used because fuck you that's why.
     ArrayList<PVector> lines = hough(output, 6);
+    List<PVector> quadz = qg.findBestQuad(lines, output.width, output.height, output.width * output.height, (output.width * output.height) / 4, true);
 
-    background(interfaceColor);
+    //background(interfaceColor);
     drawTunning();
     image(tr, 0, 0);
+
+    if (quad. > 0) {
+      PVector rot = tg.get3DRotations(quadz);
+
+      println(degrees(rot.x) + " , " + degrees(rot.y) + " , " + degrees(rot.z));
+    }
   }
 
   void drawTunning() {

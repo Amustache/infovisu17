@@ -5,7 +5,7 @@
 /* Update, called on each frame */
 void draw() {
   // Background reset
-  background(bgColor);
+  this.background(bgColor);
 
   // Cam
   if (cam.available()) {
@@ -20,7 +20,7 @@ void draw() {
   Smax = 255;
   Bmin = 0;
   Bmax = 151;
-  thrshld = 180;
+  thrshld = 175;
 
   // Interface
   drawBande();

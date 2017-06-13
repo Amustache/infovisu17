@@ -1,7 +1,7 @@
 import java.awt.Color;
 import java.util.*;
 import processing.video.*;
-
+import gab.opencv.*;
 
 /* Global constants */
 // [External] Tunning window
@@ -56,6 +56,15 @@ Plate plate = new Plate(BOX_SIZE, BOX_SIZE, BOX_THICKNESS);
 // Ball
 Mover ball = new Mover(RADIUS, new PVector(0, 0, 0), new PVector(0, 0, 0));
 
+// QuadGraph
+QuadGraph qg = new QuadGraph();
+
+// OpenCV
+OpenCV opencv;
+
+// Fncking last step
+TwoDThreeD tg;
+
 /* Global variables */
 // Tunning
 int Hmin, Hmax, Smin, Smax, Bmin, Bmax, thrshld;
@@ -91,6 +100,10 @@ void settings() {
 }
 
 void setup() {
+  // OpenCV
+  opencv = new OpenCV(this,100,100);
+  tg = new TwoDThreeD(width, height, (int)frameRate); // Not sur of the framerate
+
   // Set center
   CENTER_X = height/2;
   CENTER_Y = width/2;
@@ -141,7 +154,7 @@ void setup() {
   }
   input = cam.get();
   
-  // Image traitée
+  // Image traitée, first call
   output = threshold(scharr(gaussianBlur(thresholdHSB(input, Hmin, Hmax, Smin, Smax, Bmin, Bmax))), thrshld);
 
   // [External] Tunning
