@@ -40,6 +40,8 @@ class TwoDThreeD {
 
   public TwoDThreeD(int width, int height, int sampleRate) {
 
+    System.loadLibrary(Core.NATIVE_LIBRARY_NAME);
+    
     // set the offset to the center of the webcam image
     K[0][2] = 0.5f * width;
     K[1][2] = 0.5f * height;
@@ -76,7 +78,7 @@ class TwoDThreeD {
     this.sampleRate=sampleRate;
     if (sampleRate>0) {
       cutOffFreq=sampleRate/2;
-      alpha= (1/sampleRate)/(1/sampleRate + 1/cutOffFreq);
+      alpha= (1.0/sampleRate)/(1.0/sampleRate + 1.0/cutOffFreq);
     }
   }
 
