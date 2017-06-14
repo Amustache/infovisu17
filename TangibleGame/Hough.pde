@@ -142,22 +142,22 @@ ArrayList<PVector> hough(PImage edgeImg, int nLines) {
 
     // Finally, plot the lines // Or not lmao
     /*stroke(204, 102, 0);
-    if (y0 > 0) {
-      if (x1 > 0)
-        line(x0, y0, x1, y1);
-      else if (y2 > 0)
-        line(x0, y0, x2, y2);
-      else
-        line(x0, y0, x3, y3);
-    } else {
-      if (x1 > 0) {
-        if (y2 > 0)
-          line(x1, y1, x2, y2);
-        else
-          line(x1, y1, x3, y3);
-      } else
-        line(x2, y2, x3, y3);
-    }*/
+     if (y0 > 0) {
+     if (x1 > 0)
+     line(x0, y0, x1, y1);
+     else if (y2 > 0)
+     line(x0, y0, x2, y2);
+     else
+     line(x0, y0, x3, y3);
+     } else {
+     if (x1 > 0) {
+     if (y2 > 0)
+     line(x1, y1, x2, y2);
+     else
+     line(x1, y1, x3, y3);
+     } else
+     line(x2, y2, x3, y3);
+     }*/
   }
   return lines;
 }

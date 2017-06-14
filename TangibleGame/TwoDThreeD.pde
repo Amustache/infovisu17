@@ -41,7 +41,7 @@ class TwoDThreeD {
   public TwoDThreeD(int width, int height, int sampleRate) {
 
     System.loadLibrary(Core.NATIVE_LIBRARY_NAME);
-    
+
     // set the offset to the center of the webcam image
     K[0][2] = 0.5f * width;
     K[1][2] = 0.5f * height;
@@ -101,7 +101,7 @@ class TwoDThreeD {
 
     if (sampleRate>0)
       filter(rotationMatrix, false);
-      
+
     // 3 - Computes and returns Euler angles (rx, ry, rz) from this matrix
     return rotationFromMatrix(rotationMatrix);
   }

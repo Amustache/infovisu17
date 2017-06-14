@@ -1,4 +1,4 @@
-import java.util.Collections; //<>//
+import java.util.Collections; //<>// //<>//
 import java.util.Comparator;
 import java.util.List;
 import java.util.ArrayList;
@@ -12,7 +12,7 @@ class QuadGraph {
 
   ArrayList<PVector> findBestQuad(List<PVector> lines, int width, int height, int max_quad_area, int min_quad_area, boolean verbose) {
     this.verbose=verbose;
-    build(lines, width, height); //<>//
+    build(lines, width, height); //<>// //<>//
     findCycles(verbose);
     ArrayList<PVector> bestQuad=new ArrayList<PVector>();
     float bestQuadArea=0;
@@ -364,7 +364,7 @@ class QuadGraph {
 
     return quad;
   }
-  
+
   void drawQuads (List<PVector> quads) {
     for (int i=0; i<quads.size(); i++) {
       PVector quad = quads.get(i);
@@ -387,7 +387,5 @@ class CWComparator implements Comparator<PVector> {
     if (Math.atan2(b.y-center.y, b.x-center.x)<Math.atan2(d.y-center.y, d.x-center.x))      
       return -1; 
     else return 1;
- 
   }
-  
 }

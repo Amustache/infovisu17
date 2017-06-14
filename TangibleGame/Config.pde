@@ -109,7 +109,7 @@ void settings() {
 
 void setup() {
   // OpenCV
-  opencv = new OpenCV(this,100,100);
+  opencv = new OpenCV(this, 100, 100);
 
   // Set center
   CENTER_X = height/2;
@@ -141,27 +141,27 @@ void setup() {
   // Camera
   // If camera input
   /*String[] cameras = Capture.list();
-  if (cameras.length == 0) {
-    println("There are no cameras available for capture.");
-    exit();
-  } else {
-    println("Available cameras:");
-    for (int i = 0; i < cameras.length; i++) {
-      println(cameras[i]);
-    }
-    cam = new Capture(this, cameras[0]);
-    cam.start();
-  }*/
+   if (cameras.length == 0) {
+   println("There are no cameras available for capture.");
+   exit();
+   } else {
+   println("Available cameras:");
+   for (int i = 0; i < cameras.length; i++) {
+   println(cameras[i]);
+   }
+   cam = new Capture(this, cameras[0]);
+   cam.start();
+   }*/
   // If movie input
   cam = new Movie(this, "testvideo.avi");
   cam.loop();
-  
+
   // Cam
   if (cam.available()) {
     cam.read();
   }
   input = cam.get();
-  
+
   // Image traitée, first call
   output = threshold(scharr(gaussianBlur(thresholdHSB(input, Hmin, Hmax, Smin, Smax, Bmin, Bmax))), thrshld);
 
@@ -169,9 +169,8 @@ void setup() {
   t = new Tunning();
   String []args = {"Tunning"};
   PApplet.runSketch(args, t);
-  
+
   dTt = new TwoDThreeD(output.width, output.height, sampleRateApprox);
-  
 }
 
 /* Settings for light */

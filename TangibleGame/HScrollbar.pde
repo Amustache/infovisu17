@@ -3,10 +3,10 @@ class HScrollbar {
   float barHeight; //Bar's height in pixels
   float xPosition;  //Bar's x position in pixels
   float yPosition;  //Bar's y position in pixels
-  
+
   float sliderPosition, newSliderPosition;    //Position of slider
   float sliderPositionMin, sliderPositionMax; //Max and min values of slider
-  
+
   boolean mouseOver;  //Is the mouse over the slider?
   boolean locked;     //Is the mouse clicking and dragging the slider now?
 
@@ -23,10 +23,10 @@ class HScrollbar {
     barHeight = h;
     xPosition = x;
     yPosition = y;
-    
+
     sliderPosition = xPosition + barWidth/2 - barHeight/2;
     newSliderPosition = sliderPosition;
-    
+
     sliderPositionMin = xPosition;
     sliderPositionMax = xPosition + barWidth - barHeight;
   }
@@ -37,8 +37,7 @@ class HScrollbar {
   void update() {
     if (isMouseOver()) {
       mouseOver = true;
-    }
-    else {
+    } else {
       mouseOver = false;
     }
     if (mousePressed && mouseOver) {
@@ -77,23 +76,21 @@ class HScrollbar {
     if (mouseX > xPosition && mouseX < xPosition+barWidth &&
       mouseY > yPosition && mouseY < yPosition+barHeight) {
       return true;
-    }
-    else {
+    } else {
       return false;
     }
   }
 
   /**
    * @brief Draws the scrollbar in its current state
-   */ 
+   */
   void display() {
     noStroke();
     fill(204);
     rect(xPosition, yPosition, barWidth, barHeight);
     if (mouseOver || locked) {
       fill(0, 0, 0);
-    }
-    else {
+    } else {
       fill(102, 102, 102);
     }
     rect(sliderPosition, yPosition, barHeight, barHeight);

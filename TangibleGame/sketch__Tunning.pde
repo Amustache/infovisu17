@@ -30,11 +30,11 @@ class Tunning extends PApplet {
 
     ArrayList<PVector> quadz = qg.findBestQuad(lines, output.width, output.height, output.width * output.height, (output.width * output.height) / 4, false);
     //qg.drawQuads(quadz);
-    
+
 
     if (quadz.size() > 0) {
-dTt = new TwoDThreeD(width, height, 24); // Not sure of the framerate
-List<PVector> nullQG = new ArrayList(Arrays.asList(zero3D, zero3D, zero3D, zero3D));
+      dTt = new TwoDThreeD(width, height, 24); // Not sure of the framerate
+      List<PVector> nullQG = new ArrayList(Arrays.asList(zero3D, zero3D, zero3D, zero3D));
 
       for (int i = 0; i < quadz.size(); i++) {
         nullQG.set(i, new PVector(quadz.get(i).x, quadz.get(i).y, 1));
@@ -42,14 +42,13 @@ List<PVector> nullQG = new ArrayList(Arrays.asList(zero3D, zero3D, zero3D, zero3
 
       PVector rot = dTt.get3DRotations(nullQG);
       PVector rho = new PVector(0, 0, 0);
-      rho.x = rX - oldP.x;
+      /*rho.x = rX - oldP.x;
       rho.y = r.y - oldP.y;
       rho.z = r.z - oldP.z;
 
       oldP = new PVector(rX, 0, rZ);
       rX = rot.x;
-      rZ = rot.z;
-    
+      rZ = rot.z;*/ // Doesn't work
     }
 
     image(input, 0, 0, input.width / 2, input.height / 2);

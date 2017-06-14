@@ -33,7 +33,7 @@ void draw() {// Interface
   full.endDraw();
   image(full, 0, 0);
 
-//ImageProcessing processing = new ImageProcessing();
+  //ImageProcessing processing = new ImageProcessing();
   // Interface
 
   drawBande();
@@ -52,8 +52,7 @@ void draw() {// Interface
   hs.update();
   /*
   List<PVector> corners;
-          corners = hough(input, 4);  
-          corners = findBestQuad(corners, width, height, height*width, height*width, true);
-  */
-
+   corners = hough(input, 4);  
+   corners = findBestQuad(corners, width, height, height*width, height*width, true);
+   */
 }

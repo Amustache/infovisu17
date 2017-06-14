@@ -12,7 +12,7 @@ class Plate {
     bThickness = bThickness_;
   }
 
-void display(PGraphics that) {
+  void display(PGraphics that) {
     //fill(163, 145, 147);
     that.fill(plateColor);
     that.stroke(strokeColor);

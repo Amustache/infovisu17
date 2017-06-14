@@ -13,7 +13,7 @@ class Mover {
     this.friction = new PVector(0, 0, 0);
   }
 
-void display(PGraphics that) {
+  void display(PGraphics that) {
     that.stroke(ballColor - 1638400);
     that.fill(ballColor);
     that.pushMatrix();
