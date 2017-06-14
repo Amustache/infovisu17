@@ -24,7 +24,7 @@ class Tunning extends PApplet {
 
     if (quadz.size() > 0) {
       PVector rot = tg.get3DRotations(quadz);
-
+println("otx" + (rot.x) + " , " + "rot y" + (rot.y) + " , " + "rot z" + (rot.z));
       println(degrees(rot.x) + " , " + degrees(rot.y) + " , " + degrees(rot.z));
     }
   }

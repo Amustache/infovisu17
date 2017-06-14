@@ -70,8 +70,11 @@ void drawBarChart() {
       } else {
         barChart.fill(255, 0, 0);
       }
-
-      barChart.rect(pos, ((barChart.height - 2)*5/7)/2, rectWidth*hs.getPos(), map(-sc, 0, max, 0, ((barChart.height - 2)*5/7)/2));
+      if (max == 0) { 
+        barChart.rect(pos, ((barChart.height - 2)*5/7)/2, rectWidth*hs.getPos(), map(-sc, 0, 1, 0, ((barChart.height - 2)*5/7)/2));
+      } else {
+        barChart.rect(pos, ((barChart.height - 2)*5/7)/2, rectWidth*hs.getPos(), map(-sc, 0, max, 0, ((barChart.height - 2)*5/7)/2));
+      }
       pos += rectWidth*hs.getPos();
     }
   }
