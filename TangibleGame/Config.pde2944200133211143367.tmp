@@ -64,9 +64,6 @@ OpenCV opencv;
 
 // Last step
 TwoDThreeD dTt;
-int sampleRateApprox = 25;
-
-// ImageProcessing imgproc;
 
 /* Global variables */
 // Tunning
@@ -165,7 +162,7 @@ void setup() {
   String []args = {"Tunning"};
   PApplet.runSketch(args, t);
   
-  dTt = new TwoDThreeD(output.width, output.height, sampleRateApprox);
+  dTt = new TwoDThreeD(100, 100, 25);
   
 }
 
