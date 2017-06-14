@@ -29,7 +29,7 @@ class Tunning extends PApplet {
     ArrayList<PVector> lines = hough(output, 4);
 
     ArrayList<PVector> quadz = qg.findBestQuad(lines, output.width, output.height, output.width * output.height, (output.width * output.height) / 4, false);
-    qg.drawQuads(quadz);
+    //qg.drawQuads(quadz);
     
 
     if (quadz.size() > 0) {
@@ -42,11 +42,11 @@ List<PVector> nullQG = new ArrayList(Arrays.asList(zero3D, zero3D, zero3D, zero3
 
       PVector rot = dTt.get3DRotations(nullQG);
       PVector rho = new PVector(0, 0, 0);
-      rho.x = r.x - oldP.x;
+      rho.x = rX - oldP.x;
       rho.y = r.y - oldP.y;
       rho.z = r.z - oldP.z;
 
-      oldP = r;
+      oldP = new PVector(rX, 0, rZ);
       rX = rot.x;
       rZ = rot.z;
     
