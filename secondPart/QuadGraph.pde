@@ -267,7 +267,7 @@ ArrayList<PVector> getIntersections(List<PVector> lines) {
       PVector line2 = lines.get(j);
       PVector intersection = getIntersection(line1, line2);
       intersections.add(intersection);
-      
+
       //fill(255, 128,0);
       //ellipse(intersection.x, intersection.y, 10,10);
     }

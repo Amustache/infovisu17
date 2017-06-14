@@ -1,16 +1,3 @@
-class comparator implements Comparator<Integer> {
-  int[] accumulator;
-  comparator(int[] accumulator) {
-    this.accumulator = accumulator;
-  }
-
-  int compare(Integer l1, Integer l2) {
-    if (accumulator[l1] > accumulator[l2]
-      || (accumulator[l1] == accumulator[l2] && l1 < l2)) return -1;
-    return 1;
-  }
-}
-
 class HoughComparator implements java.util.Comparator<Integer> {
   int[] accumulator;
 
@@ -25,18 +12,20 @@ class HoughComparator implements java.util.Comparator<Integer> {
   }
 }
 class Hough {
-  
-  int minVotes;
-   PImage edgeImg;
-     PImage accImg;
 
-   
-   public Hough(PImage img, int minVotes) {
+  int minVotes;
+  PImage edgeImg;
+  PImage accImg;
+
+
+  public Hough(PImage img, int minVotes) {
     edgeImg = img;
     this.minVotes = minVotes;
     accImg = createImage(0, 0, 0);
   }
-  
+
+  ArrayList<PVector> hough(PImage edgeImg, int nLines) {
+
     float discretizationStepsPhi = 0.06f; 
     float discretizationStepsR = 2.5f;
     // dimensions of the accumulator
@@ -44,15 +33,13 @@ class Hough {
     //The max radius is the image diagonal, but it can be also negative
     int rDim  =(int) ((sqrt(edgeImg.width*edgeImg.width +
       edgeImg.height*edgeImg.height) * 2) / discretizationStepsR +1);
-      
-  ArrayList<PVector> hough(PImage edgeImg, int nLines) {
 
     ArrayList<Integer> bestCandidates = new ArrayList<Integer>();
     ArrayList<PVector> detectedLines = new ArrayList<PVector>();
 
     int[] accumulator = new int[(phiDim + 2) * (rDim + 2)];
-    
-     //sin cos table
+
+    //sin cos table
     float[] tabSin = new float[phiDim];
     float[] tabCos = new float[phiDim];
     float ang = 0;
