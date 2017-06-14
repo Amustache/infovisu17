@@ -8,25 +8,25 @@ class Obstacle {
     this.location = location_;
   }
 
-  void display() {
-    stroke(strokeColor);
-    fill(cylinderColor);
-    pushMatrix();
+  void display(PGraphics that) {
+    that.stroke(strokeColor);
+    that.fill(cylinderColor);
+    that.pushMatrix();
     {
-      translate(location.x, -BOX_THICKNESS/2 - CYLINDER_HEIGHT, location.z);
+      that.translate(location.x, -BOX_THICKNESS/2 - CYLINDER_HEIGHT, location.z);
       //rotateX(-PI/2);
       if (cylinderModeIsOn) {
         //ellipse(0, 0, cBase * 2, cBase * 2);
-        rotateX(-PI/2);
-        rect(0, 0, CYLINDER_BASE, CYLINDER_BASE);
+        that.rotateX(-PI/2);
+        that.rect(0, 0, CYLINDER_BASE, CYLINDER_BASE);
       } else {
         //shape(cylinder);
-        rotateX(-PI);
-        rotateY(PI);
-        shape(s); // Blender
+        that.rotateX(-PI);
+        that.rotateY(PI);
+        that.shape(s); // Blender
       }
     }
-    popMatrix();
+    that.popMatrix();
   }
 
   boolean overlapsObstacle(ArrayList<Obstacle> obstacles) {

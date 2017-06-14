@@ -140,7 +140,7 @@ ArrayList<PVector> hough(PImage edgeImg, int nLines) {
     int y3 = edgeImg.width;
     int x3 = (int) (-(y3 - r / (tabSin[accPhi]/inverseR)) * ((tabSin[accPhi]/inverseR) / (tabCos[accPhi]/inverseR)));
 
-    // Finally, plot the lines
+    // Finally, plot the lines // Or not lmao
     /*stroke(204, 102, 0);
     if (y0 > 0) {
       if (x1 > 0)

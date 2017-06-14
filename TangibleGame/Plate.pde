@@ -12,17 +12,17 @@ class Plate {
     bThickness = bThickness_;
   }
 
-  void display() {
+void display(PGraphics that) {
     //fill(163, 145, 147);
-    fill(plateColor);
-    stroke(strokeColor);
-    translate(width/2, height/2);
+    that.fill(plateColor);
+    that.stroke(strokeColor);
+    that.translate(width/2, height/2);
     if (cylinderModeIsOn) {
-      rotateX(-PI/2);
+      that.rotateX(-PI/2);
     } else {
-      rotateX(rX);
-      rotateZ(rZ);
+      that.rotateX(rX);
+      that.rotateZ(rZ);
     }
-    box(bWidth, bThickness, bHeight);
+    that.box(bWidth, bThickness, bHeight);
   }
 }

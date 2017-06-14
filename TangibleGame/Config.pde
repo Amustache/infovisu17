@@ -47,7 +47,7 @@ int interfaceColor = new Color(230, 226, 175).getRGB();
 int textColor = strokeColor;
 
 // Interface
-PGraphics bande, icone, scoreBox, barChart, scroll, camera;
+PGraphics full, bande, icone, scoreBox, barChart, scroll, camera;
 HScrollbar hs;
 
 // Plateau de jeu
@@ -102,7 +102,6 @@ void settings() {
 void setup() {
   // OpenCV
   opencv = new OpenCV(this,100,100);
-  tg = new TwoDThreeD(width, height, (int)frameRate); // Not sur of the framerate
 
   // Set center
   CENTER_X = height/2;
@@ -115,6 +114,7 @@ void setup() {
   // Init mode
   cylinderModeIsOn = false;
 
+  full = createGraphics(width, height, P3D);
   // Interface 
   bande = createGraphics(5 * (BOX_SIZE/5 + 10), BOX_SIZE/5 + 10, P2D);
   icone = createGraphics(BOX_SIZE/5, BOX_SIZE/5, P2D);
@@ -145,7 +145,7 @@ void setup() {
     cam.start();
   }*/
   // If movie input
-  cam = new Movie(this, "testvideo.mp4");
+  cam = new Movie(this, "testvideo.avi");
   cam.loop();
   
   // Cam

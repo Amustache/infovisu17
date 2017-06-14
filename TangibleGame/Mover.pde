@@ -13,21 +13,21 @@ class Mover {
     this.friction = new PVector(0, 0, 0);
   }
 
-  void display() {
-    stroke(ballColor - 1638400);
-    fill(ballColor);
-    pushMatrix();
+void display(PGraphics that) {
+    that.stroke(ballColor - 1638400);
+    that.fill(ballColor);
+    that.pushMatrix();
     {
-      translate(location.x, -BOX_THICKNESS/2 - radius, location.z);
+      that.translate(location.x, -BOX_THICKNESS/2 - radius, location.z);
 
       if (cylinderModeIsOn) {
-        rotateX(-PI/2);
-        ellipse(0, 0, radius * 2, radius * 2);
+        that.rotateX(-PI/2);
+        that.ellipse(0, 0, radius * 2, radius * 2);
       } else {
-        sphere(radius);
+        that.sphere(radius);
       }
     }
-    popMatrix();
+    that.popMatrix();
   }
 
   void update() {
@@ -75,12 +75,12 @@ class Mover {
 
   void checkObstacleCollision(ArrayList<Obstacle> obstacles) {
     //  V2 = V1 − 2(V1 · n)n
-    
+
     Iterator<Obstacle> iter = obstacles.iterator();
-    
-    while(iter.hasNext()) {
+
+    while (iter.hasNext()) {
       Obstacle c = iter.next();
-      
+
       if (sqrt(pow((this.location.x - c.location.x), 2)+pow((this.location.z - c.location.z), 2)) <= radius + CYLINDER_BASE) {
         lastScore = (int)sqrt(pow(velocity.x, 2) + pow(velocity.z, 2));
         score += lastScore;
@@ -91,7 +91,7 @@ class Mover {
 
         n.mult(velocity.dot(n) * 2);
         velocity.sub(n).mult(ELASTICITY);
-        
+
         iter.remove();
       }
     }

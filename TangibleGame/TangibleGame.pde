@@ -3,26 +3,38 @@
  */
 
 /* Update, called on each frame */
-void draw() {
-  // Background reset
-  this.background(bgColor);
+void draw() {// Interface
 
-  // Cam
-  if (cam.available()) {
-    cam.read();
+
+  // Game
+  full.beginDraw();
+  {
+    full.pushMatrix();
+    // Background reset
+    full.background(bgColor);
+
+    // On affiche la plaque
+    plate.display(full);
+
+    // Puis on affiche les cylindres
+    for (Obstacle c : obstacles) {
+      c.display(full);
+    }
+
+    // Puis on update la balle et on vérifie les collisions
+    ball.update();
+    ball.checkEdges();
+    ball.checkObstacleCollision(obstacles);
+
+    // Affichage
+    ball.display(full);
+    full.popMatrix();
   }
-  input = cam.get();
-
-  // Valeurs empiriques
-  Hmin = 112;
-  Hmax = 139;
-  Smin = 98;
-  Smax = 255;
-  Bmin = 0;
-  Bmax = 151;
-  thrshld = 175;
+  full.endDraw();
+  image(full, 0, 0);
 
   // Interface
+
   drawBande();
   image(bande, 10, height - bande.height - 10);
 
@@ -37,21 +49,4 @@ void draw() {
 
   hs.display(); 
   hs.update();
-
-  // Game
-  // On affiche la plaque
-  plate.display();
-
-  // Puis on affiche les cylindres
-  for (Obstacle c : obstacles) {
-    c.display();
-  }
-
-  // Puis on update la balle et on vérifie les collisions
-  ball.update();
-  ball.checkEdges();
-  ball.checkObstacleCollision(obstacles);
-
-  // Affichage
-  ball.display();
 }
