@@ -7,6 +7,11 @@ import gab.opencv.*;
 // [External] Tunning window
 Tunning t;
 
+PVector zero2D = new PVector(0, 0);
+PVector zero3D = new PVector(0, 0, 0);
+PVector oldP = new PVector(0, 0, 0);
+PVector r; 
+
 // Speed constraints
 final float MIN_SPEED_MULTIPLIER = 0.1, MAX_SPEED_MULTIPLIER = 20.0;
 

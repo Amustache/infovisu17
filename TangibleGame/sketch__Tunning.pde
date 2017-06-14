@@ -29,22 +29,27 @@ class Tunning extends PApplet {
     ArrayList<PVector> lines = hough(output, 4);
 
     ArrayList<PVector> quadz = qg.findBestQuad(lines, output.width, output.height, output.width * output.height, (output.width * output.height) / 4, false);
-
-    dTt = new TwoDThreeD(width, height, 24); // Not sure of the framerate
+    qg.drawQuads(quadz);
+    
 
     if (quadz.size() > 0) {
+dTt = new TwoDThreeD(width, height, 24); // Not sure of the framerate
+List<PVector> nullQG = new ArrayList(Arrays.asList(zero3D, zero3D, zero3D, zero3D));
 
-      List<PVector> sortedCorners =qg.sortCorners(quadz);
-      for (int i = 0; i < sortedCorners.size(); ++i) {
-        sortedCorners.get(i).z = 1;
+      for (int i = 0; i < quadz.size(); i++) {
+        nullQG.set(i, new PVector(quadz.get(i).x, quadz.get(i).y, 1));
       }
 
-      PVector rot = dTt.get3DRotations(sortedCorners);
+      PVector rot = dTt.get3DRotations(nullQG);
+      PVector rho = new PVector(0, 0, 0);
+      rho.x = r.x - oldP.x;
+      rho.y = r.y - oldP.y;
+      rho.z = r.z - oldP.z;
+
+      oldP = r;
       rX = rot.x;
       rZ = rot.z;
-
-      println("otx" + (rot.x) + " , " + "rot y" + (rot.y) + " , " + "rot z" + (rot.z));
-      println(degrees(rot.x) + " , " + degrees(rot.y) + " , " + degrees(rot.z));
+    
     }
 
     image(input, 0, 0, input.width / 2, input.height / 2);

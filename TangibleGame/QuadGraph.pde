@@ -364,6 +364,14 @@ class QuadGraph {
 
     return quad;
   }
+  
+  void drawQuads (List<PVector> quads) {
+    for (int i=0; i<quads.size(); i++) {
+      PVector quad = quads.get(i);
+      fill(204, 102, 0);
+      ellipse(quad.x, quad.y, 20, 20);
+    }
+  }
 }
 
 class CWComparator implements Comparator<PVector> {
@@ -379,41 +387,7 @@ class CWComparator implements Comparator<PVector> {
     if (Math.atan2(b.y-center.y, b.x-center.x)<Math.atan2(d.y-center.y, d.x-center.x))      
       return -1; 
     else return 1;
+ 
   }
-/*
-
-  List<PVector> drawQuad(List<PVector> corners) {
-
-    List<PVector> toReturn = new ArrayList<PVector>();
-    QuadGraph qg = new QuadGraph();
-    qg.build(corners, width, height);
-
-    List<int[]> quads = findCycles();
-
-    for (int[] quad : quads) {
-      PVector l1 = corners.get(quad[0]);
-      PVector l2 = corners.get(quad[1]);
-      PVector l3 = corners.get(quad[2]);
-      PVector l4 = corners.get(quad[3]);
-
-      PVector c12 = intersection(l1, l2);
-      PVector c23 = intersection(l2, l3);
-      PVector c34 = intersection(l3, l4);
-      PVector c41 = intersection(l4, l1);
-
-      if (isConvex(c12, c23, c34, c41)
-        && nonFlatQuad(c12, c23, c34, c41)
-        && validArea(c12, c23, c34, c41, 200000, 50000)
-        ) {
-        if (toReturn.isEmpty()) {
-          toReturn.add(c12);
-          toReturn.add(c23);
-          toReturn.add(c34);
-          toReturn.add(c41);
-        }
-      }
-    }
-
-    return toReturn;
-  }*/
+  
 }
