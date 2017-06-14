@@ -7,11 +7,6 @@ import gab.opencv.*;
 // [External] Tunning window
 Tunning t;
 
-PVector zero2D = new PVector(0, 0);
-PVector zero3D = new PVector(0, 0, 0);
-PVector oldP = new PVector(0, 0, 0);
-PVector r; 
-
 // Speed constraints
 final float MIN_SPEED_MULTIPLIER = 0.1, MAX_SPEED_MULTIPLIER = 20.0;
 
@@ -69,9 +64,6 @@ OpenCV opencv;
 
 // Last step
 TwoDThreeD dTt;
-int sampleRateApprox = 25;
-
-// ImageProcessing imgproc;
 
 /* Global variables */
 // Tunning
@@ -170,7 +162,7 @@ void setup() {
   String []args = {"Tunning"};
   PApplet.runSketch(args, t);
   
-  dTt = new TwoDThreeD(output.width, output.height, sampleRateApprox);
+  dTt = new TwoDThreeD(100, 100, 25);
   
 }
 
